@@ -4,7 +4,7 @@
 
 <Workspace>
 	<Local Expanded="Yes" Name="Diagram_DFD">
-		<Model Expanded="Yes" ID="{0F860A4D-1720-4BDD-8D54-8520D55B5A5C}" Name="Mức 0" Selected="Yes" Type="{3D3C409C-B60D-430E-A1C4-B880653AC634}" URL="Mức 0.bpm"/>
+		<Model Expanded="Yes" ID="{0F860A4D-1720-4BDD-8D54-8520D55B5A5C}" Loaded="No" Name="Mức 0" Type="{3D3C409C-B60D-430E-A1C4-B880653AC634}" URL="Mức 0.bpm"/>
 		<Model Expanded="Yes" ID="{CA44F081-C289-4F84-94A7-237267CCB4A2}" Loaded="No" Name="Mức Ngữ Cảnh" Type="{3D3C409C-B60D-430E-A1C4-B880653AC634}" URL="Mức Ngữ Cảnh.bpm"/>
 	</Local>
 	<BrowserModule Name="Repository"/>
