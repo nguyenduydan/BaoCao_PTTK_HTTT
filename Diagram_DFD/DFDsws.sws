@@ -6,9 +6,11 @@
 	<Local Expanded="Yes">
 		<Model Expanded="Yes" ID="{ADB94B5D-AE0A-4AC3-8206-05279A79F718}" Loaded="No" Name="Project_1" Type="{FF4B6538-9856-42CF-B9B9-304ED370CEAA}" URL="Project_1/Project_1.prj"/>
 		<Model Expanded="Yes" ID="{23C8EC54-95EC-42E4-BA10-BC82347FCA9B}" Name="ERD_quanniem" Type="{1E597170-9350-11D1-AB3C-0020AF71E433}" URL="../ERD/ERD_quanniem.cdm"/>
-		<Model Expanded="Yes" ID="{445F6B54-E124-4B81-BB04-9B3CD221B40E}" Name="PDM" Type="{CDE44E21-9669-11D1-9914-006097355D9B}" URL="../ERD/PDM.pdm"/>
-		<Model Expanded="Yes" ID="{2EEC9FD4-016B-40FF-8F07-6E8DF08E1AEC}" Loaded="No" Name="BusinessProcessModel_2" Type="{3D3C409C-B60D-430E-A1C4-B880653AC634}" URL="sodocap0.bpm"/>
-		<Model Expanded="Yes" ID="{CA44F081-C289-4F84-94A7-237267CCB4A2}" Loaded="No" Name="Mức Ngữ Cảnh" Type="{3D3C409C-B60D-430E-A1C4-B880653AC634}" URL="/hk1_nam3/pttk htth/baocao_pttk_httt/diagram_dfd/mức ngữ cảnh.bpm"/>
+		<Model Expanded="Yes" ID="{AC49195A-5C13-4BA2-A238-A9520FDBC12D}" Name="QLKH" Type="{CDE44E21-9669-11D1-9914-006097355D9B}" URL="../ERD/QLKH.pdm"/>
+		<Model Expanded="Yes" ID="{445F6B54-E124-4B81-BB04-9B3CD221B40E}" Loaded="No" Name="PDM" Selected="Yes" Type="{CDE44E21-9669-11D1-9914-006097355D9B}" URL="../ERD/PDM.pdm"/>
+		<Model Expanded="Yes" ID="{37412768-9676-41D9-9028-56CCBB95CA71}" Name="ERD_LDM" Type="{5F45F978-C4F3-4E35-A3FC-AF3318663A0F}" URL="../ERD/ERD_LDM.ldm"/>
+		<Model ID="{2EEC9FD4-016B-40FF-8F07-6E8DF08E1AEC}" Name="BusinessProcessModel_2" Type="{3D3C409C-B60D-430E-A1C4-B880653AC634}" URL="sodocap0.bpm"/>
+		<Model ID="{CA44F081-C289-4F84-94A7-237267CCB4A2}" Name="Mức Ngữ Cảnh" Type="{3D3C409C-B60D-430E-A1C4-B880653AC634}" URL="mức ngữ cảnh.bpm"/>
 	</Local>
 	<BrowserModule Name="Repository"/>
 </Workspace>
