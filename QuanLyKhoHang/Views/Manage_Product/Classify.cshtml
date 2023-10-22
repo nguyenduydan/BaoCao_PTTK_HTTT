@@ -1,0 +1,22 @@
+﻿@using QuanLyKhoHang.Views.Manage_Product
+@{
+    ViewBag.Title = "Phân loại hàng hóa";
+    ManageProduct childrenFeatures = new ManageProduct();
+    ViewBag.Children = childrenFeatures.Show();
+    ViewBag.showFeature = true;
+}
+@section Style{
+    <link rel="Stylesheet" href="~/Content/Manage.css" />
+}
+
+<div class="classify">
+    <form class="form" method="get">
+        <select>
+            <option>Mặc định</option>
+            <option>Tên sản phẩn</option>
+        </select>
+        <input  type="submit" value="Phân loại"/>
+    </form>
+</div>
+
+

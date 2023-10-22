@@ -1,0 +1,36 @@
+﻿@using QuanLyKhoHang.Views.Manage_Product
+@{
+    ViewBag.Title = "Tra cứu hàng hóa";
+    ManageProduct childrenFeatures = new ManageProduct();
+    ViewBag.Children = childrenFeatures.Show();
+    ViewBag.showFeature = true;
+}
+@section Style{
+    <link rel="Stylesheet" href="~/Content/Manage.css" />
+}
+
+<div id="search">
+    <form class="form" method="post">
+        <input type="text" placeholder="Tra cứu..." />
+        <button>
+            <svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" viewBox="0 0 26 26" fill="none">
+                <path d="M12.3966 24.7931C5.56333 24.7931 0 19.2298 0 12.3966C0 5.56333 5.56333 0 12.3966 0C19.2298 0 24.7931 5.56333 24.7931 12.3966C24.7931 19.2298 19.2298 24.7931 12.3966 24.7931ZM12.3966 1.81413C6.55506 1.81413 1.81413 6.56715 1.81413 12.3966C1.81413 18.226 6.55506 22.979 12.3966 22.979C18.2381 22.979 22.979 18.226 22.979 12.3966C22.979 6.56715 18.2381 1.81413 12.3966 1.81413Z" fill="#292D32" fill-opacity="0.7" />
+                <path d="M25.096 26.0025C24.8662 26.0025 24.6364 25.9178 24.455 25.7364L22.0361 23.3176C21.6854 22.9668 21.6854 22.3863 22.0361 22.0356C22.3869 21.6848 22.9674 21.6848 23.3181 22.0356L25.7369 24.4544C26.0877 24.8051 26.0877 25.3857 25.7369 25.7364C25.5555 25.9178 25.3257 26.0025 25.096 26.0025Z" fill="#292D32" fill-opacity="0.7" />
+            </svg>
+        </button>
+        
+    </form>
+    <form class="form" name="reset" id="reset" method="post">
+        <select>
+            <option>Mặc định</option>
+            <option>Tên sản phẩn</option>
+        </select>
+        <button>
+            <svg xmlns="http://www.w3.org/2000/svg" width="23" height="23" viewBox="0 0 23 23" fill="none">
+                <path d="M13.9225 20.6865C17.998 19.613 21 15.908 21 11.5C21 6.256 16.782 2 11.5 2C5.1635 2 2 7.282 2 7.282M2 7.282V2.95M2 7.282H3.9095H6.218" stroke="white" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" />
+                <path opacity="0.4" d="M2 11.5C2 16.744 6.256 21 11.5 21" stroke="white" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" stroke-dasharray="22.09 22.09" />
+            </svg>
+        </button>
+    </form>
+</div>
+

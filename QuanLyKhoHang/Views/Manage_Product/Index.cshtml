@@ -1,0 +1,8 @@
+﻿@using QuanLyKhoHang.Views.Manage_Product
+@{
+    ViewBag.Title = "Quản lý hàng hóa";
+    ManageProduct childrenFeatures = new ManageProduct();
+    ViewBag.Children = childrenFeatures.Show();
+    ViewBag.showFeature = true;
+}
+

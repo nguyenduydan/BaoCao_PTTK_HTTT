@@ -5,13 +5,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>@ViewBag.Title</title>
     @Styles.Render("~/Content/css")
+    @RenderSection("Style", false)
     @Scripts.Render("~/bundles/modernizr")
 </head>
 <body>
     <div class="bin">
-        <div class="logo"><span>TẠP HÓA TRINH</span></div>
+        <div class="logo"><a href="~/Home/Index">TẠP HÓA TRINH</a></div>
         <div class="header">
-            <form>
+            <form class="form">
                 <button>
                     <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 18 18" fill="none">
                         <path d="M8.58223 17.1645C3.85154 17.1645 0 13.3129 0 8.58223C0 3.85154 3.85154 0 8.58223 0C13.3129 0 17.1645 3.85154 17.1645 8.58223C17.1645 13.3129 13.3129 17.1645 8.58223 17.1645ZM8.58223 1.25594C4.53812 1.25594 1.25594 4.54649 1.25594 8.58223C1.25594 12.618 4.53812 15.9085 8.58223 15.9085C12.6264 15.9085 15.9085 12.618 15.9085 8.58223C15.9085 4.54649 12.6264 1.25594 8.58223 1.25594Z" fill="#292D32" fill-opacity="0.7" />
@@ -24,55 +25,95 @@
         <div class="side-bar">
             <ul>
                 <li>
-                    <a href="#">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="39" height="39" viewBox="0 0 39 39" fill="none">
-                            <path d="M11.25 17.2768H8.0357C4.14641 17.2768 2.00891 15.1393 2.00891 11.25V8.0357C2.00891 4.14641 4.14641 2.00891 8.0357 2.00891H11.25C15.1393 2.00891 17.2768 4.14641 17.2768 8.0357V11.25C17.2768 15.1393 15.1393 17.2768 11.25 17.2768ZM8.0357 4.41963C5.49641 4.41963 4.41963 5.49641 4.41963 8.0357V11.25C4.41963 13.7893 5.49641 14.8661 8.0357 14.8661H11.25C13.7893 14.8661 14.8661 13.7893 14.8661 11.25V8.0357C14.8661 5.49641 13.7893 4.41963 11.25 4.41963H8.0357Z" fill="#787486" />
-                            <path d="M30.5357 17.2768H27.3214C23.4321 17.2768 21.2946 15.1393 21.2946 11.25V8.0357C21.2946 4.14641 23.4321 2.00891 27.3214 2.00891H30.5357C34.425 2.00891 36.5625 4.14641 36.5625 8.0357V11.25C36.5625 15.1393 34.425 17.2768 30.5357 17.2768ZM27.3214 4.41963C24.7821 4.41963 23.7053 5.49641 23.7053 8.0357V11.25C23.7053 13.7893 24.7821 14.8661 27.3214 14.8661H30.5357C33.075 14.8661 34.1518 13.7893 34.1518 11.25V8.0357C34.1518 5.49641 33.075 4.41963 30.5357 4.41963H27.3214Z" fill="#787486" />
-                            <path d="M30.5357 36.5625H27.3214C23.4321 36.5625 21.2946 34.425 21.2946 30.5357V27.3215C21.2946 23.4322 23.4321 21.2947 27.3214 21.2947H30.5357C34.425 21.2947 36.5625 23.4322 36.5625 27.3215V30.5357C36.5625 34.425 34.425 36.5625 30.5357 36.5625ZM27.3214 23.7054C24.7821 23.7054 23.7053 24.7822 23.7053 27.3215V30.5357C23.7053 33.075 24.7821 34.1518 27.3214 34.1518H30.5357C33.075 34.1518 34.1518 33.075 34.1518 30.5357V27.3215C34.1518 24.7822 33.075 23.7054 30.5357 23.7054H27.3214Z" fill="#787486" />
-                            <path d="M11.25 36.5625H8.0357C4.14641 36.5625 2.00891 34.425 2.00891 30.5357V27.3215C2.00891 23.4322 4.14641 21.2947 8.0357 21.2947H11.25C15.1393 21.2947 17.2768 23.4322 17.2768 27.3215V30.5357C17.2768 34.425 15.1393 36.5625 11.25 36.5625ZM8.0357 23.7054C5.49641 23.7054 4.41963 24.7822 4.41963 27.3215V30.5357C4.41963 33.075 5.49641 34.1518 8.0357 34.1518H11.25C13.7893 34.1518 14.8661 33.075 14.8661 30.5357V27.3215C14.8661 24.7822 13.7893 23.7054 11.25 23.7054H8.0357Z" fill="#787486" />
+                    <a href="~/Home/Index">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="35" height="35" viewBox="0 0 35 35" fill="none">
+                            <path d="M5.91032 14.0942H9.18386C12.4574 14.0942 14.0942 12.4574 14.0942 9.18386V5.91032C14.0942 2.63677 12.4574 1 9.18386 1H5.91032C2.63677 1 1 2.63677 1 5.91032V9.18386C1 12.4574 2.63677 14.0942 5.91032 14.0942Z" stroke="#787486" stroke-width="2" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round" />
+                            <path d="M25.5514 14.0942H28.825C32.0985 14.0942 33.7353 12.4574 33.7353 9.18386V5.91032C33.7353 2.63677 32.0985 1 28.825 1H25.5514C22.2779 1 20.6411 2.63677 20.6411 5.91032V9.18386C20.6411 12.4574 22.2779 14.0942 25.5514 14.0942Z" stroke="#787486" stroke-width="2" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round" />
+                            <path d="M25.5514 33.7354H28.825C32.0985 33.7354 33.7353 32.0987 33.7353 28.8251V25.5516C33.7353 22.278 32.0985 20.6413 28.825 20.6413H25.5514C22.2779 20.6413 20.6411 22.278 20.6411 25.5516V28.8251C20.6411 32.0987 22.2779 33.7354 25.5514 33.7354Z" stroke="#787486" stroke-width="2" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round" />
+                            <path d="M5.91032 33.7354H9.18386C12.4574 33.7354 14.0942 32.0987 14.0942 28.8251V25.5516C14.0942 22.278 12.4574 20.6413 9.18386 20.6413H5.91032C2.63677 20.6413 1 22.278 1 25.5516V28.8251C1 32.0987 2.63677 33.7354 5.91032 33.7354Z" stroke="#787486" stroke-width="2" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round" />
                         </svg>
                         <span>Trang chủ</span>
                     </a>
                 </li>
+                @if (ViewBag.Children != null)
+                {
+                    foreach(Manage.ChildrenFeature children in ViewBag.Children)
+                    {
+                    <li>
+                        <a href="@children.Link">
+                            @Html.Raw(children.Icon)
+                            <span>@children.Text</span>
+                        </a>
+                    </li>
+                    }
+                }
             </ul>
-            <hr />
-            <span>CHỨC NĂNG</span>
-            @if (ViewBag.showFeature)
-            {
-                <ul class="feature">
-                    <li>
-                        <a href="#">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="8" height="8" viewBox="0 0 8 8" fill="none">
-                                <circle cx="4" cy="4" r="4" fill="#7AC555" />
-                            </svg>
-                            <span>Nhập hàng</span>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="#">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="8" height="8" viewBox="0 0 8 8" fill="none">
-                                <circle cx="4" cy="4" r="4" fill="#FFA500" />
-                            </svg>
-                            <span>Xuất hàng</span>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="#">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="8" height="8" viewBox="0 0 8 8" fill="none">
-                                <circle cx="4" cy="4" r="4" fill="#76A5EA" />
-                            </svg>
-                            <span>Quản lý kho hàng</span>
-                        </a>
-                    </li>
+            <div id="features-container">
+                <hr />
+                <span>CHỨC NĂNG</span>
+                <ul id="feature">
+                    @if (ViewBag.showFeature)
+                    {
+                        <li>
+                            <a href="#">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="8" height="8" viewBox="0 0 8 8" fill="none">
+                                    <circle cx="4" cy="4" r="4" fill="#7AC555" />
+                                </svg>
+                                <span>Nhập hàng</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="8" height="8" viewBox="0 0 8 8" fill="none">
+                                    <circle cx="4" cy="4" r="4" fill="#FFA500" />
+                                </svg>
+                                <span>Xuất hàng</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="~/Manage_Product/Index">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="8" height="8" viewBox="0 0 8 8" fill="none">
+                                    <circle cx="4" cy="4" r="4" fill="#76A5EA" />
+                                </svg>
+                                <span>Quản lý kho hàng</span>
+                            </a>
+                        </li>
+                    }
                 </ul>
-                <button>Đăng xuất</button>
-            }
+                @{
+                    var buttonText = ViewBag.IsAuthenticated != null ? "Đăng nhập" : "Đăng xuất";
+                }
+                <a href="~/Login/Index"><button>@buttonText</button></a>
+
+            </div>
 
         </div>
         <div class="content">
             @RenderBody()
         </div>
     </div>
+    <script>
+        var feature = document.getElementById("feature");
+        function addCheck(index = null) {
+            if (feature != null) {
+                for (var i = 0; i < feature.children.length; i++) {
+                    feature.children[i].classList.remove("checked");
+                }
+            }
+            if (index != null) { feature.children[index].classList.add("checked") }
+           
+        }
+        var localhost = window.location.pathname.split("/").filter(part => part.trim() !== '')[0];
+        switch (localhost) {
+            case "Manage_Product": addCheck(2); break;
+            case "Import_Product": addCheck(0); break;
+            case "Export_Product": addCheck(1); break;
+            default: addCheck(null);
+        }
+
+        
+
+    </script>
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/bootstrap")
     @RenderSection("scripts", required: false)

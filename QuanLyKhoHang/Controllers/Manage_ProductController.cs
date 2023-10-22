@@ -13,5 +13,15 @@ namespace QuanLyKhoHang.Controllers
         {
             return View();
         }
+
+        public ActionResult Classify()
+        {
+            return View();
+        }
+
+        public ActionResult Search() {
+            return View();
+        
+        }
     }
 }

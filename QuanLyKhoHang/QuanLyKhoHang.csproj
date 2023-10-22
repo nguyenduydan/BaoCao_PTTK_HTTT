@@ -129,10 +129,13 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Views\Manage_Product\ManageProduct.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\bootstrap.css" />
+    <Content Include="Content\Login.css" />
     <Content Include="Content\MainLayout.css" />
+    <Content Include="Content\Manage.css" />
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
     <Content Include="Scripts\bootstrap.bundle.js" />
@@ -163,17 +166,17 @@
     <Content Include="Views\_ViewStart.cshtml" />
     <Content Include="Views\Shared\Error.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
-    <Content Include="Views\Home\About.cshtml" />
-    <Content Include="Views\Home\Contact.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
+    <Content Include="Views\Manage_Product\Index.cshtml" />
+    <Content Include="Views\Manage_Product\Classify.cshtml" />
+    <Content Include="Views\Manage_Product\Search.cshtml" />
+    <Content Include="Views\Login\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Models\" />
     <Folder Include="Views\Export_Product\" />
     <Folder Include="Views\Import_Product\" />
-    <Folder Include="Views\Login\" />
-    <Folder Include="Views\Manage_Product\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
@@ -185,6 +188,12 @@
     <Content Include="Scripts\bootstrap.bundle.js.map" />
     <Content Include="Scripts\jquery-3.4.1.slim.min.map" />
     <Content Include="Scripts\jquery-3.4.1.min.map" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Manage\Manage.csproj">
+      <Project>{8a4d760a-1166-414d-8eb6-887a331e6518}</Project>
+      <Name>Manage</Name>
+    </ProjectReference>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

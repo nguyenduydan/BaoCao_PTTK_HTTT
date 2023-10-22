@@ -1,0 +1,6 @@
+D:\ASP.NET MVC\BaoCao_PTTK_HTTT\Manage\bin\Debug\Manage.dll
+D:\ASP.NET MVC\BaoCao_PTTK_HTTT\Manage\bin\Debug\Manage.pdb
+D:\ASP.NET MVC\BaoCao_PTTK_HTTT\Manage\obj\Debug\Manage.csproj.AssemblyReference.cache
+D:\ASP.NET MVC\BaoCao_PTTK_HTTT\Manage\obj\Debug\Manage.csproj.CoreCompileInputs.cache
+D:\ASP.NET MVC\BaoCao_PTTK_HTTT\Manage\obj\Debug\Manage.dll
+D:\ASP.NET MVC\BaoCao_PTTK_HTTT\Manage\obj\Debug\Manage.pdb

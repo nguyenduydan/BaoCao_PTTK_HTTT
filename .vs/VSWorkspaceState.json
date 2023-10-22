@@ -1,7 +1,9 @@
 {
   "ExpandedNodes": [
-    ""
+    "",
+    "\\QuanLyKhoHang",
+    "\\QuanLyKhoHang\\Content"
   ],
-  "SelectedNode": "\\D:\\ASP.NET MVC\\BaoCao_PTTK_HTTT",
+  "SelectedNode": "\\QuanLyKhoHang\\Content\\MainLayout.css",
   "PreviewInSolutionExplorer": false
 }
