@@ -1,0 +1,24 @@
+﻿.export a {
+    position: relative;
+    width: 186px;
+    height: 64px;
+    font-size: 22px;
+    font-weight: 600;
+    color:#000;
+    border-radius: 10px;
+    border: 2px solid #5030E5;
+    margin-bottom:40px;
+}
+
+.export a span {
+    width:100%;
+    text-align:center;
+    position:absolute;
+    top:50%;
+    transform: translateY(-50%)
+}
+
+.export a:hover {
+    background: #5030E5;
+    color: #fff;
+}

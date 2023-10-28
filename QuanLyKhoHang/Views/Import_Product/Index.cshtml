@@ -1,0 +1,56 @@
+﻿@using QuanLyKhoHang.Views.Import_Product
+@using Manage
+@{
+    ViewBag.Title = "Nhập hàng";
+    ImportProduct childrenFeatures = new ImportProduct();
+    ViewBag.Children = childrenFeatures.Show();
+    ViewBag.showFeature = true;
+    Pages pager = new Pages();
+    int pageNo = 0;
+    if (ViewBag.pages != null)
+    {
+        pager = ViewBag.pages; 
+        pageNo = pager.CurrentPage;
+    }
+}
+@section Style{
+    <link rel="Stylesheet" href="~/Content/Import.css" />
+}
+<div class="margin">
+    <div class="d-flex align-items-center m">
+        <h3>Nhập hàng</h3>
+        <a href="~/Import_Product/Add">
+            <svg xmlns="http://www.w3.org/2000/svg" width="43" height="43" viewBox="0 0 43 45" fill="none">
+                <path d="M13.2999 21.5H29.6999" stroke="#5030E5" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+                <path d="M21.5 29.7V13.3" stroke="#5030E5" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+                <path d="M15.35 42H27.65C37.9 42 42 37.9 42 27.65V15.35C42 5.1 37.9 1 27.65 1H15.35C5.1 1 1 5.1 1 15.35V27.65C1 37.9 5.1 42 15.35 42Z" stroke="#5030E5" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+            </svg>
+        </a>
+    </div>
+    <div class="info-products">
+        <table class="table">
+            <tr>
+                <th>Mã hàng</th>
+                <th>Tên hàng hóa</th>
+                <th>Loại hàng hóa</th>
+                <th>Giá cả</th>
+                <th>Số lượng</th>
+                <th></th>
+            </tr>
+        </table>
+    </div>
+    <div>
+        @if(pager.TotalPages > 0)
+            {
+                <ul>
+                    @for(var pge = pager.StartPage; pge <= pager.EndPage; pge++)
+                {
+                    <li class="@(pge == pager.CurrentPage ? "active":"")">
+                        <a class="page-link" asp-controler="Import_Product" asp-action="Index" asp-route-pg="@pge">@pge</a>
+                    </li>
+                }
+                </ul>
+            }
+    </div>
+</div>
+

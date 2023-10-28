@@ -1,0 +1,176 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="QLNVModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="BANBAOCAO">
+    <Key>
+      <PropertyRef Name="MA_BAOCAO" />
+    </Key>
+    <Property Name="MA_BAOCAO" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="MASP" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="SOLUONG" Type="Decimal" Precision="5" Scale="0" />
+    <Property Name="NGAYBAOCAO" Type="DateTime" Precision="3" />
+    <NavigationProperty Name="SANPHAM" Relationship="Self.FK_BANBAOCA_BAOCAO_SANPHAM" FromRole="BANBAOCAO" ToRole="SANPHAM" />
+  </EntityType>
+  <EntityType Name="DONDATHANG">
+    <Key>
+      <PropertyRef Name="MA_DATHANG" />
+    </Key>
+    <Property Name="MA_DATHANG" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="MASP" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="TEN_SP" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="MA_NCCAP" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="SOLUONG" Type="Decimal" Precision="5" Scale="0" />
+    <Property Name="NGAY_DATHANG" Type="DateTime" Precision="3" />
+    <NavigationProperty Name="SANPHAM" Relationship="Self.FK_DONDATHA_DATHANG_SANPHAM" FromRole="DONDATHANG" ToRole="SANPHAM" />
+    <NavigationProperty Name="NHACUNGCAP" Relationship="Self.FK_DONDATHA_LAY_NHACUNGC" FromRole="DONDATHANG" ToRole="NHACUNGCAP" />
+    <NavigationProperty Name="DONTHANHTOANs" Relationship="Self.KIEMTRA" FromRole="DONDATHANG" ToRole="DONTHANHTOAN" />
+  </EntityType>
+  <EntityType Name="DONTHANHTOAN">
+    <Key>
+      <PropertyRef Name="MATT" />
+    </Key>
+    <Property Name="MATT" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="TENSP" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="NGAYTHANHTOAN" Type="DateTime" Precision="3" />
+    <Property Name="SOLUONG" Type="Decimal" Precision="5" Scale="0" />
+    <Property Name="GIACA" Type="Decimal" Precision="18" Scale="0" />
+    <NavigationProperty Name="DONDATHANGs" Relationship="Self.KIEMTRA" FromRole="DONTHANHTOAN" ToRole="DONDATHANG" />
+  </EntityType>
+  <EntityType Name="HANGTON">
+    <Key>
+      <PropertyRef Name="MASP" />
+    </Key>
+    <Property Name="MASP" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="SOLUONG" Type="Decimal" Precision="5" Scale="0" />
+    <Property Name="MOTA_HANGTON" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="SANPHAM" Relationship="Self.FK_HANGTON_LUUTRU_SANPHAM" FromRole="HANGTON" ToRole="SANPHAM" />
+  </EntityType>
+  <EntityType Name="KEHANG">
+    <Key>
+      <PropertyRef Name="MA_KEHANG" />
+    </Key>
+    <Property Name="MA_KEHANG" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="TEN_KEHANG" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="MOTA_KEHANG" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="SANPHAMs" Relationship="Self.DATVAO" FromRole="KEHANG" ToRole="SANPHAM" />
+  </EntityType>
+  <EntityType Name="NHACUNGCAP">
+    <Key>
+      <PropertyRef Name="MA_NCCAP" />
+    </Key>
+    <Property Name="MA_NCCAP" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="TEN_NCCAP" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="LOASP" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="SDT" Type="Decimal" Precision="10" Scale="0" />
+    <Property Name="DIACHI" Type="String" MaxLength="200" FixedLength="true" Unicode="true" />
+    <Property Name="EMAIL" Type="String" MaxLength="100" FixedLength="true" Unicode="true" />
+    <Property Name="GIACA" Type="Decimal" Precision="18" Scale="0" />
+    <NavigationProperty Name="DONDATHANGs" Relationship="Self.FK_DONDATHA_LAY_NHACUNGC" FromRole="NHACUNGCAP" ToRole="DONDATHANG" />
+  </EntityType>
+  <EntityType Name="SANPHAM">
+    <Key>
+      <PropertyRef Name="MASP" />
+    </Key>
+    <Property Name="MASP" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="TENSP" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="LOAISP" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="TENTOMTAT" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="SOLUONG" Type="Decimal" Precision="5" Scale="0" />
+    <Property Name="NGAYTAO" Type="DateTime" Precision="3" />
+    <Property Name="NGAYCAPNHAT" Type="DateTime" Precision="3" />
+    <Property Name="NGAYHETHAN" Type="DateTime" Precision="3" />
+    <Property Name="GIACA" Type="Decimal" Precision="18" Scale="0" />
+    <NavigationProperty Name="BANBAOCAOs" Relationship="Self.FK_BANBAOCA_BAOCAO_SANPHAM" FromRole="SANPHAM" ToRole="BANBAOCAO" />
+    <NavigationProperty Name="DONDATHANGs" Relationship="Self.FK_DONDATHA_DATHANG_SANPHAM" FromRole="SANPHAM" ToRole="DONDATHANG" />
+    <NavigationProperty Name="HANGTON" Relationship="Self.FK_HANGTON_LUUTRU_SANPHAM" FromRole="SANPHAM" ToRole="HANGTON" />
+    <NavigationProperty Name="KEHANGs" Relationship="Self.DATVAO" FromRole="SANPHAM" ToRole="KEHANG" />
+  </EntityType>
+  <Association Name="FK_BANBAOCA_BAOCAO_SANPHAM">
+    <End Role="SANPHAM" Type="Self.SANPHAM" Multiplicity="1" />
+    <End Role="BANBAOCAO" Type="Self.BANBAOCAO" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="SANPHAM">
+        <PropertyRef Name="MASP" />
+      </Principal>
+      <Dependent Role="BANBAOCAO">
+        <PropertyRef Name="MASP" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_DONDATHA_DATHANG_SANPHAM">
+    <End Role="SANPHAM" Type="Self.SANPHAM" Multiplicity="1" />
+    <End Role="DONDATHANG" Type="Self.DONDATHANG" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="SANPHAM">
+        <PropertyRef Name="MASP" />
+      </Principal>
+      <Dependent Role="DONDATHANG">
+        <PropertyRef Name="MASP" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_DONDATHA_LAY_NHACUNGC">
+    <End Role="NHACUNGCAP" Type="Self.NHACUNGCAP" Multiplicity="1" />
+    <End Role="DONDATHANG" Type="Self.DONDATHANG" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="NHACUNGCAP">
+        <PropertyRef Name="MA_NCCAP" />
+      </Principal>
+      <Dependent Role="DONDATHANG">
+        <PropertyRef Name="MA_NCCAP" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_HANGTON_LUUTRU_SANPHAM">
+    <End Role="SANPHAM" Type="Self.SANPHAM" Multiplicity="1" />
+    <End Role="HANGTON" Type="Self.HANGTON" Multiplicity="0..1" />
+    <ReferentialConstraint>
+      <Principal Role="SANPHAM">
+        <PropertyRef Name="MASP" />
+      </Principal>
+      <Dependent Role="HANGTON">
+        <PropertyRef Name="MASP" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="DATVAO">
+    <End Role="SANPHAM" Type="Self.SANPHAM" Multiplicity="*" />
+    <End Role="KEHANG" Type="Self.KEHANG" Multiplicity="*" />
+  </Association>
+  <Association Name="KIEMTRA">
+    <End Role="DONTHANHTOAN" Type="Self.DONTHANHTOAN" Multiplicity="*" />
+    <End Role="DONDATHANG" Type="Self.DONDATHANG" Multiplicity="*" />
+  </Association>
+  <EntityContainer Name="QLNVEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="BANBAOCAOs" EntityType="Self.BANBAOCAO" />
+    <EntitySet Name="DONDATHANGs" EntityType="Self.DONDATHANG" />
+    <EntitySet Name="DONTHANHTOANs" EntityType="Self.DONTHANHTOAN" />
+    <EntitySet Name="HANGTONs" EntityType="Self.HANGTON" />
+    <EntitySet Name="KEHANGs" EntityType="Self.KEHANG" />
+    <EntitySet Name="NHACUNGCAPs" EntityType="Self.NHACUNGCAP" />
+    <EntitySet Name="SANPHAMs" EntityType="Self.SANPHAM" />
+    <AssociationSet Name="FK_BANBAOCA_BAOCAO_SANPHAM" Association="Self.FK_BANBAOCA_BAOCAO_SANPHAM">
+      <End Role="SANPHAM" EntitySet="SANPHAMs" />
+      <End Role="BANBAOCAO" EntitySet="BANBAOCAOs" />
+    </AssociationSet>
+    <AssociationSet Name="FK_DONDATHA_DATHANG_SANPHAM" Association="Self.FK_DONDATHA_DATHANG_SANPHAM">
+      <End Role="SANPHAM" EntitySet="SANPHAMs" />
+      <End Role="DONDATHANG" EntitySet="DONDATHANGs" />
+    </AssociationSet>
+    <AssociationSet Name="FK_DONDATHA_LAY_NHACUNGC" Association="Self.FK_DONDATHA_LAY_NHACUNGC">
+      <End Role="NHACUNGCAP" EntitySet="NHACUNGCAPs" />
+      <End Role="DONDATHANG" EntitySet="DONDATHANGs" />
+    </AssociationSet>
+    <AssociationSet Name="FK_HANGTON_LUUTRU_SANPHAM" Association="Self.FK_HANGTON_LUUTRU_SANPHAM">
+      <End Role="SANPHAM" EntitySet="SANPHAMs" />
+      <End Role="HANGTON" EntitySet="HANGTONs" />
+    </AssociationSet>
+    <AssociationSet Name="DATVAO" Association="Self.DATVAO">
+      <End Role="SANPHAM" EntitySet="SANPHAMs" />
+      <End Role="KEHANG" EntitySet="KEHANGs" />
+    </AssociationSet>
+    <AssociationSet Name="KIEMTRA" Association="Self.KIEMTRA">
+      <End Role="DONTHANHTOAN" EntitySet="DONTHANHTOANs" />
+      <End Role="DONDATHANG" EntitySet="DONDATHANGs" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

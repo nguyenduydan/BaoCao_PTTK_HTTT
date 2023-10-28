@@ -1,0 +1,230 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="QLNVModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="BANBAOCAO">
+    <Key>
+      <PropertyRef Name="MA_BAOCAO" />
+    </Key>
+    <Property Name="MA_BAOCAO" Type="varchar" MaxLength="10" Nullable="false" />
+    <Property Name="MASP" Type="varchar" MaxLength="10" Nullable="false" />
+    <Property Name="SOLUONG" Type="numeric" Precision="5" Scale="0" />
+    <Property Name="NGAYBAOCAO" Type="datetime" />
+  </EntityType>
+  <EntityType Name="DATVAO">
+    <Key>
+      <PropertyRef Name="MASP" />
+      <PropertyRef Name="MA_KEHANG" />
+    </Key>
+    <Property Name="MASP" Type="varchar" MaxLength="10" Nullable="false" />
+    <Property Name="MA_KEHANG" Type="varchar" MaxLength="10" Nullable="false" />
+  </EntityType>
+  <EntityType Name="DONDATHANG">
+    <Key>
+      <PropertyRef Name="MA_DATHANG" />
+    </Key>
+    <Property Name="MA_DATHANG" Type="varchar" MaxLength="10" Nullable="false" />
+    <Property Name="MASP" Type="varchar" MaxLength="10" Nullable="false" />
+    <Property Name="TEN_SP" Type="nvarchar" MaxLength="100" />
+    <Property Name="MA_NCCAP" Type="varchar" MaxLength="10" Nullable="false" />
+    <Property Name="SOLUONG" Type="numeric" Precision="5" Scale="0" />
+    <Property Name="NGAY_DATHANG" Type="datetime" />
+  </EntityType>
+  <EntityType Name="DONTHANHTOAN">
+    <Key>
+      <PropertyRef Name="MATT" />
+    </Key>
+    <Property Name="MATT" Type="varchar" MaxLength="10" Nullable="false" />
+    <Property Name="TENSP" Type="nvarchar" MaxLength="100" />
+    <Property Name="NGAYTHANHTOAN" Type="datetime" />
+    <Property Name="SOLUONG" Type="numeric" Precision="5" Scale="0" />
+    <Property Name="GIACA" Type="decimal" Precision="18" Scale="0" />
+  </EntityType>
+  <EntityType Name="HANGTON">
+    <Key>
+      <PropertyRef Name="MASP" />
+    </Key>
+    <Property Name="MASP" Type="varchar" MaxLength="10" Nullable="false" />
+    <Property Name="SOLUONG" Type="numeric" Precision="5" Scale="0" />
+    <Property Name="MOTA_HANGTON" Type="nvarchar" MaxLength="1000" />
+  </EntityType>
+  <EntityType Name="KEHANG">
+    <Key>
+      <PropertyRef Name="MA_KEHANG" />
+    </Key>
+    <Property Name="MA_KEHANG" Type="varchar" MaxLength="10" Nullable="false" />
+    <Property Name="TEN_KEHANG" Type="nvarchar" MaxLength="100" />
+    <Property Name="MOTA_KEHANG" Type="nvarchar" MaxLength="1000" />
+  </EntityType>
+  <EntityType Name="KIEMTRA">
+    <Key>
+      <PropertyRef Name="MATT" />
+      <PropertyRef Name="MA_DATHANG" />
+    </Key>
+    <Property Name="MATT" Type="varchar" MaxLength="10" Nullable="false" />
+    <Property Name="MA_DATHANG" Type="varchar" MaxLength="10" Nullable="false" />
+  </EntityType>
+  <EntityType Name="NHACUNGCAP">
+    <Key>
+      <PropertyRef Name="MA_NCCAP" />
+    </Key>
+    <Property Name="MA_NCCAP" Type="varchar" MaxLength="10" Nullable="false" />
+    <Property Name="TEN_NCCAP" Type="nvarchar" MaxLength="100" />
+    <Property Name="LOASP" Type="nvarchar" MaxLength="100" />
+    <Property Name="SDT" Type="numeric" Precision="10" Scale="0" />
+    <Property Name="DIACHI" Type="nchar" MaxLength="200" />
+    <Property Name="EMAIL" Type="nchar" MaxLength="100" />
+    <Property Name="GIACA" Type="decimal" Precision="18" Scale="0" />
+  </EntityType>
+  <EntityType Name="SANPHAM">
+    <Key>
+      <PropertyRef Name="MASP" />
+    </Key>
+    <Property Name="MASP" Type="varchar" MaxLength="10" Nullable="false" />
+    <Property Name="TENSP" Type="nvarchar" MaxLength="100" />
+    <Property Name="LOAISP" Type="nvarchar" MaxLength="100" />
+    <Property Name="TENTOMTAT" Type="varchar" MaxLength="100" />
+    <Property Name="SOLUONG" Type="numeric" Precision="5" Scale="0" />
+    <Property Name="NGAYTAO" Type="datetime" />
+    <Property Name="NGAYCAPNHAT" Type="datetime" />
+    <Property Name="NGAYHETHAN" Type="datetime" />
+    <Property Name="GIACA" Type="decimal" Precision="18" Scale="0" />
+  </EntityType>
+  <Association Name="FK_BANBAOCA_BAOCAO_SANPHAM">
+    <End Role="SANPHAM" Type="Self.SANPHAM" Multiplicity="1" />
+    <End Role="BANBAOCAO" Type="Self.BANBAOCAO" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="SANPHAM">
+        <PropertyRef Name="MASP" />
+      </Principal>
+      <Dependent Role="BANBAOCAO">
+        <PropertyRef Name="MASP" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_DATVAO_DATVAO_SANPHAM">
+    <End Role="SANPHAM" Type="Self.SANPHAM" Multiplicity="1" />
+    <End Role="DATVAO" Type="Self.DATVAO" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="SANPHAM">
+        <PropertyRef Name="MASP" />
+      </Principal>
+      <Dependent Role="DATVAO">
+        <PropertyRef Name="MASP" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_DATVAO_DATVAO2_KEHANG">
+    <End Role="KEHANG" Type="Self.KEHANG" Multiplicity="1" />
+    <End Role="DATVAO" Type="Self.DATVAO" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="KEHANG">
+        <PropertyRef Name="MA_KEHANG" />
+      </Principal>
+      <Dependent Role="DATVAO">
+        <PropertyRef Name="MA_KEHANG" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_DONDATHA_DATHANG_SANPHAM">
+    <End Role="SANPHAM" Type="Self.SANPHAM" Multiplicity="1" />
+    <End Role="DONDATHANG" Type="Self.DONDATHANG" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="SANPHAM">
+        <PropertyRef Name="MASP" />
+      </Principal>
+      <Dependent Role="DONDATHANG">
+        <PropertyRef Name="MASP" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_DONDATHA_LAY_NHACUNGC">
+    <End Role="NHACUNGCAP" Type="Self.NHACUNGCAP" Multiplicity="1" />
+    <End Role="DONDATHANG" Type="Self.DONDATHANG" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="NHACUNGCAP">
+        <PropertyRef Name="MA_NCCAP" />
+      </Principal>
+      <Dependent Role="DONDATHANG">
+        <PropertyRef Name="MA_NCCAP" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_HANGTON_LUUTRU_SANPHAM">
+    <End Role="SANPHAM" Type="Self.SANPHAM" Multiplicity="1" />
+    <End Role="HANGTON" Type="Self.HANGTON" Multiplicity="0..1" />
+    <ReferentialConstraint>
+      <Principal Role="SANPHAM">
+        <PropertyRef Name="MASP" />
+      </Principal>
+      <Dependent Role="HANGTON">
+        <PropertyRef Name="MASP" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_KIEMTRA_KIEMTRA_DONTHANH">
+    <End Role="DONTHANHTOAN" Type="Self.DONTHANHTOAN" Multiplicity="1" />
+    <End Role="KIEMTRA" Type="Self.KIEMTRA" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="DONTHANHTOAN">
+        <PropertyRef Name="MATT" />
+      </Principal>
+      <Dependent Role="KIEMTRA">
+        <PropertyRef Name="MATT" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_KIEMTRA_KIEMTRA2_DONDATHA">
+    <End Role="DONDATHANG" Type="Self.DONDATHANG" Multiplicity="1" />
+    <End Role="KIEMTRA" Type="Self.KIEMTRA" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="DONDATHANG">
+        <PropertyRef Name="MA_DATHANG" />
+      </Principal>
+      <Dependent Role="KIEMTRA">
+        <PropertyRef Name="MA_DATHANG" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="QLNVModelStoreContainer">
+    <EntitySet Name="BANBAOCAO" EntityType="Self.BANBAOCAO" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="DATVAO" EntityType="Self.DATVAO" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="DONDATHANG" EntityType="Self.DONDATHANG" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="DONTHANHTOAN" EntityType="Self.DONTHANHTOAN" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="HANGTON" EntityType="Self.HANGTON" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="KEHANG" EntityType="Self.KEHANG" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="KIEMTRA" EntityType="Self.KIEMTRA" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="NHACUNGCAP" EntityType="Self.NHACUNGCAP" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="SANPHAM" EntityType="Self.SANPHAM" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK_BANBAOCA_BAOCAO_SANPHAM" Association="Self.FK_BANBAOCA_BAOCAO_SANPHAM">
+      <End Role="SANPHAM" EntitySet="SANPHAM" />
+      <End Role="BANBAOCAO" EntitySet="BANBAOCAO" />
+    </AssociationSet>
+    <AssociationSet Name="FK_DATVAO_DATVAO_SANPHAM" Association="Self.FK_DATVAO_DATVAO_SANPHAM">
+      <End Role="SANPHAM" EntitySet="SANPHAM" />
+      <End Role="DATVAO" EntitySet="DATVAO" />
+    </AssociationSet>
+    <AssociationSet Name="FK_DATVAO_DATVAO2_KEHANG" Association="Self.FK_DATVAO_DATVAO2_KEHANG">
+      <End Role="KEHANG" EntitySet="KEHANG" />
+      <End Role="DATVAO" EntitySet="DATVAO" />
+    </AssociationSet>
+    <AssociationSet Name="FK_DONDATHA_DATHANG_SANPHAM" Association="Self.FK_DONDATHA_DATHANG_SANPHAM">
+      <End Role="SANPHAM" EntitySet="SANPHAM" />
+      <End Role="DONDATHANG" EntitySet="DONDATHANG" />
+    </AssociationSet>
+    <AssociationSet Name="FK_DONDATHA_LAY_NHACUNGC" Association="Self.FK_DONDATHA_LAY_NHACUNGC">
+      <End Role="NHACUNGCAP" EntitySet="NHACUNGCAP" />
+      <End Role="DONDATHANG" EntitySet="DONDATHANG" />
+    </AssociationSet>
+    <AssociationSet Name="FK_HANGTON_LUUTRU_SANPHAM" Association="Self.FK_HANGTON_LUUTRU_SANPHAM">
+      <End Role="SANPHAM" EntitySet="SANPHAM" />
+      <End Role="HANGTON" EntitySet="HANGTON" />
+    </AssociationSet>
+    <AssociationSet Name="FK_KIEMTRA_KIEMTRA_DONTHANH" Association="Self.FK_KIEMTRA_KIEMTRA_DONTHANH">
+      <End Role="DONTHANHTOAN" EntitySet="DONTHANHTOAN" />
+      <End Role="KIEMTRA" EntitySet="KIEMTRA" />
+    </AssociationSet>
+    <AssociationSet Name="FK_KIEMTRA_KIEMTRA2_DONDATHA" Association="Self.FK_KIEMTRA_KIEMTRA2_DONDATHA">
+      <End Role="DONDATHANG" EntitySet="DONDATHANG" />
+      <End Role="KIEMTRA" EntitySet="KIEMTRA" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

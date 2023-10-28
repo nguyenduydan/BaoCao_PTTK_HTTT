@@ -1,0 +1,102 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="QLKHModelStoreContainer" CdmEntityContainer="QLKHEntities1">
+    <EntitySetMapping Name="BANBAOCAO">
+      <EntityTypeMapping TypeName="QLKHModel.BANBAOCAO">
+        <MappingFragment StoreEntitySet="BANBAOCAO">
+          <ScalarProperty Name="MA_BAOCAO" ColumnName="MA_BAOCAO" />
+          <ScalarProperty Name="SOLUONG" ColumnName="SOLUONG" />
+          <ScalarProperty Name="NGAYBAOCAO" ColumnName="NGAYBAOCAO" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="DATVAO">
+      <EntityTypeMapping TypeName="QLKHModel.DATVAO">
+        <MappingFragment StoreEntitySet="DATVAO">
+          <ScalarProperty Name="MASP" ColumnName="MASP" />
+          <ScalarProperty Name="MA_KEHANG" ColumnName="MA_KEHANG" />
+          <ScalarProperty Name="SOLUONG" ColumnName="SOLUONG" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="DONDATHANG">
+      <EntityTypeMapping TypeName="QLKHModel.DONDATHANG">
+        <MappingFragment StoreEntitySet="DONDATHANG">
+          <ScalarProperty Name="MA_DATHANG" ColumnName="MA_DATHANG" />
+          <ScalarProperty Name="TEN_SP" ColumnName="TEN_SP" />
+          <ScalarProperty Name="MA_NCCAP" ColumnName="MA_NCCAP" />
+          <ScalarProperty Name="SOLUONG" ColumnName="SOLUONG" />
+          <ScalarProperty Name="NGAY_DATHANG" ColumnName="NGAY_DATHANG" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="DONTHANHTOAN">
+      <EntityTypeMapping TypeName="QLKHModel.DONTHANHTOAN">
+        <MappingFragment StoreEntitySet="DONTHANHTOAN">
+          <ScalarProperty Name="MATT" ColumnName="MATT" />
+          <ScalarProperty Name="TENSP" ColumnName="TENSP" />
+          <ScalarProperty Name="NGAYTHANHTOAN" ColumnName="NGAYTHANHTOAN" />
+          <ScalarProperty Name="SOLUONG" ColumnName="SOLUONG" />
+          <ScalarProperty Name="GIACA" ColumnName="GIACA" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="HANGTON">
+      <EntityTypeMapping TypeName="QLKHModel.HANGTON">
+        <MappingFragment StoreEntitySet="HANGTON">
+          <ScalarProperty Name="MASP" ColumnName="MASP" />
+          <ScalarProperty Name="MA_HANGTON" ColumnName="MA_HANGTON" />
+          <ScalarProperty Name="SOLUONG" ColumnName="SOLUONG" />
+          <ScalarProperty Name="MOTA_HANGTON" ColumnName="MOTA_HANGTON" />
+          <ScalarProperty Name="NGAYHETHAN" ColumnName="NGAYHETHAN" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="KEHANG">
+      <EntityTypeMapping TypeName="QLKHModel.KEHANG">
+        <MappingFragment StoreEntitySet="KEHANG">
+          <ScalarProperty Name="MA_KEHANG" ColumnName="MA_KEHANG" />
+          <ScalarProperty Name="TEN_KEHANG" ColumnName="TEN_KEHANG" />
+          <ScalarProperty Name="MOTA_KEHANG" ColumnName="MOTA_KEHANG" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="NHACUNGCAP">
+      <EntityTypeMapping TypeName="QLKHModel.NHACUNGCAP">
+        <MappingFragment StoreEntitySet="NHACUNGCAP">
+          <ScalarProperty Name="MA_NCCAP" ColumnName="MA_NCCAP" />
+          <ScalarProperty Name="TEN_NCCAP" ColumnName="TEN_NCCAP" />
+          <ScalarProperty Name="LOAISP" ColumnName="LOAISP" />
+          <ScalarProperty Name="SDT" ColumnName="SDT" />
+          <ScalarProperty Name="DIACHI" ColumnName="DIACHI" />
+          <ScalarProperty Name="EMAIL" ColumnName="EMAIL" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="SANPHAM">
+      <EntityTypeMapping TypeName="QLKHModel.SANPHAM">
+        <MappingFragment StoreEntitySet="SANPHAM">
+          <ScalarProperty Name="MASP" ColumnName="MASP" />
+          <ScalarProperty Name="MA_DATHANG" ColumnName="MA_DATHANG" />
+          <ScalarProperty Name="MA_BAOCAO" ColumnName="MA_BAOCAO" />
+          <ScalarProperty Name="TENSP" ColumnName="TENSP" />
+          <ScalarProperty Name="LOAISP" ColumnName="LOAISP" />
+          <ScalarProperty Name="TENTOMTAT" ColumnName="TENTOMTAT" />
+          <ScalarProperty Name="SOLUONG" ColumnName="SOLUONG" />
+          <ScalarProperty Name="NGAYTAO" ColumnName="NGAYTAO" />
+          <ScalarProperty Name="NGAYCAPNHAT" ColumnName="NGAYCAPNHAT" />
+          <ScalarProperty Name="NGAYHETHAN" ColumnName="NGAYHETHAN" />
+          <ScalarProperty Name="GIACA" ColumnName="GIACA" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <AssociationSetMapping Name="KIEMTRA" TypeName="QLKHModel.KIEMTRA" StoreEntitySet="KIEMTRA">
+      <EndProperty Name="DONDATHANG">
+        <ScalarProperty Name="MA_DATHANG" ColumnName="MA_DATHANG" />
+      </EndProperty>
+      <EndProperty Name="DONTHANHTOAN">
+        <ScalarProperty Name="MATT" ColumnName="MATT" />
+      </EndProperty>
+    </AssociationSetMapping>
+  </EntityContainerMapping>
+</Mapping>

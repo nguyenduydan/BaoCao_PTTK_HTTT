@@ -55,7 +55,7 @@
                     @if (ViewBag.showFeature)
                     {
                         <li>
-                            <a href="#">
+                            <a href="~/Import_Product/Index">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="8" height="8" viewBox="0 0 8 8" fill="none">
                                     <circle cx="4" cy="4" r="4" fill="#7AC555" />
                                 </svg>
@@ -63,7 +63,7 @@
                             </a>
                         </li>
                         <li>
-                            <a href="#">
+                            <a href="~/Export_Product/Index">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="8" height="8" viewBox="0 0 8 8" fill="none">
                                     <circle cx="4" cy="4" r="4" fill="#FFA500" />
                                 </svg>
@@ -83,7 +83,7 @@
                 @{
                     var buttonText = ViewBag.IsAuthenticated != null ? "Đăng nhập" : "Đăng xuất";
                 }
-                <a href="~/Login/Index"><button>@buttonText</button></a>
+                <a href="~/Login/Index">@buttonText</a>
 
             </div>
 
