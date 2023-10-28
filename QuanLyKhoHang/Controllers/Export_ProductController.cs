@@ -13,5 +13,10 @@ namespace QuanLyKhoHang.Controllers
         {
             return View();
         }
+
+        public ActionResult Update()
+        {
+            return View();
+        }
     }
 }
