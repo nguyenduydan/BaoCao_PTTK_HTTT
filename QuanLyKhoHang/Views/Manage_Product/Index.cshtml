@@ -5,11 +5,21 @@
     ViewBag.Children = childrenFeatures.Show();
     ViewBag.showFeature = true;
 }
-
-<table>
-    <tr>
-        <th>Mã </th>
-    </tr>
-
-</table>
+@section Style{
+    <link rel="Stylesheet" href="~/Content/Manage.css" />
+}
+<div class="margin">
+    <div class="info-products">
+        <table class="table">
+            <tr>
+                <th>Mã hàng</th>
+                <th>Tên hàng hóa</th>
+                <th>Loại hàng hóa</th>
+                <th>Giá cả</th>
+                <th>Số lượng</th>
+                <th></th>
+            </tr>
+        </table>
+    </div>
+</div>
 
