@@ -32,6 +32,7 @@ namespace QuanLyKhoHang.Models
         public Nullable<System.DateTime> NGAYCAPNHAT { get; set; }
         public Nullable<System.DateTime> NGAYHETHAN { get; set; }
         public Nullable<decimal> GIACA { get; set; }
+        public string MA_NCCAP { get; set; }
     
         public virtual BANBAOCAO BANBAOCAO { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
@@ -39,5 +40,6 @@ namespace QuanLyKhoHang.Models
         public virtual DONDATHANG DONDATHANG { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<HANGTON> HANGTON { get; set; }
+        public virtual NHACUNGCAP NHACUNGCAP { get; set; }
     }
 }

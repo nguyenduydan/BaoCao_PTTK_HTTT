@@ -16,10 +16,11 @@ namespace QuanLyKhoHang.Controllers
     {
         private QLKHEntities1 db = new QLKHEntities1();
         // GET: Import_Product
+        //Hiển thị trang index
         public ActionResult Index(int pg = 1)
         {
             List<SANPHAM> products = db.SANPHAM.ToList();
-
+            
             const int pageSize = 10;
             if(pg < 1)
             {
@@ -35,8 +36,22 @@ namespace QuanLyKhoHang.Controllers
             return View(data);
         }
         
-        public ActionResult Add() { 
+        public ActionResult Add() {
+            ViewBag.listncc = new SelectList(db.NHACUNGCAP, "MA_NCCAP", "TEN_NCCAP");
             return View();
+        }
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult Add(SANPHAM sanpham) {
+            if (ModelState.IsValid)
+            {
+                db.SANPHAM.Add(sanpham);
+                db.SaveChanges();
+                return RedirectToAction("Index");
+            }
+
+            ViewBag.listncc = new SelectList(db.NHACUNGCAP,"MA_NCCAP","TEN_NCCAP");
+            return View(sanpham);
         }
 
         public ActionResult Update() {

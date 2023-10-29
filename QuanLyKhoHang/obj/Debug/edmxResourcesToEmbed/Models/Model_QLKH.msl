@@ -76,6 +76,7 @@
     <EntitySetMapping Name="SANPHAM">
       <EntityTypeMapping TypeName="QLKHModel.SANPHAM">
         <MappingFragment StoreEntitySet="SANPHAM">
+          <ScalarProperty Name="MA_NCCAP" ColumnName="MA_NCCAP" />
           <ScalarProperty Name="MASP" ColumnName="MASP" />
           <ScalarProperty Name="MA_DATHANG" ColumnName="MA_DATHANG" />
           <ScalarProperty Name="MA_BAOCAO" ColumnName="MA_BAOCAO" />
@@ -98,5 +99,12 @@
         <ScalarProperty Name="MATT" ColumnName="MATT" />
       </EndProperty>
     </AssociationSetMapping>
+    <FunctionImportMapping FunctionImportName="sp_alterdiagram" FunctionName="QLKHModel.Store.sp_alterdiagram" />
+    <FunctionImportMapping FunctionImportName="sp_creatediagram" FunctionName="QLKHModel.Store.sp_creatediagram" />
+    <FunctionImportMapping FunctionImportName="sp_dropdiagram" FunctionName="QLKHModel.Store.sp_dropdiagram" />
+    <FunctionImportMapping FunctionImportName="sp_helpdiagramdefinition" FunctionName="QLKHModel.Store.sp_helpdiagramdefinition" />
+    <FunctionImportMapping FunctionImportName="sp_helpdiagrams" FunctionName="QLKHModel.Store.sp_helpdiagrams" />
+    <FunctionImportMapping FunctionImportName="sp_renamediagram" FunctionName="QLKHModel.Store.sp_renamediagram" />
+    <FunctionImportMapping FunctionImportName="sp_upgraddiagrams" FunctionName="QLKHModel.Store.sp_upgraddiagrams" />
   </EntityContainerMapping>
 </Mapping>

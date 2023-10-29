@@ -82,6 +82,7 @@
     <Property Name="MASP" Type="varchar" MaxLength="10" Nullable="false" />
     <Property Name="MA_DATHANG" Type="varchar" MaxLength="10" Nullable="false" />
     <Property Name="MA_BAOCAO" Type="varchar" MaxLength="10" Nullable="false" />
+    <Property Name="MA_NCCAP" Type="varchar" MaxLength="10" Nullable="false" />
     <Property Name="TENSP" Type="nvarchar" MaxLength="100" />
     <Property Name="LOAISP" Type="nvarchar" MaxLength="100" />
     <Property Name="TENTOMTAT" Type="varchar" MaxLength="100" />
@@ -175,6 +176,18 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
+  <Association Name="FK_SANPHAM_CUNGCAP_NHACUNGC">
+    <End Role="NHACUNGCAP" Type="Self.NHACUNGCAP" Multiplicity="1" />
+    <End Role="SANPHAM" Type="Self.SANPHAM" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="NHACUNGCAP">
+        <PropertyRef Name="MA_NCCAP" />
+      </Principal>
+      <Dependent Role="SANPHAM">
+        <PropertyRef Name="MA_NCCAP" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
   <Association Name="FK_SANPHAM_DATHANG_DONDATHA">
     <End Role="DONDATHANG" Type="Self.DONDATHANG" Multiplicity="1" />
     <End Role="SANPHAM" Type="Self.SANPHAM" Multiplicity="*" />
@@ -187,6 +200,37 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
+  <Function Name="fn_diagramobjects" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" ReturnType="int" />
+  <Function Name="sp_alterdiagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+    <Parameter Name="owner_id" Type="int" Mode="In" />
+    <Parameter Name="version" Type="int" Mode="In" />
+    <Parameter Name="definition" Type="varbinary(max)" Mode="In" />
+  </Function>
+  <Function Name="sp_creatediagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+    <Parameter Name="owner_id" Type="int" Mode="In" />
+    <Parameter Name="version" Type="int" Mode="In" />
+    <Parameter Name="definition" Type="varbinary(max)" Mode="In" />
+  </Function>
+  <Function Name="sp_dropdiagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+    <Parameter Name="owner_id" Type="int" Mode="In" />
+  </Function>
+  <Function Name="sp_helpdiagramdefinition" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+    <Parameter Name="owner_id" Type="int" Mode="In" />
+  </Function>
+  <Function Name="sp_helpdiagrams" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+    <Parameter Name="owner_id" Type="int" Mode="In" />
+  </Function>
+  <Function Name="sp_renamediagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+    <Parameter Name="owner_id" Type="int" Mode="In" />
+    <Parameter Name="new_diagramname" Type="nvarchar" Mode="In" />
+  </Function>
+  <Function Name="sp_upgraddiagrams" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
   <EntityContainer Name="QLKHModelStoreContainer">
     <EntitySet Name="BANBAOCAO" EntityType="Self.BANBAOCAO" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="DATVAO" EntityType="Self.DATVAO" Schema="dbo" store:Type="Tables" />
@@ -223,6 +267,10 @@
     </AssociationSet>
     <AssociationSet Name="FK_SANPHAM_BAOCAO_BANBAOCA" Association="Self.FK_SANPHAM_BAOCAO_BANBAOCA">
       <End Role="BANBAOCAO" EntitySet="BANBAOCAO" />
+      <End Role="SANPHAM" EntitySet="SANPHAM" />
+    </AssociationSet>
+    <AssociationSet Name="FK_SANPHAM_CUNGCAP_NHACUNGC" Association="Self.FK_SANPHAM_CUNGCAP_NHACUNGC">
+      <End Role="NHACUNGCAP" EntitySet="NHACUNGCAP" />
       <End Role="SANPHAM" EntitySet="SANPHAM" />
     </AssociationSet>
     <AssociationSet Name="FK_SANPHAM_DATHANG_DONDATHA" Association="Self.FK_SANPHAM_DATHANG_DONDATHA">

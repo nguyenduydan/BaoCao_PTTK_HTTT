@@ -1,4 +1,5 @@
-﻿@using QuanLyKhoHang.Views.Import_Product
+﻿@model IEnumerable<QuanLyKhoHang.Models.SANPHAM>
+@using QuanLyKhoHang.Views.Import_Product
 @using Manage
 @{
     ViewBag.Title = "Nhập hàng";
@@ -32,10 +33,23 @@
             <tr>
                 <th>Mã hàng</th>
                 <th>Tên hàng hóa</th>
+                <th>Nhà cung cấp</th>
                 <th>Loại hàng hóa</th>
                 <th>Giá cả</th>
                 <th>Số lượng</th>
                 <th></th>
+            </tr>
+            <tr>
+                @foreach(var item in Model)
+                {
+                    <td>@Html.DisplayFor(model => item.MASP)</td>
+                    <td>@Html.DisplayFor(model => item.TENSP)</td>
+                    <td>@Html.DisplayFor(model => item.NHACUNGCAP.TEN_NCCAP)</td>
+                    <td>@Html.DisplayFor(model => item.LOAISP)</td>
+                    <td>@Html.DisplayFor(model => item.GIACA)</td>
+                    <td>@Html.DisplayFor(model => item.SOLUONG)</td>
+                }
+
             </tr>
         </table>
     </div>

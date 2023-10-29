@@ -76,6 +76,7 @@
     <Property Name="DIACHI" Type="String" MaxLength="200" FixedLength="true" Unicode="true" />
     <Property Name="EMAIL" Type="String" MaxLength="100" FixedLength="true" Unicode="true" />
     <NavigationProperty Name="DONDATHANG" Relationship="Self.FK_DONDATHA_LAY_NHACUNGC" FromRole="NHACUNGCAP" ToRole="DONDATHANG" />
+    <NavigationProperty Name="SANPHAM" Relationship="QLKHModel.FK_SANPHAM_CUNGCAP_NHACUNGC" FromRole="NHACUNGCAP" ToRole="SANPHAM" />
   </EntityType>
   <EntityType Name="SANPHAM">
     <Key>
@@ -89,13 +90,15 @@
     <Property Name="TENTOMTAT" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
     <Property Name="SOLUONG" Type="Decimal" Precision="5" Scale="0" />
     <Property Name="NGAYTAO" Type="DateTime" Precision="3" />
-    <Property Name="NGAYCAPNHAT" Type="DateTime" Precision="3" />
+    <Property Name="NGAYCAPNHAT" Type="DateTime" Precision="3" Nullable="true" />
     <Property Name="NGAYHETHAN" Type="DateTime" Precision="3" />
     <Property Name="GIACA" Type="Decimal" Precision="18" Scale="0" />
     <NavigationProperty Name="BANBAOCAO" Relationship="Self.FK_SANPHAM_BAOCAO_BANBAOCA" FromRole="SANPHAM" ToRole="BANBAOCAO" />
     <NavigationProperty Name="DATVAO" Relationship="Self.FK_DATVAO_DATVAO2_SANPHAM" FromRole="SANPHAM" ToRole="DATVAO" />
     <NavigationProperty Name="DONDATHANG" Relationship="Self.FK_SANPHAM_DATHANG_DONDATHA" FromRole="SANPHAM" ToRole="DONDATHANG" />
     <NavigationProperty Name="HANGTON" Relationship="Self.FK_HANGTON_LUUTRU_SANPHAM" FromRole="SANPHAM" ToRole="HANGTON" />
+    <Property Name="MA_NCCAP" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="NHACUNGCAP" Relationship="QLKHModel.FK_SANPHAM_CUNGCAP_NHACUNGC" FromRole="SANPHAM" ToRole="NHACUNGCAP" />
   </EntityType>
   <Association Name="FK_SANPHAM_BAOCAO_BANBAOCA">
     <End Role="BANBAOCAO" Type="Self.BANBAOCAO" Multiplicity="1" />
@@ -210,5 +213,51 @@
       <End Role="DONDATHANG" EntitySet="DONDATHANG" />
       <End Role="DONTHANHTOAN" EntitySet="DONTHANHTOAN" />
     </AssociationSet>
+    <AssociationSet Name="FK_SANPHAM_CUNGCAP_NHACUNGC" Association="QLKHModel.FK_SANPHAM_CUNGCAP_NHACUNGC">
+      <End Role="NHACUNGCAP" EntitySet="NHACUNGCAP" />
+      <End Role="SANPHAM" EntitySet="SANPHAM" />
+    </AssociationSet>
+    <FunctionImport Name="sp_alterdiagram">
+      <Parameter Name="diagramname" Mode="In" Type="String" />
+      <Parameter Name="owner_id" Mode="In" Type="Int32" />
+      <Parameter Name="version" Mode="In" Type="Int32" />
+      <Parameter Name="definition" Mode="In" Type="Binary" />
+    </FunctionImport>
+    <FunctionImport Name="sp_creatediagram">
+      <Parameter Name="diagramname" Mode="In" Type="String" />
+      <Parameter Name="owner_id" Mode="In" Type="Int32" />
+      <Parameter Name="version" Mode="In" Type="Int32" />
+      <Parameter Name="definition" Mode="In" Type="Binary" />
+    </FunctionImport>
+    <FunctionImport Name="sp_dropdiagram">
+      <Parameter Name="diagramname" Mode="In" Type="String" />
+      <Parameter Name="owner_id" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="sp_helpdiagramdefinition">
+      <Parameter Name="diagramname" Mode="In" Type="String" />
+      <Parameter Name="owner_id" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="sp_helpdiagrams">
+      <Parameter Name="diagramname" Mode="In" Type="String" />
+      <Parameter Name="owner_id" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="sp_renamediagram">
+      <Parameter Name="diagramname" Mode="In" Type="String" />
+      <Parameter Name="owner_id" Mode="In" Type="Int32" />
+      <Parameter Name="new_diagramname" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="sp_upgraddiagrams" />
   </EntityContainer>
+  <Association Name="FK_SANPHAM_CUNGCAP_NHACUNGC">
+    <End Type="QLKHModel.NHACUNGCAP" Role="NHACUNGCAP" Multiplicity="1" />
+    <End Type="QLKHModel.SANPHAM" Role="SANPHAM" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="NHACUNGCAP">
+        <PropertyRef Name="MA_NCCAP" />
+      </Principal>
+      <Dependent Role="SANPHAM">
+        <PropertyRef Name="MA_NCCAP" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
 </Schema>

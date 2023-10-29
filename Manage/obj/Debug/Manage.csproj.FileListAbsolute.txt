@@ -4,3 +4,10 @@ D:\ASP.NET MVC\BaoCao_PTTK_HTTT\Manage\obj\Debug\Manage.csproj.AssemblyReference
 D:\ASP.NET MVC\BaoCao_PTTK_HTTT\Manage\obj\Debug\Manage.csproj.CoreCompileInputs.cache
 D:\ASP.NET MVC\BaoCao_PTTK_HTTT\Manage\obj\Debug\Manage.dll
 D:\ASP.NET MVC\BaoCao_PTTK_HTTT\Manage\obj\Debug\Manage.pdb
+E:\HK1_Nam3\PTTK HTTH\Web_Admin\BaoCao_PTTK_HTTT\Manage\bin\Debug\Manage.dll
+E:\HK1_Nam3\PTTK HTTH\Web_Admin\BaoCao_PTTK_HTTT\Manage\bin\Debug\Manage.pdb
+E:\HK1_Nam3\PTTK HTTH\Web_Admin\BaoCao_PTTK_HTTT\Manage\obj\Debug\Manage.csproj.AssemblyReference.cache
+E:\HK1_Nam3\PTTK HTTH\Web_Admin\BaoCao_PTTK_HTTT\Manage\obj\Debug\Manage.csproj.CoreCompileInputs.cache
+E:\HK1_Nam3\PTTK HTTH\Web_Admin\BaoCao_PTTK_HTTT\Manage\obj\Debug\Manage.dll
+E:\HK1_Nam3\PTTK HTTH\Web_Admin\BaoCao_PTTK_HTTT\Manage\obj\Debug\Manage.pdb
+E:\HK1_Nam3\PTTK HTTH\Web_Admin\BaoCao_PTTK_HTTT\Manage\bin\Debug\Manage.dll.config

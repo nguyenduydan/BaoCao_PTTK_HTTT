@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="QLKHModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="QLKHModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="BANBAOCAO">
           <Key>
             <PropertyRef Name="MA_BAOCAO" />
@@ -87,6 +87,7 @@
           <Property Name="MASP" Type="varchar" MaxLength="10" Nullable="false" />
           <Property Name="MA_DATHANG" Type="varchar" MaxLength="10" Nullable="false" />
           <Property Name="MA_BAOCAO" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="MA_NCCAP" Type="varchar" MaxLength="10" Nullable="false" />
           <Property Name="TENSP" Type="nvarchar" MaxLength="100" />
           <Property Name="LOAISP" Type="nvarchar" MaxLength="100" />
           <Property Name="TENTOMTAT" Type="varchar" MaxLength="100" />
@@ -180,6 +181,18 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_SANPHAM_CUNGCAP_NHACUNGC">
+          <End Role="NHACUNGCAP" Type="Self.NHACUNGCAP" Multiplicity="1" />
+          <End Role="SANPHAM" Type="Self.SANPHAM" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="NHACUNGCAP">
+              <PropertyRef Name="MA_NCCAP" />
+            </Principal>
+            <Dependent Role="SANPHAM">
+              <PropertyRef Name="MA_NCCAP" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_SANPHAM_DATHANG_DONDATHA">
           <End Role="DONDATHANG" Type="Self.DONDATHANG" Multiplicity="1" />
           <End Role="SANPHAM" Type="Self.SANPHAM" Multiplicity="*" />
@@ -192,6 +205,37 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Function Name="fn_diagramobjects" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" ReturnType="int" />
+        <Function Name="sp_alterdiagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+          <Parameter Name="owner_id" Type="int" Mode="In" />
+          <Parameter Name="version" Type="int" Mode="In" />
+          <Parameter Name="definition" Type="varbinary(max)" Mode="In" />
+        </Function>
+        <Function Name="sp_creatediagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+          <Parameter Name="owner_id" Type="int" Mode="In" />
+          <Parameter Name="version" Type="int" Mode="In" />
+          <Parameter Name="definition" Type="varbinary(max)" Mode="In" />
+        </Function>
+        <Function Name="sp_dropdiagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+          <Parameter Name="owner_id" Type="int" Mode="In" />
+        </Function>
+        <Function Name="sp_helpdiagramdefinition" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+          <Parameter Name="owner_id" Type="int" Mode="In" />
+        </Function>
+        <Function Name="sp_helpdiagrams" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+          <Parameter Name="owner_id" Type="int" Mode="In" />
+        </Function>
+        <Function Name="sp_renamediagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+          <Parameter Name="owner_id" Type="int" Mode="In" />
+          <Parameter Name="new_diagramname" Type="nvarchar" Mode="In" />
+        </Function>
+        <Function Name="sp_upgraddiagrams" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
         <EntityContainer Name="QLKHModelStoreContainer">
           <EntitySet Name="BANBAOCAO" EntityType="Self.BANBAOCAO" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="DATVAO" EntityType="Self.DATVAO" Schema="dbo" store:Type="Tables" />
@@ -230,13 +274,16 @@
             <End Role="BANBAOCAO" EntitySet="BANBAOCAO" />
             <End Role="SANPHAM" EntitySet="SANPHAM" />
           </AssociationSet>
+          <AssociationSet Name="FK_SANPHAM_CUNGCAP_NHACUNGC" Association="Self.FK_SANPHAM_CUNGCAP_NHACUNGC">
+            <End Role="NHACUNGCAP" EntitySet="NHACUNGCAP" />
+            <End Role="SANPHAM" EntitySet="SANPHAM" />
+          </AssociationSet>
           <AssociationSet Name="FK_SANPHAM_DATHANG_DONDATHA" Association="Self.FK_SANPHAM_DATHANG_DONDATHA">
             <End Role="DONDATHANG" EntitySet="DONDATHANG" />
             <End Role="SANPHAM" EntitySet="SANPHAM" />
           </AssociationSet>
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="QLKHModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -316,6 +363,7 @@
           <Property Name="DIACHI" Type="String" MaxLength="200" FixedLength="true" Unicode="true" />
           <Property Name="EMAIL" Type="String" MaxLength="100" FixedLength="true" Unicode="true" />
           <NavigationProperty Name="DONDATHANG" Relationship="Self.FK_DONDATHA_LAY_NHACUNGC" FromRole="NHACUNGCAP" ToRole="DONDATHANG" />
+          <NavigationProperty Name="SANPHAM" Relationship="QLKHModel.FK_SANPHAM_CUNGCAP_NHACUNGC" FromRole="NHACUNGCAP" ToRole="SANPHAM" />
         </EntityType>
         <EntityType Name="SANPHAM">
           <Key>
@@ -329,13 +377,15 @@
           <Property Name="TENTOMTAT" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
           <Property Name="SOLUONG" Type="Decimal" Precision="5" Scale="0" />
           <Property Name="NGAYTAO" Type="DateTime" Precision="3" />
-          <Property Name="NGAYCAPNHAT" Type="DateTime" Precision="3" />
+          <Property Name="NGAYCAPNHAT" Type="DateTime" Precision="3" Nullable="true" />
           <Property Name="NGAYHETHAN" Type="DateTime" Precision="3" />
           <Property Name="GIACA" Type="Decimal" Precision="18" Scale="0" />
           <NavigationProperty Name="BANBAOCAO" Relationship="Self.FK_SANPHAM_BAOCAO_BANBAOCA" FromRole="SANPHAM" ToRole="BANBAOCAO" />
           <NavigationProperty Name="DATVAO" Relationship="Self.FK_DATVAO_DATVAO2_SANPHAM" FromRole="SANPHAM" ToRole="DATVAO" />
           <NavigationProperty Name="DONDATHANG" Relationship="Self.FK_SANPHAM_DATHANG_DONDATHA" FromRole="SANPHAM" ToRole="DONDATHANG" />
           <NavigationProperty Name="HANGTON" Relationship="Self.FK_HANGTON_LUUTRU_SANPHAM" FromRole="SANPHAM" ToRole="HANGTON" />
+          <Property Name="MA_NCCAP" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="NHACUNGCAP" Relationship="QLKHModel.FK_SANPHAM_CUNGCAP_NHACUNGC" FromRole="SANPHAM" ToRole="NHACUNGCAP" />
         </EntityType>
         <Association Name="FK_SANPHAM_BAOCAO_BANBAOCA">
           <End Role="BANBAOCAO" Type="Self.BANBAOCAO" Multiplicity="1" />
@@ -450,7 +500,53 @@
             <End Role="DONDATHANG" EntitySet="DONDATHANG" />
             <End Role="DONTHANHTOAN" EntitySet="DONTHANHTOAN" />
           </AssociationSet>
+          <AssociationSet Name="FK_SANPHAM_CUNGCAP_NHACUNGC" Association="QLKHModel.FK_SANPHAM_CUNGCAP_NHACUNGC">
+            <End Role="NHACUNGCAP" EntitySet="NHACUNGCAP" />
+            <End Role="SANPHAM" EntitySet="SANPHAM" />
+          </AssociationSet>
+          <FunctionImport Name="sp_alterdiagram">
+            <Parameter Name="diagramname" Mode="In" Type="String" />
+            <Parameter Name="owner_id" Mode="In" Type="Int32" />
+            <Parameter Name="version" Mode="In" Type="Int32" />
+            <Parameter Name="definition" Mode="In" Type="Binary" />
+          </FunctionImport>
+          <FunctionImport Name="sp_creatediagram">
+            <Parameter Name="diagramname" Mode="In" Type="String" />
+            <Parameter Name="owner_id" Mode="In" Type="Int32" />
+            <Parameter Name="version" Mode="In" Type="Int32" />
+            <Parameter Name="definition" Mode="In" Type="Binary" />
+          </FunctionImport>
+          <FunctionImport Name="sp_dropdiagram">
+            <Parameter Name="diagramname" Mode="In" Type="String" />
+            <Parameter Name="owner_id" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="sp_helpdiagramdefinition">
+            <Parameter Name="diagramname" Mode="In" Type="String" />
+            <Parameter Name="owner_id" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="sp_helpdiagrams">
+            <Parameter Name="diagramname" Mode="In" Type="String" />
+            <Parameter Name="owner_id" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="sp_renamediagram">
+            <Parameter Name="diagramname" Mode="In" Type="String" />
+            <Parameter Name="owner_id" Mode="In" Type="Int32" />
+            <Parameter Name="new_diagramname" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="sp_upgraddiagrams" />
         </EntityContainer>
+        <Association Name="FK_SANPHAM_CUNGCAP_NHACUNGC">
+          <End Type="QLKHModel.NHACUNGCAP" Role="NHACUNGCAP" Multiplicity="1" />
+          <End Type="QLKHModel.SANPHAM" Role="SANPHAM" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="NHACUNGCAP">
+              <PropertyRef Name="MA_NCCAP" />
+            </Principal>
+            <Dependent Role="SANPHAM">
+              <PropertyRef Name="MA_NCCAP" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -532,6 +628,7 @@
           <EntitySetMapping Name="SANPHAM">
             <EntityTypeMapping TypeName="QLKHModel.SANPHAM">
               <MappingFragment StoreEntitySet="SANPHAM">
+                <ScalarProperty Name="MA_NCCAP" ColumnName="MA_NCCAP" />
                 <ScalarProperty Name="MASP" ColumnName="MASP" />
                 <ScalarProperty Name="MA_DATHANG" ColumnName="MA_DATHANG" />
                 <ScalarProperty Name="MA_BAOCAO" ColumnName="MA_BAOCAO" />
@@ -554,6 +651,13 @@
               <ScalarProperty Name="MATT" ColumnName="MATT" />
             </EndProperty>
           </AssociationSetMapping>
+          <FunctionImportMapping FunctionImportName="sp_alterdiagram" FunctionName="QLKHModel.Store.sp_alterdiagram" />
+          <FunctionImportMapping FunctionImportName="sp_creatediagram" FunctionName="QLKHModel.Store.sp_creatediagram" />
+          <FunctionImportMapping FunctionImportName="sp_dropdiagram" FunctionName="QLKHModel.Store.sp_dropdiagram" />
+          <FunctionImportMapping FunctionImportName="sp_helpdiagramdefinition" FunctionName="QLKHModel.Store.sp_helpdiagramdefinition" />
+          <FunctionImportMapping FunctionImportName="sp_helpdiagrams" FunctionName="QLKHModel.Store.sp_helpdiagrams" />
+          <FunctionImportMapping FunctionImportName="sp_renamediagram" FunctionName="QLKHModel.Store.sp_renamediagram" />
+          <FunctionImportMapping FunctionImportName="sp_upgraddiagrams" FunctionName="QLKHModel.Store.sp_upgraddiagrams" />
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

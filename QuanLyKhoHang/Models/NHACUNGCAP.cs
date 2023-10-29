@@ -18,6 +18,7 @@ namespace QuanLyKhoHang.Models
         public NHACUNGCAP()
         {
             this.DONDATHANG = new HashSet<DONDATHANG>();
+            this.SANPHAM = new HashSet<SANPHAM>();
         }
     
         public string MA_NCCAP { get; set; }
@@ -29,5 +30,7 @@ namespace QuanLyKhoHang.Models
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<DONDATHANG> DONDATHANG { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<SANPHAM> SANPHAM { get; set; }
     }
 }
