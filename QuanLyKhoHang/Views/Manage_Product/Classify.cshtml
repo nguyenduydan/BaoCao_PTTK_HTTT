@@ -1,5 +1,9 @@
-﻿@using QuanLyKhoHang.Views.Manage_Product
-@model QuanLyKhoHang.Models.SANPHAM
+﻿@model IEnumerable<QuanLyKhoHang.Models.SANPHAM>
+@using QuanLyKhoHang.Views.Manage_Product
+
+@{
+    var uniqueTypes = ViewBag.UniqueTypes as List<string>;
+}
 @{
     ViewBag.Title = "Phân loại hàng hóa";
     ManageProduct childrenFeatures = new ManageProduct();
@@ -8,46 +12,45 @@
 }
 @section Style{
     <link rel="Stylesheet" href="~/Content/Manage.css" />
+    <link rel="Stylesheet" href="~/Content/Import.css" />
 }
-
 <div class="classify">
     <form class="form" method="post" action="@Url.Action("Classify", "Manage_Product")">
-        <select name="sortOption">
-            <option value="default">Mặc định</option>
-            <option value="name">@Model.TENSP</option>
+        <select name="sortingOption" id="sortingOption" style="width: 400px;">
+            <option value="default">Theo loại sản phẩm</option>
+            @foreach (var type in uniqueTypes)
+            {
+                <option value="@type">@type</option>
+            }
         </select>
         <div class="sep"></div>
         <input type="submit" value="Phân loại" />
     </form>
 </div>
+
 @if (Model != null)
 {
-    <h2>Kết quả phân loại sản phẩm</h2>
-    <div class="info-products">
-        <table class="table">
-            <tr>
-                <th>Mã hàng</th>
-                <th>Tên hàng hóa</th>
-                <th>Nhà cung cấp</th>
-                <th>Loại hàng hóa</th>
-                <th>Giá cả</th>
-                <th>Số lượng</th>
-                <th></th>
-            </tr>
-            <tr>
-                @foreach (var product in ViewBag.Products)
+    <div class="margin">
+        <div class="info-products">
+            <table class="table">
+                <tr>
+                    <th>Mã hàng</th>
+                    <th>Tên hàng hóa</th>
+                    <th>Loại hàng hóa</th>
+                    <th>Giá cả</th>
+                    <th>Số lượng</th>
+                </tr>
+                @foreach (var product in Model)
                 {
-                    <td>@product.MASP</td>
-                    <td>@product.TENSP</td>
-                    <td>@product.NHACUNGCAP.TEN_NCCAP)</td>
-                    <td>@product.LOAISP)</td>
-                    <td>@product.GIACA)</td>
-                    <td>@product.SOLUONG)</td>
+                    <tr>
+                        <td>@product.MASP</td>
+                        <td>@product.TENSP</td>
+                        <td>@product.NHACUNGCAP.LOAISP</td>
+                        <td>@product.GIACA</td>
+                        <td>@product.SOLUONG</td>
+                    </tr>
                 }
-
-            </tr>
-        </table>
+            </table>
+        </div>
     </div>
 }
-
-

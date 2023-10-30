@@ -1,23 +1,82 @@
-﻿
+﻿@using QuanLyKhoHang.Views.Manage_Product
+@model IEnumerable<QuanLyKhoHang.Models.SANPHAM>
 @{
-    ViewBag.Title = "Cập nhật";
+    ViewBag.Title = "Quản lý hàng hóa";
+    ManageProduct childrenFeatures = new ManageProduct();
+    ViewBag.Children = childrenFeatures.Show();
+    ViewBag.showFeature = true;
+}
+@{
+    //t
+    ViewBag.Title = "Xuất hàng";
     ViewBag.showFeature = true;
 }
 @section Style{
     <link rel="Stylesheet" href="~/Content/Export.css" />
 }
 <div class="margin">
-    <div class="export">
-        <h3>Cập nhật</h3>
+    <div class="export d-flex align-items-center justify-content-between">
+        <h3>Xuất hàng</h3>
+        <button type="button" id="exportButton" class="btn btn-primary rounded px-3 py-3" onclick="exportSelectedItems()">
+            Xuất hàng loạt
+        </button>
     </div>
     <div class="info-products">
         <table class="table">
             <tr>
                 <th>Mã hàng</th>
                 <th>Tên hàng hóa</th>
+                <th>Nhà cung cấp</th>
+                <th>Loại hàng hóa</th>
+                <th>Giá cả</th>
                 <th>Số lượng</th>
-                <th></th>
+                <th>Xuất(?)</th>
             </tr>
-        </table>
+            <tr>
+                @foreach (var item in Model)
+                {
+                <tr>
+                    <td>@Html.DisplayFor(model => item.MASP)</td>
+                    <td>@Html.DisplayFor(model => item.TENSP)</td>
+                    <td>@Html.DisplayFor(model => item.NHACUNGCAP.TEN_NCCAP)</td>
+                    <td>@Html.DisplayFor(model => item.LOAISP)</td>
+                    <td>@Html.DisplayFor(model => item.GIACA)</td>
+                    <td>@Html.DisplayFor(model => item.SOLUONG)</td>
+                    <td style="position:relative">
+                        <input type="checkbox" name="selectedItems" value="@item.MASP" style="position:absolute; top:50%;left:0%"/>
+                    </td>
+                </tr>
+                 }
+            </table>
     </div>
 </div>
+<script>
+    function exportSelectedItems() {
+        var selectedItems = document.querySelectorAll('input[name="selectedItems"]:checked');
+        var selectedIds = [];
+        for (var i = 0; i < selectedItems.length; i++) {
+            selectedIds.push(selectedItems[i].value);
+        }
+        if (selectedIds.length > 0) {
+            var form = document.createElement('form');
+            form.method = 'POST';
+            form.action = '/Export_Product/ExportSelectedItems';
+
+            for (var i = 0; i < selectedIds.length; i++) {
+                var hiddenField = document.createElement('input');
+                hiddenField.type = 'hidden';
+                hiddenField.name = 'selectedIds';
+                hiddenField.value = selectedIds[i];
+                form.appendChild(hiddenField);
+            }
+
+            document.body.appendChild(form);
+            form.submit();
+        } else {
+            // Thông báo cho người dùng chọn ít nhất một sản phẩm trước khi xuất hàng loạt
+            alert("Vui lòng chọn ít nhất một sản phẩm để xuất hàng loạt.");
+        }
+    }
+</script>
+
+

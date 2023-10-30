@@ -8,6 +8,7 @@
 }
 @section Style{
     <link rel="Stylesheet" href="~/Content/Manage.css" />
+    <link rel="Stylesheet" href="~/Content/Import.css" />
 }
 <div class="margin">
     <div class="info-products">
@@ -21,18 +22,17 @@
                 <th>Số lượng</th>
                 <th></th>
             </tr>
-            <tr>
-                @foreach (var item in Model)
-                {
+            @foreach (var item in Model)
+            {
+                <tr>
                     <td>@Html.DisplayFor(model => item.MASP)</td>
                     <td>@Html.DisplayFor(model => item.TENSP)</td>
                     <td>@Html.DisplayFor(model => item.NHACUNGCAP.TEN_NCCAP)</td>
-                    <td>@Html.DisplayFor(model => item.LOAISP)</td>
+                    <td>@Html.DisplayFor(model => item.NHACUNGCAP.LOAISP)</td>
                     <td>@Html.DisplayFor(model => item.GIACA)</td>
                     <td>@Html.DisplayFor(model => item.SOLUONG)</td>
-                }
-
-            </tr>
+                </tr>
+            }
         </table>
     </div>
 </div>

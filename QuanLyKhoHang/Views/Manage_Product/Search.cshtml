@@ -1,4 +1,5 @@
 ﻿@using QuanLyKhoHang.Views.Manage_Product
+@model IEnumerable<QuanLyKhoHang.Models.SANPHAM>
 @{
     ViewBag.Title = "Tra cứu hàng hóa";
     ManageProduct childrenFeatures = new ManageProduct();
@@ -7,12 +8,12 @@
 }
 @section Style{
     <link rel="Stylesheet" href="~/Content/Manage.css" />
+    <link rel="Stylesheet" href="~/Content/Import.css" />
 }
-
 <div id="search">
-    <form class="form" method="post">
-        <input type="text" placeholder="Tra cứu..." />
-        <button>
+    <form class="form" action="@Url.Action("Search")" method="post">
+        <input type="text" placeholder="Tra cứu..." id="searchString" name="searchString" />
+        <button type="submit">
             <svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" viewBox="0 0 26 26" fill="none">
                 <path d="M12.3966 24.7931C5.56333 24.7931 0 19.2298 0 12.3966C0 5.56333 5.56333 0 12.3966 0C19.2298 0 24.7931 5.56333 24.7931 12.3966C24.7931 19.2298 19.2298 24.7931 12.3966 24.7931ZM12.3966 1.81413C6.55506 1.81413 1.81413 6.56715 1.81413 12.3966C1.81413 18.226 6.55506 22.979 12.3966 22.979C18.2381 22.979 22.979 18.226 22.979 12.3966C22.979 6.56715 18.2381 1.81413 12.3966 1.81413Z" fill="#292D32" fill-opacity="0.7" />
                 <path d="M25.096 26.0025C24.8662 26.0025 24.6364 25.9178 24.455 25.7364L22.0361 23.3176C21.6854 22.9668 21.6854 22.3863 22.0361 22.0356C22.3869 21.6848 22.9674 21.6848 23.3181 22.0356L25.7369 24.4544C26.0877 24.8051 26.0877 25.3857 25.7369 25.7364C25.5555 25.9178 25.3257 26.0025 25.096 26.0025Z" fill="#292D32" fill-opacity="0.7" />
@@ -20,10 +21,10 @@
         </button>
     </form>
     <div class="sep"></div>
-    <form class="form" name="reset" id="reset" method="post">
+    <form class="form" name="reset" id="reset">
         <select>
             <option>Mặc định</option>
-            <option>Tên sản phẩn</option>
+            <option>Tên sản phẩm</option>
         </select>
         <button>
             <svg xmlns="http://www.w3.org/2000/svg" width="23" height="23" viewBox="0 0 23 23" fill="none">
@@ -34,3 +35,42 @@
     </form>
 </div>
 
+<div class="margin">
+    <div class="info-products">
+        <table class="table">
+            <tr>
+                <th>Mã hàng</th>
+                <th>
+                    Tên hàng hóa
+                    <a href="javascript:void(0);" onclick="sortByName()">
+                        <svg id="sortIcon" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-sort-alpha-down" viewBox="0 0 16 16">
+                            <path fill-rule="evenodd" d="M10.082 5.629 9.664 7H8.598l1.789-5.332h1.234L13.402 7h-1.12l-.419-1.371h-1.781zm1.57-.785L11 2.687h-.047l-.652 2.157h1.351z" />
+                            <path d="M12.96 14H9.028v-.691l2.579-3.72v-.054H9.098v-.867h3.785v.691l-2.567 3.72v.054h2.645V14zM4.5 2.5a.5.5 0 0 0-1 0v9.793l-1.146-1.147a.5.5 0 0 0-.708.708l2 1.999.007.007a.497.497 0 0 0 .7-.006l2-2a.5.5 0 0 0-.707-.708L4.5 12.293V2.5z" />
+                        </svg>
+                    </a>
+                </th>
+                <th>Nhà cung cấp</th>
+                <th>Loại hàng hóa</th>
+                <th>Giá cả</th>
+                <th>Số lượng</th>
+                <th>Chức năng</th>
+            </tr>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>@Html.DisplayFor(model => item.MASP)</td>
+                    <td>@Html.DisplayFor(model => item.TENSP)</td>
+                    <td>@Html.DisplayFor(model => item.NHACUNGCAP.TEN_NCCAP)</td>
+                    <td>@Html.DisplayFor(model => item.NHACUNGCAP.LOAISP)</td>
+                    <td>@Html.DisplayFor(model => item.GIACA)</td>
+                    <td>@Html.DisplayFor(model => item.SOLUONG)</td>
+                    <td>
+                        <a href=" @Url.Action("Update","Manage_Product")" class="btn btn-sm btn-primary w-50"> Cập nhật</a>
+                        <a href=" @Url.Action("Del","Manage_Product")" class="btn btn-sm btn-danger w-25">Xóa</a>
+                    </td>
+                </tr>
+            }
+
+        </table>
+    </div>
+</div>

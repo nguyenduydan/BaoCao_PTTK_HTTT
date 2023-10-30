@@ -33,28 +33,35 @@ namespace QuanLyKhoHang.Controllers
             var data = products.Skip(recSkip).Take(pageSize).ToList();
 
             this.ViewBag.pages = pages;
-            return View(data);
+            return View(products);
         }
-        
-        public ActionResult Add() {
+
+        public ActionResult Add()
+        {
             ViewBag.listncc = new SelectList(db.NHACUNGCAP, "MA_NCCAP", "TEN_NCCAP");
             return View();
         }
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Add(SANPHAM sanpham) {
+        public ActionResult Add(SANPHAM sanpham)
+        {
             if (ModelState.IsValid)
             {
+                NHACUNGCAP nhacungcap = db.NHACUNGCAP.FirstOrDefault(x => x.MA_NCCAP == sanpham.MA_NCCAP);
+                if (nhacungcap != null)
+                {
+                    sanpham.LOAISP = nhacungcap.LOAISP;
+                }
                 db.SANPHAM.Add(sanpham);
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
 
-            ViewBag.listncc = new SelectList(db.NHACUNGCAP,"MA_NCCAP","TEN_NCCAP");
+            ViewBag.listncc = new SelectList(db.NHACUNGCAP, "MA_NCCAP", "TEN_NCCAP");
             return View(sanpham);
         }
-
-        public ActionResult Update() {
+        public ActionResult Update() 
+        {
             return View();
         }
     }

@@ -29,42 +29,95 @@ namespace QuanLyKhoHang.Controllers
             var data = products.Skip(recSkip).Take(pageSize).ToList();
 
             this.ViewBag.pages = pages;
-            return View(data);
+            return View(products);
         }
-
-        // PHÂN LOẠI HÀNG HÓA
-        public ActionResult Classify()
+        //update
+        public ActionResult Update()
         {
             return View();
         }
+
+        //
+        public ActionResult Classify()
+        {
+            var uniqueTypes = db.SANPHAM.Select(p => p.LOAISP).Distinct().ToList();
+
+            ViewBag.UniqueTypes = uniqueTypes;
+            return View(db.SANPHAM.ToList());
+        }
+
         [HttpPost]
         public ActionResult Classify(string sortingOption)
         {
-            if (sortingOption == "name")
+            var allProducts = db.SANPHAM.ToList();
+
+            if (sortingOption != null && sortingOption != "default")
             {
-                List<SANPHAM> sortedProducts = GetProductsSortedByName();
-                return View("Classify", sortedProducts);
+                allProducts = db.SANPHAM.Where(p => p.LOAISP == sortingOption).ToList();
+            }
+
+            var uniqueTypes = db.SANPHAM.Select(p => p.LOAISP).Distinct().ToList();
+            ViewBag.UniqueTypes = uniqueTypes;
+
+            return View(allProducts);
+        }
+        // Search
+        public ActionResult Search()
+        {
+            List<SANPHAM> products = db.SANPHAM.ToList();
+            return View(products);
+        }
+        [HttpPost]
+        public ActionResult Search(string searchString)
+        {
+            var product = from m in db.SANPHAM
+                          select m;
+
+            if (!string.IsNullOrEmpty(searchString))
+            {
+                product = product.Where(s => s.TENSP.Contains(searchString));
             }
             else
             {
-                ViewBag.Products = null;
+                ViewBag.Message = "Không tìm thấy sản phẩm";
+                return View(products);
             }
-
-            return View("Classify");
+            return View(product);
         }
-        public List<SANPHAM> GetProductsSortedByName()
+        //Đưa sản phẩm qua hàng tồn
+        public ActionResult Del(string productId)
         {
-            using (var dbContext = new QLKHEntities1()) 
-            {
-                // Thực hiện truy vấn để lấy danh sách sản phẩm theo tên
-                var products = dbContext.SANPHAM.OrderBy(p => p.TENSP).ToList();
-                return products;
-            }
-        }
+            // Lấy thông tin sản phẩm cần xóa từ bảng "Sản phẩm"
+            var sanPham = db.SANPHAM.Find(productId);
 
-        public ActionResult Search() {
-            return View();
-        
+            if (sanPham != null)
+            {
+                // Tạo một bản ghi mới trong bảng "Hàng tồn" với thông tin từ sản phẩm cần xóa
+                var hangTon = new HANGTON
+                {
+                    MASP = sanPham.MASP,
+                    MA_HANGTON = sanPham.MASP + "_" + sanPham.TENTOMTAT,
+                    NGAYHETHAN = sanPham.NGAYHETHAN,
+                    SOLUONG = sanPham.SOLUONG,
+                    // Copy các thuộc tính khác từ sản phẩm nếu cần thiết
+                };
+
+                // Thêm bản ghi mới vào bảng "Hàng tồn"
+                db.HANGTON.Add(hangTon);
+                db.SaveChanges();
+
+                // Xóa sản phẩm từ bảng "Sản phẩm"
+                db.SANPHAM.Remove(sanPham);
+                db.SaveChanges();
+
+                // Các xử lý khác sau khi xóa thành công
+            }
+
+            // Redirect hoặc trả về kết quả tương ứng
+            return RedirectToAction("Search");
         }
     }
+    
 }
+
+
