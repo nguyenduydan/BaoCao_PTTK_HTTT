@@ -22,8 +22,8 @@ namespace QuanLyKhoHang.Models
         }
     
         public string MASP { get; set; }
+        public string MA_NCCAP { get; set; }
         public string MA_DATHANG { get; set; }
-        public string MA_BAOCAO { get; set; }
         public string TENSP { get; set; }
         public string LOAISP { get; set; }
         public string TENTOMTAT { get; set; }
@@ -32,9 +32,7 @@ namespace QuanLyKhoHang.Models
         public Nullable<System.DateTime> NGAYCAPNHAT { get; set; }
         public Nullable<System.DateTime> NGAYHETHAN { get; set; }
         public Nullable<decimal> GIACA { get; set; }
-        public string MA_NCCAP { get; set; }
     
-        public virtual BANBAOCAO BANBAOCAO { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<DATVAO> DATVAO { get; set; }
         public virtual DONDATHANG DONDATHANG { get; set; }

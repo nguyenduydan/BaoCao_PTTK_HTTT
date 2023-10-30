@@ -4,23 +4,24 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="a354dd0039754e3297540cba04a54b38" Name="Diagram1" ZoomLevel="111">
-        <EntityTypeShape EntityType="QLKHModel.BANBAOCAO" Width="1.5" PointX="6" PointY="1.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="QLKHModel.DATVAO" Width="1.5" PointX="10.5" PointY="3.625" IsExpanded="true" />
-        <EntityTypeShape EntityType="QLKHModel.DONDATHANG" Width="1.5" PointX="3" PointY="4.375" IsExpanded="true" />
-        <EntityTypeShape EntityType="QLKHModel.DONTHANHTOAN" Width="1.5" PointX="2.875" PointY="1.5" IsExpanded="true" />
-        <EntityTypeShape EntityType="QLKHModel.HANGTON" Width="1.5" PointX="10.5" PointY="7.25" IsExpanded="true" />
-        <EntityTypeShape EntityType="QLKHModel.KEHANG" Width="1.5" PointX="8.25" PointY="0.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="QLKHModel.NHACUNGCAP" Width="1.5" PointX="0.5" PointY="5.375" IsExpanded="true" />
-        <EntityTypeShape EntityType="QLKHModel.SANPHAM" Width="2.25" PointX="7.25" PointY="3.75" IsExpanded="true" />
-        <AssociationConnector Association="QLKHModel.FK_SANPHAM_BAOCAO_BANBAOCA" ManuallyRouted="false" />
-        <AssociationConnector Association="QLKHModel.FK_DATVAO_DATVAO_KEHANG" ManuallyRouted="false" />
-        <AssociationConnector Association="QLKHModel.FK_DATVAO_DATVAO2_SANPHAM" ManuallyRouted="false" />
-        <AssociationConnector Association="QLKHModel.FK_DONDATHA_LAY_NHACUNGC" ManuallyRouted="false" />
-        <AssociationConnector Association="QLKHModel.FK_SANPHAM_DATHANG_DONDATHA" ManuallyRouted="false" />
-        <AssociationConnector Association="QLKHModel.FK_HANGTON_LUUTRU_SANPHAM" ManuallyRouted="false" />
-        <AssociationConnector Association="QLKHModel.KIEMTRA" ManuallyRouted="false" />
+      <Diagram DiagramId="a354dd0039754e3297540cba04a54b38" Name="Diagram1" ZoomLevel="87">
+        <EntityTypeShape EntityType="QLKHModel.BANBAOCAO" Width="1.5" PointX="18.25" PointY="5.75" />
+        <EntityTypeShape EntityType="QLKHModel.DATVAO" Width="1.5" PointX="16" PointY="2" />
+        <EntityTypeShape EntityType="QLKHModel.DONDATHANG" Width="1.5" PointX="11.5" PointY="2.625" />
+        <EntityTypeShape EntityType="QLKHModel.DONTHANHTOAN" Width="1.5" PointX="9.125" PointY="7" />
+        <EntityTypeShape EntityType="QLKHModel.HANGTON" Width="1.5" PointX="16" PointY="5.625" />
+        <EntityTypeShape EntityType="QLKHModel.KEHANG" Width="1.5" PointX="13.75" PointY="7.125" />
+        <EntityTypeShape EntityType="QLKHModel.NHACUNGCAP" Width="1.5" PointX="9.25" PointY="2.625" />
+        <EntityTypeShape EntityType="QLKHModel.SANPHAM" Width="1.5" PointX="13.75" PointY="2" />
+        <EntityTypeShape EntityType="QLKHModel.sysdiagrams" Width="1.5" PointX="16.25" PointY="9" />
+        <AssociationConnector Association="QLKHModel.FK_BANBAOCA_BAOCAO_HANGTON" />
+        <AssociationConnector Association="QLKHModel.FK_DATVAO_DATVAO_SANPHAM" />
+        <AssociationConnector Association="QLKHModel.FK_DATVAO_DATVAO2_KEHANG" />
+        <AssociationConnector Association="QLKHModel.FK_DONDATHA_LAY_NHACUNGC" />
+        <AssociationConnector Association="QLKHModel.FK_SANPHAM_DATHANG_DONDATHA" />
+        <AssociationConnector Association="QLKHModel.FK_HANGTON_LUUTRU_SANPHAM" />
         <AssociationConnector Association="QLKHModel.FK_SANPHAM_CUNGCAP_NHACUNGC" />
+        <AssociationConnector Association="QLKHModel.KIEMTRA" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

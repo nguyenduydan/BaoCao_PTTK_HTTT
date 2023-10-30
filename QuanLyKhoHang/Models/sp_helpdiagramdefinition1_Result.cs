@@ -10,15 +10,10 @@
 namespace QuanLyKhoHang.Models
 {
     using System;
-    using System.Collections.Generic;
     
-    public partial class DATVAO
+    public partial class sp_helpdiagramdefinition1_Result
     {
-        public string MASP { get; set; }
-        public string MA_KEHANG { get; set; }
-        public Nullable<decimal> SOLUONG { get; set; }
-    
-        public virtual SANPHAM SANPHAM { get; set; }
-        public virtual KEHANG KEHANG { get; set; }
+        public Nullable<int> version { get; set; }
+        public byte[] definition { get; set; }
     }
 }
