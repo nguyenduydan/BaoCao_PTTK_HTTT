@@ -2,7 +2,7 @@
 <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
   <EntityContainerMapping StorageEntityContainer="QLKHModelStoreContainer" CdmEntityContainer="QLKHEntities1">
     <EntitySetMapping Name="BANBAOCAO">
-      <EntityTypeMapping TypeName="QLKHModel.BANBAOCAO">
+      <EntityTypeMapping TypeName="IsTypeOf(QLKHModel.BANBAOCAO)">
         <MappingFragment StoreEntitySet="BANBAOCAO">
           <ScalarProperty Name="MA_BAOCAO" ColumnName="MA_BAOCAO" />
           <ScalarProperty Name="SOLUONG" ColumnName="SOLUONG" />
@@ -11,7 +11,7 @@
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="DATVAO">
-      <EntityTypeMapping TypeName="QLKHModel.DATVAO">
+      <EntityTypeMapping TypeName="IsTypeOf(QLKHModel.DATVAO)">
         <MappingFragment StoreEntitySet="DATVAO">
           <ScalarProperty Name="MASP" ColumnName="MASP" />
           <ScalarProperty Name="MA_KEHANG" ColumnName="MA_KEHANG" />
@@ -20,7 +20,7 @@
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="DONDATHANG">
-      <EntityTypeMapping TypeName="QLKHModel.DONDATHANG">
+      <EntityTypeMapping TypeName="IsTypeOf(QLKHModel.DONDATHANG)">
         <MappingFragment StoreEntitySet="DONDATHANG">
           <ScalarProperty Name="MA_DATHANG" ColumnName="MA_DATHANG" />
           <ScalarProperty Name="TEN_SP" ColumnName="TEN_SP" />
@@ -31,7 +31,7 @@
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="DONTHANHTOAN">
-      <EntityTypeMapping TypeName="QLKHModel.DONTHANHTOAN">
+      <EntityTypeMapping TypeName="IsTypeOf(QLKHModel.DONTHANHTOAN)">
         <MappingFragment StoreEntitySet="DONTHANHTOAN">
           <ScalarProperty Name="MATT" ColumnName="MATT" />
           <ScalarProperty Name="TENSP" ColumnName="TENSP" />
@@ -42,7 +42,7 @@
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="HANGTON">
-      <EntityTypeMapping TypeName="QLKHModel.HANGTON">
+      <EntityTypeMapping TypeName="IsTypeOf(QLKHModel.HANGTON)">
         <MappingFragment StoreEntitySet="HANGTON">
           <ScalarProperty Name="MASP" ColumnName="MASP" />
           <ScalarProperty Name="MA_HANGTON" ColumnName="MA_HANGTON" />
@@ -53,7 +53,7 @@
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="KEHANG">
-      <EntityTypeMapping TypeName="QLKHModel.KEHANG">
+      <EntityTypeMapping TypeName="IsTypeOf(QLKHModel.KEHANG)">
         <MappingFragment StoreEntitySet="KEHANG">
           <ScalarProperty Name="MA_KEHANG" ColumnName="MA_KEHANG" />
           <ScalarProperty Name="TEN_KEHANG" ColumnName="TEN_KEHANG" />
@@ -62,7 +62,7 @@
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="NHACUNGCAP">
-      <EntityTypeMapping TypeName="QLKHModel.NHACUNGCAP">
+      <EntityTypeMapping TypeName="IsTypeOf(QLKHModel.NHACUNGCAP)">
         <MappingFragment StoreEntitySet="NHACUNGCAP">
           <ScalarProperty Name="MA_NCCAP" ColumnName="MA_NCCAP" />
           <ScalarProperty Name="TEN_NCCAP" ColumnName="TEN_NCCAP" />
@@ -74,9 +74,8 @@
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="SANPHAM">
-      <EntityTypeMapping TypeName="QLKHModel.SANPHAM">
+      <EntityTypeMapping TypeName="IsTypeOf(QLKHModel.SANPHAM)">
         <MappingFragment StoreEntitySet="SANPHAM">
-          <ScalarProperty Name="MA_NCCAP" ColumnName="MA_NCCAP" />
           <ScalarProperty Name="MASP" ColumnName="MASP" />
           <ScalarProperty Name="MA_DATHANG" ColumnName="MA_DATHANG" />
           <ScalarProperty Name="MA_BAOCAO" ColumnName="MA_BAOCAO" />
@@ -88,23 +87,17 @@
           <ScalarProperty Name="NGAYCAPNHAT" ColumnName="NGAYCAPNHAT" />
           <ScalarProperty Name="NGAYHETHAN" ColumnName="NGAYHETHAN" />
           <ScalarProperty Name="GIACA" ColumnName="GIACA" />
+          <ScalarProperty Name="MA_NCCAP" ColumnName="MA_NCCAP" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
     <AssociationSetMapping Name="KIEMTRA" TypeName="QLKHModel.KIEMTRA" StoreEntitySet="KIEMTRA">
       <EndProperty Name="DONDATHANG">
-        <ScalarProperty Name="MA_DATHANG" ColumnName="MA_DATHANG" />
+        <ScalarProperty Name="MA_DATHANG" ColumnName="DONDATHANG_MA_DATHANG" />
       </EndProperty>
       <EndProperty Name="DONTHANHTOAN">
-        <ScalarProperty Name="MATT" ColumnName="MATT" />
+        <ScalarProperty Name="MATT" ColumnName="DONTHANHTOAN_MATT" />
       </EndProperty>
     </AssociationSetMapping>
-    <FunctionImportMapping FunctionImportName="sp_alterdiagram" FunctionName="QLKHModel.Store.sp_alterdiagram" />
-    <FunctionImportMapping FunctionImportName="sp_creatediagram" FunctionName="QLKHModel.Store.sp_creatediagram" />
-    <FunctionImportMapping FunctionImportName="sp_dropdiagram" FunctionName="QLKHModel.Store.sp_dropdiagram" />
-    <FunctionImportMapping FunctionImportName="sp_helpdiagramdefinition" FunctionName="QLKHModel.Store.sp_helpdiagramdefinition" />
-    <FunctionImportMapping FunctionImportName="sp_helpdiagrams" FunctionName="QLKHModel.Store.sp_helpdiagrams" />
-    <FunctionImportMapping FunctionImportName="sp_renamediagram" FunctionName="QLKHModel.Store.sp_renamediagram" />
-    <FunctionImportMapping FunctionImportName="sp_upgraddiagrams" FunctionName="QLKHModel.Store.sp_upgraddiagrams" />
   </EntityContainerMapping>
 </Mapping>

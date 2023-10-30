@@ -1,4 +1,5 @@
 ﻿@using QuanLyKhoHang.Views.Manage_Product
+@model QuanLyKhoHang.Models.SANPHAM
 @{
     ViewBag.Title = "Phân loại hàng hóa";
     ManageProduct childrenFeatures = new ManageProduct();
@@ -10,14 +11,43 @@
 }
 
 <div class="classify">
-    <form class="form" method="get">
-        <select>
-            <option>Mặc định</option>
-            <option>Tên sản phẩn</option>
+    <form class="form" method="post" action="@Url.Action("Classify", "Manage_Product")">
+        <select name="sortOption">
+            <option value="default">Mặc định</option>
+            <option value="name">@Model.TENSP</option>
         </select>
         <div class="sep"></div>
-        <input  type="submit" value="Phân loại"/>
+        <input type="submit" value="Phân loại" />
     </form>
 </div>
+@if (Model != null)
+{
+    <h2>Kết quả phân loại sản phẩm</h2>
+    <div class="info-products">
+        <table class="table">
+            <tr>
+                <th>Mã hàng</th>
+                <th>Tên hàng hóa</th>
+                <th>Nhà cung cấp</th>
+                <th>Loại hàng hóa</th>
+                <th>Giá cả</th>
+                <th>Số lượng</th>
+                <th></th>
+            </tr>
+            <tr>
+                @foreach (var product in ViewBag.Products)
+                {
+                    <td>@product.MASP</td>
+                    <td>@product.TENSP</td>
+                    <td>@product.NHACUNGCAP.TEN_NCCAP)</td>
+                    <td>@product.LOAISP)</td>
+                    <td>@product.GIACA)</td>
+                    <td>@product.SOLUONG)</td>
+                }
+
+            </tr>
+        </table>
+    </div>
+}
 
 

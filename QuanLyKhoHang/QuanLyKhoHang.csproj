@@ -200,6 +200,7 @@
       <DependentUpon>Model_QLKH.edmx</DependentUpon>
       <LastGenOutput>Model_QLKH.Context.cs</LastGenOutput>
     </Content>
+    <Content Include="Models\Model_QLKH.edmx.sql" />
     <Content Include="Models\Model_QLKH.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <DependentUpon>Model_QLKH.edmx</DependentUpon>
