@@ -6,7 +6,7 @@ using System.Web.Mvc;
 using Manage;
 using QuanLyKhoHang.Views.Import_Product;
 using QuanLyKhoHang.Models;
-
+using QuanLyKhoHang.Libary;
 
 namespace QuanLyKhoHang.Controllers
 {
@@ -48,9 +48,10 @@ namespace QuanLyKhoHang.Controllers
             if (ModelState.IsValid)
             {
                 //thời gian tạo
-
+                sanpham.NGAYTAO = DateTime.Now;
                 //thời gian cập nhật
-
+                sanpham.NGAYCAPNHAT = DateTime.Now;
+                sanpham.TENTOMTAT = XString.Str_Slug(sanpham.TENSP);
                 //thêm loại sp của nhà cung cấp vào trong sản phẩm
                 NHACUNGCAP nhacungcap = db.NHACUNGCAP.FirstOrDefault(x => x.MA_NCCAP == sanpham.MA_NCCAP);
                 if (nhacungcap != null)
