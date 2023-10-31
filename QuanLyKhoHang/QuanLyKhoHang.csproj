@@ -266,6 +266,7 @@
     <Content Include="Views\Export_Product\Update.cshtml" />
     <Content Include="Views\Export_Product\ExportSelectedItems.cshtml" />
     <Content Include="Views\Manage_Product\Update.cshtml" />
+    <Content Include="Views\Import_Product\AddNCC.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

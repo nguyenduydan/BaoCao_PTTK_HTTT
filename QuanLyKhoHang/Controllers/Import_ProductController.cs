@@ -17,7 +17,6 @@ namespace QuanLyKhoHang.Controllers
         //Hiển thị trang index
         public ActionResult Index(int pg = 1)
         {
-
             List<SANPHAM> products = db.SANPHAM.ToList();
             
             const int pageSize = 14;
@@ -65,9 +64,54 @@ namespace QuanLyKhoHang.Controllers
             ViewBag.listncc = new SelectList(db.NHACUNGCAP, "MA_NCCAP", "TEN_NCCAP");
             return View(sanpham);
         }
-        public ActionResult Update() 
+
+        public ActionResult AddNCC()
         {
             return View();
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult AddNCC(NHACUNGCAP ncc)
+        {
+            if (ModelState.IsValid)
+            {
+                db.NHACUNGCAP.Add(ncc);
+                db.SaveChanges();
+                return RedirectToAction("Add");
+            }
+            return View(ncc);
+        }
+
+        public ActionResult Update() 
+        {
+            ViewBag.listncc = new SelectList(db.NHACUNGCAP, "MA_NCCAP", "TEN_NCCAP");
+            return View();
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult Update(SANPHAM sanpham)
+        {
+
+            if (ModelState.IsValid)
+            {
+                //thời gian cập nhật
+                sanpham.NGAYCAPNHAT = DateTime.Now;
+                sanpham.TENTOMTAT = Xstring.Str_Slug(sanpham.TENSP);
+                //thêm loại sp của nhà cung cấp vào trong sản phẩm
+                NHACUNGCAP nhacungcap = db.NHACUNGCAP.FirstOrDefault(x => x.MA_NCCAP == sanpham.MA_NCCAP);
+                if (nhacungcap != null)
+                {
+                    sanpham.LOAISP = nhacungcap.LOAISP;
+                }
+                db.SANPHAM.Add(sanpham);
+                db.SaveChanges();
+                return RedirectToAction("Index");
+            }
+
+            ViewBag.listncc = new SelectList(db.NHACUNGCAP, "MA_NCCAP", "TEN_NCCAP");
+            return View(sanpham);
         }
     }
 }
