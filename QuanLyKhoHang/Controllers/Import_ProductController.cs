@@ -6,12 +6,10 @@ using System.Web.Mvc;
 using Manage;
 using QuanLyKhoHang.Views.Import_Product;
 using QuanLyKhoHang.Models;
-/*using QuanLyKhoHang.Libary;*/
+using QuanLyKhoHang.Library;
 
 namespace QuanLyKhoHang.Controllers
 {
-
-    
     public class Import_ProductController : Controller
     {
         private QLKHEntities1 db = new QLKHEntities1();
@@ -19,6 +17,7 @@ namespace QuanLyKhoHang.Controllers
         //Hiển thị trang index
         public ActionResult Index(int pg = 1)
         {
+
             List<SANPHAM> products = db.SANPHAM.ToList();
             
             const int pageSize = 14;
@@ -51,7 +50,7 @@ namespace QuanLyKhoHang.Controllers
                 sanpham.NGAYTAO = DateTime.Now;
                 //thời gian cập nhật
                 sanpham.NGAYCAPNHAT = DateTime.Now;
-                /*sanpham.TENTOMTAT = XString.Str_Slug(sanpham.TENSP);*/
+                sanpham.TENTOMTAT = Xstring.Str_Slug(sanpham.TENSP);
                 //thêm loại sp của nhà cung cấp vào trong sản phẩm
                 NHACUNGCAP nhacungcap = db.NHACUNGCAP.FirstOrDefault(x => x.MA_NCCAP == sanpham.MA_NCCAP);
                 if (nhacungcap != null)

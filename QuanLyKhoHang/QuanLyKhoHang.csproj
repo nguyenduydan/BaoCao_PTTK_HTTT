@@ -137,6 +137,8 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Library\Xmessage.cs" />
+    <Compile Include="Library\Xstring.cs" />
     <Compile Include="Models\BANBAOCAO.cs">
       <DependentUpon>Model_QLKH.tt</DependentUpon>
     </Compile>

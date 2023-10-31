@@ -36,7 +36,6 @@
                 <th>Loại hàng hóa</th>
                 <th>Giá cả</th>
                 <th>Số lượng</th>
-                <th></th>
             </tr>
             @foreach(var item in Model)
             {
@@ -46,7 +45,6 @@
                     <td>@Html.DisplayFor(model => item.LOAISP)</td>
                     <td>@Html.DisplayFor(model => item.GIACA)</td>
                     <td>@Html.DisplayFor(model => item.SOLUONG)</td>
-                    <td><a href="~/Import_Product/Update" id="@item.MASP">Cập nhật</a></td>
                 </tr>
             }
 
