@@ -21,8 +21,10 @@
   </EntityType>
   <EntityType Name="DONDATHANG">
     <Key>
+      <PropertyRef Name="MASP" />
       <PropertyRef Name="MA_DATHANG" />
     </Key>
+    <Property Name="MASP" Type="varchar" MaxLength="10" Nullable="false" />
     <Property Name="MA_DATHANG" Type="varchar" MaxLength="10" Nullable="false" />
     <Property Name="TEN_SP" Type="nvarchar" MaxLength="100" />
     <Property Name="MA_NCCAP" Type="varchar" MaxLength="10" Nullable="false" />
@@ -61,9 +63,11 @@
   <EntityType Name="KIEMTRA">
     <Key>
       <PropertyRef Name="MATT" />
+      <PropertyRef Name="MASP" />
       <PropertyRef Name="MA_DATHANG" />
     </Key>
     <Property Name="MATT" Type="varchar" MaxLength="10" Nullable="false" />
+    <Property Name="MASP" Type="varchar" MaxLength="10" Nullable="false" />
     <Property Name="MA_DATHANG" Type="varchar" MaxLength="10" Nullable="false" />
   </EntityType>
   <EntityType Name="NHACUNGCAP">
@@ -83,7 +87,6 @@
     </Key>
     <Property Name="MASP" Type="varchar" MaxLength="10" Nullable="false" />
     <Property Name="MA_NCCAP" Type="varchar" MaxLength="10" Nullable="false" />
-    <Property Name="MA_DATHANG" Type="varchar" MaxLength="10" />
     <Property Name="TENSP" Type="nvarchar" MaxLength="100" />
     <Property Name="LOAISP" Type="nvarchar" MaxLength="100" />
     <Property Name="TENTOMTAT" Type="varchar" MaxLength="100" />
@@ -92,16 +95,6 @@
     <Property Name="NGAYCAPNHAT" Type="datetime" />
     <Property Name="NGAYHETHAN" Type="datetime" />
     <Property Name="GIACA" Type="decimal" Precision="18" Scale="0" />
-  </EntityType>
-  <EntityType Name="sysdiagrams">
-    <Key>
-      <PropertyRef Name="diagram_id" />
-    </Key>
-    <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
-    <Property Name="principal_id" Type="int" Nullable="false" />
-    <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="version" Type="int" />
-    <Property Name="definition" Type="varbinary(max)" />
   </EntityType>
   <Association Name="FK_BANBAOCA_BAOCAO_HANGTON">
     <End Role="HANGTON" Type="Self.HANGTON" Multiplicity="1" />
@@ -138,6 +131,18 @@
       </Principal>
       <Dependent Role="DATVAO">
         <PropertyRef Name="MA_KEHANG" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_DONDATHA_DATHANG_SANPHAM">
+    <End Role="SANPHAM" Type="Self.SANPHAM" Multiplicity="1" />
+    <End Role="DONDATHANG" Type="Self.DONDATHANG" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="SANPHAM">
+        <PropertyRef Name="MASP" />
+      </Principal>
+      <Dependent Role="DONDATHANG">
+        <PropertyRef Name="MASP" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
@@ -182,9 +187,11 @@
     <End Role="KIEMTRA" Type="Self.KIEMTRA" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="DONDATHANG">
+        <PropertyRef Name="MASP" />
         <PropertyRef Name="MA_DATHANG" />
       </Principal>
       <Dependent Role="KIEMTRA">
+        <PropertyRef Name="MASP" />
         <PropertyRef Name="MA_DATHANG" />
       </Dependent>
     </ReferentialConstraint>
@@ -198,18 +205,6 @@
       </Principal>
       <Dependent Role="SANPHAM">
         <PropertyRef Name="MA_NCCAP" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="FK_SANPHAM_DATHANG_DONDATHA">
-    <End Role="DONDATHANG" Type="Self.DONDATHANG" Multiplicity="0..1" />
-    <End Role="SANPHAM" Type="Self.SANPHAM" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="DONDATHANG">
-        <PropertyRef Name="MA_DATHANG" />
-      </Principal>
-      <Dependent Role="SANPHAM">
-        <PropertyRef Name="MA_DATHANG" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
@@ -254,7 +249,6 @@
     <EntitySet Name="KIEMTRA" EntityType="Self.KIEMTRA" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="NHACUNGCAP" EntityType="Self.NHACUNGCAP" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="SANPHAM" EntityType="Self.SANPHAM" Schema="dbo" store:Type="Tables" />
-    <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
     <AssociationSet Name="FK_BANBAOCA_BAOCAO_HANGTON" Association="Self.FK_BANBAOCA_BAOCAO_HANGTON">
       <End Role="HANGTON" EntitySet="HANGTON" />
       <End Role="BANBAOCAO" EntitySet="BANBAOCAO" />
@@ -266,6 +260,10 @@
     <AssociationSet Name="FK_DATVAO_DATVAO2_KEHANG" Association="Self.FK_DATVAO_DATVAO2_KEHANG">
       <End Role="KEHANG" EntitySet="KEHANG" />
       <End Role="DATVAO" EntitySet="DATVAO" />
+    </AssociationSet>
+    <AssociationSet Name="FK_DONDATHA_DATHANG_SANPHAM" Association="Self.FK_DONDATHA_DATHANG_SANPHAM">
+      <End Role="SANPHAM" EntitySet="SANPHAM" />
+      <End Role="DONDATHANG" EntitySet="DONDATHANG" />
     </AssociationSet>
     <AssociationSet Name="FK_DONDATHA_LAY_NHACUNGC" Association="Self.FK_DONDATHA_LAY_NHACUNGC">
       <End Role="NHACUNGCAP" EntitySet="NHACUNGCAP" />
@@ -285,10 +283,6 @@
     </AssociationSet>
     <AssociationSet Name="FK_SANPHAM_CUNGCAP_NHACUNGC" Association="Self.FK_SANPHAM_CUNGCAP_NHACUNGC">
       <End Role="NHACUNGCAP" EntitySet="NHACUNGCAP" />
-      <End Role="SANPHAM" EntitySet="SANPHAM" />
-    </AssociationSet>
-    <AssociationSet Name="FK_SANPHAM_DATHANG_DONDATHA" Association="Self.FK_SANPHAM_DATHANG_DONDATHA">
-      <End Role="DONDATHANG" EntitySet="DONDATHANG" />
       <End Role="SANPHAM" EntitySet="SANPHAM" />
     </AssociationSet>
   </EntityContainer>

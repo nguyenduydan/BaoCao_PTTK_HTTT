@@ -47,6 +47,11 @@ namespace QuanLyKhoHang.Controllers
         {
             if (ModelState.IsValid)
             {
+                //thời gian tạo
+
+                //thời gian cập nhật
+
+                //thêm loại sp của nhà cung cấp vào trong sản phẩm
                 NHACUNGCAP nhacungcap = db.NHACUNGCAP.FirstOrDefault(x => x.MA_NCCAP == sanpham.MA_NCCAP);
                 if (nhacungcap != null)
                 {

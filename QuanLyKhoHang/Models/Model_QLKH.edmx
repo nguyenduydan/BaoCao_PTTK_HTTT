@@ -26,8 +26,10 @@
         </EntityType>
         <EntityType Name="DONDATHANG">
           <Key>
+            <PropertyRef Name="MASP" />
             <PropertyRef Name="MA_DATHANG" />
           </Key>
+          <Property Name="MASP" Type="varchar" MaxLength="10" Nullable="false" />
           <Property Name="MA_DATHANG" Type="varchar" MaxLength="10" Nullable="false" />
           <Property Name="TEN_SP" Type="nvarchar" MaxLength="100" />
           <Property Name="MA_NCCAP" Type="varchar" MaxLength="10" Nullable="false" />
@@ -66,9 +68,11 @@
         <EntityType Name="KIEMTRA">
           <Key>
             <PropertyRef Name="MATT" />
+            <PropertyRef Name="MASP" />
             <PropertyRef Name="MA_DATHANG" />
           </Key>
           <Property Name="MATT" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="MASP" Type="varchar" MaxLength="10" Nullable="false" />
           <Property Name="MA_DATHANG" Type="varchar" MaxLength="10" Nullable="false" />
         </EntityType>
         <EntityType Name="NHACUNGCAP">
@@ -88,7 +92,6 @@
           </Key>
           <Property Name="MASP" Type="varchar" MaxLength="10" Nullable="false" />
           <Property Name="MA_NCCAP" Type="varchar" MaxLength="10" Nullable="false" />
-          <Property Name="MA_DATHANG" Type="varchar" MaxLength="10" />
           <Property Name="TENSP" Type="nvarchar" MaxLength="100" />
           <Property Name="LOAISP" Type="nvarchar" MaxLength="100" />
           <Property Name="TENTOMTAT" Type="varchar" MaxLength="100" />
@@ -97,16 +100,6 @@
           <Property Name="NGAYCAPNHAT" Type="datetime" />
           <Property Name="NGAYHETHAN" Type="datetime" />
           <Property Name="GIACA" Type="decimal" Precision="18" Scale="0" />
-        </EntityType>
-        <EntityType Name="sysdiagrams">
-          <Key>
-            <PropertyRef Name="diagram_id" />
-          </Key>
-          <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
-          <Property Name="principal_id" Type="int" Nullable="false" />
-          <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="version" Type="int" />
-          <Property Name="definition" Type="varbinary(max)" />
         </EntityType>
         <Association Name="FK_BANBAOCA_BAOCAO_HANGTON">
           <End Role="HANGTON" Type="Self.HANGTON" Multiplicity="1" />
@@ -143,6 +136,18 @@
             </Principal>
             <Dependent Role="DATVAO">
               <PropertyRef Name="MA_KEHANG" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_DONDATHA_DATHANG_SANPHAM">
+          <End Role="SANPHAM" Type="Self.SANPHAM" Multiplicity="1" />
+          <End Role="DONDATHANG" Type="Self.DONDATHANG" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SANPHAM">
+              <PropertyRef Name="MASP" />
+            </Principal>
+            <Dependent Role="DONDATHANG">
+              <PropertyRef Name="MASP" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -187,9 +192,11 @@
           <End Role="KIEMTRA" Type="Self.KIEMTRA" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="DONDATHANG">
+              <PropertyRef Name="MASP" />
               <PropertyRef Name="MA_DATHANG" />
             </Principal>
             <Dependent Role="KIEMTRA">
+              <PropertyRef Name="MASP" />
               <PropertyRef Name="MA_DATHANG" />
             </Dependent>
           </ReferentialConstraint>
@@ -203,18 +210,6 @@
             </Principal>
             <Dependent Role="SANPHAM">
               <PropertyRef Name="MA_NCCAP" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_SANPHAM_DATHANG_DONDATHA">
-          <End Role="DONDATHANG" Type="Self.DONDATHANG" Multiplicity="0..1" />
-          <End Role="SANPHAM" Type="Self.SANPHAM" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="DONDATHANG">
-              <PropertyRef Name="MA_DATHANG" />
-            </Principal>
-            <Dependent Role="SANPHAM">
-              <PropertyRef Name="MA_DATHANG" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -259,7 +254,6 @@
           <EntitySet Name="KIEMTRA" EntityType="Self.KIEMTRA" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="NHACUNGCAP" EntityType="Self.NHACUNGCAP" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="SANPHAM" EntityType="Self.SANPHAM" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
           <AssociationSet Name="FK_BANBAOCA_BAOCAO_HANGTON" Association="Self.FK_BANBAOCA_BAOCAO_HANGTON">
             <End Role="HANGTON" EntitySet="HANGTON" />
             <End Role="BANBAOCAO" EntitySet="BANBAOCAO" />
@@ -271,6 +265,10 @@
           <AssociationSet Name="FK_DATVAO_DATVAO2_KEHANG" Association="Self.FK_DATVAO_DATVAO2_KEHANG">
             <End Role="KEHANG" EntitySet="KEHANG" />
             <End Role="DATVAO" EntitySet="DATVAO" />
+          </AssociationSet>
+          <AssociationSet Name="FK_DONDATHA_DATHANG_SANPHAM" Association="Self.FK_DONDATHA_DATHANG_SANPHAM">
+            <End Role="SANPHAM" EntitySet="SANPHAM" />
+            <End Role="DONDATHANG" EntitySet="DONDATHANG" />
           </AssociationSet>
           <AssociationSet Name="FK_DONDATHA_LAY_NHACUNGC" Association="Self.FK_DONDATHA_LAY_NHACUNGC">
             <End Role="NHACUNGCAP" EntitySet="NHACUNGCAP" />
@@ -290,10 +288,6 @@
           </AssociationSet>
           <AssociationSet Name="FK_SANPHAM_CUNGCAP_NHACUNGC" Association="Self.FK_SANPHAM_CUNGCAP_NHACUNGC">
             <End Role="NHACUNGCAP" EntitySet="NHACUNGCAP" />
-            <End Role="SANPHAM" EntitySet="SANPHAM" />
-          </AssociationSet>
-          <AssociationSet Name="FK_SANPHAM_DATHANG_DONDATHA" Association="Self.FK_SANPHAM_DATHANG_DONDATHA">
-            <End Role="DONDATHANG" EntitySet="DONDATHANG" />
             <End Role="SANPHAM" EntitySet="SANPHAM" />
           </AssociationSet>
         </EntityContainer>
@@ -370,7 +364,6 @@
           <EntitySet Name="KEHANG" EntityType="QLKHModel.KEHANG" />
           <EntitySet Name="NHACUNGCAP" EntityType="QLKHModel.NHACUNGCAP" />
           <EntitySet Name="SANPHAM" EntityType="QLKHModel.SANPHAM" />
-          <EntitySet Name="sysdiagrams" EntityType="QLKHModel.sysdiagrams" />
           <AssociationSet Name="FK_BANBAOCA_BAOCAO_HANGTON" Association="QLKHModel.FK_BANBAOCA_BAOCAO_HANGTON">
             <End Role="HANGTON" EntitySet="HANGTON" />
             <End Role="BANBAOCAO" EntitySet="BANBAOCAO" />
@@ -383,13 +376,13 @@
             <End Role="KEHANG" EntitySet="KEHANG" />
             <End Role="DATVAO" EntitySet="DATVAO" />
           </AssociationSet>
+          <AssociationSet Name="FK_DONDATHA_DATHANG_SANPHAM" Association="QLKHModel.FK_DONDATHA_DATHANG_SANPHAM">
+            <End Role="SANPHAM" EntitySet="SANPHAM" />
+            <End Role="DONDATHANG" EntitySet="DONDATHANG" />
+          </AssociationSet>
           <AssociationSet Name="FK_DONDATHA_LAY_NHACUNGC" Association="QLKHModel.FK_DONDATHA_LAY_NHACUNGC">
             <End Role="NHACUNGCAP" EntitySet="NHACUNGCAP" />
             <End Role="DONDATHANG" EntitySet="DONDATHANG" />
-          </AssociationSet>
-          <AssociationSet Name="FK_SANPHAM_DATHANG_DONDATHA" Association="QLKHModel.FK_SANPHAM_DATHANG_DONDATHA">
-            <End Role="DONDATHANG" EntitySet="DONDATHANG" />
-            <End Role="SANPHAM" EntitySet="SANPHAM" />
           </AssociationSet>
           <AssociationSet Name="FK_HANGTON_LUUTRU_SANPHAM" Association="QLKHModel.FK_HANGTON_LUUTRU_SANPHAM">
             <End Role="SANPHAM" EntitySet="SANPHAM" />
@@ -403,7 +396,7 @@
             <End Role="DONTHANHTOAN" EntitySet="DONTHANHTOAN" />
             <End Role="DONDATHANG" EntitySet="DONDATHANG" />
           </AssociationSet>
-        </EntityContainer>
+          </EntityContainer>
         <ComplexType Name="sp_helpdiagramdefinition1_Result">
           <Property Type="Int32" Name="version" Nullable="true" />
           <Property Type="Binary" Name="definition" Nullable="true" />
@@ -439,15 +432,17 @@
         </EntityType>
         <EntityType Name="DONDATHANG">
           <Key>
+            <PropertyRef Name="MASP" />
             <PropertyRef Name="MA_DATHANG" />
           </Key>
+          <Property Name="MASP" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="false" />
           <Property Name="MA_DATHANG" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="false" />
           <Property Name="TEN_SP" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
           <Property Name="MA_NCCAP" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="false" />
           <Property Name="SOLUONG" Type="Decimal" Precision="5" Scale="0" />
           <Property Name="NGAY_DATHANG" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="SANPHAM" Relationship="QLKHModel.FK_DONDATHA_DATHANG_SANPHAM" FromRole="DONDATHANG" ToRole="SANPHAM" />
           <NavigationProperty Name="NHACUNGCAP" Relationship="QLKHModel.FK_DONDATHA_LAY_NHACUNGC" FromRole="DONDATHANG" ToRole="NHACUNGCAP" />
-          <NavigationProperty Name="SANPHAM" Relationship="QLKHModel.FK_SANPHAM_DATHANG_DONDATHA" FromRole="DONDATHANG" ToRole="SANPHAM" />
           <NavigationProperty Name="DONTHANHTOAN" Relationship="QLKHModel.KIEMTRA" FromRole="DONDATHANG" ToRole="DONTHANHTOAN" />
         </EntityType>
         <EntityType Name="DONTHANHTOAN">
@@ -502,7 +497,6 @@
           </Key>
           <Property Name="MASP" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="false" />
           <Property Name="MA_NCCAP" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="false" />
-          <Property Name="MA_DATHANG" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
           <Property Name="TENSP" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
           <Property Name="LOAISP" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
           <Property Name="TENTOMTAT" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
@@ -512,19 +506,9 @@
           <Property Name="NGAYHETHAN" Type="DateTime" Precision="3" />
           <Property Name="GIACA" Type="Decimal" Precision="18" Scale="0" />
           <NavigationProperty Name="DATVAO" Relationship="QLKHModel.FK_DATVAO_DATVAO_SANPHAM" FromRole="SANPHAM" ToRole="DATVAO" />
-          <NavigationProperty Name="DONDATHANG" Relationship="QLKHModel.FK_SANPHAM_DATHANG_DONDATHA" FromRole="SANPHAM" ToRole="DONDATHANG" />
+          <NavigationProperty Name="DONDATHANG" Relationship="QLKHModel.FK_DONDATHA_DATHANG_SANPHAM" FromRole="SANPHAM" ToRole="DONDATHANG" />
           <NavigationProperty Name="HANGTON" Relationship="QLKHModel.FK_HANGTON_LUUTRU_SANPHAM" FromRole="SANPHAM" ToRole="HANGTON" />
           <NavigationProperty Name="NHACUNGCAP" Relationship="QLKHModel.FK_SANPHAM_CUNGCAP_NHACUNGC" FromRole="SANPHAM" ToRole="NHACUNGCAP" />
-        </EntityType>
-        <EntityType Name="sysdiagrams">
-          <Key>
-            <PropertyRef Name="diagram_id" />
-          </Key>
-          <Property Name="name" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
-          <Property Name="principal_id" Type="Int32" Nullable="false" />
-          <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="version" Type="Int32" />
-          <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
         </EntityType>
         <Association Name="FK_BANBAOCA_BAOCAO_HANGTON">
           <End Type="QLKHModel.HANGTON" Role="HANGTON" Multiplicity="1" />
@@ -564,6 +548,18 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_DONDATHA_DATHANG_SANPHAM">
+          <End Type="QLKHModel.SANPHAM" Role="SANPHAM" Multiplicity="1" />
+          <End Type="QLKHModel.DONDATHANG" Role="DONDATHANG" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SANPHAM">
+              <PropertyRef Name="MASP" />
+            </Principal>
+            <Dependent Role="DONDATHANG">
+              <PropertyRef Name="MASP" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_DONDATHA_LAY_NHACUNGC">
           <End Type="QLKHModel.NHACUNGCAP" Role="NHACUNGCAP" Multiplicity="1" />
           <End Type="QLKHModel.DONDATHANG" Role="DONDATHANG" Multiplicity="*" />
@@ -573,18 +569,6 @@
             </Principal>
             <Dependent Role="DONDATHANG">
               <PropertyRef Name="MA_NCCAP" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_SANPHAM_DATHANG_DONDATHA">
-          <End Type="QLKHModel.DONDATHANG" Role="DONDATHANG" Multiplicity="0..1" />
-          <End Type="QLKHModel.SANPHAM" Role="SANPHAM" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="DONDATHANG">
-              <PropertyRef Name="MA_DATHANG" />
-            </Principal>
-            <Dependent Role="SANPHAM">
-              <PropertyRef Name="MA_DATHANG" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -616,7 +600,7 @@
           <End Type="QLKHModel.DONTHANHTOAN" Role="DONTHANHTOAN" Multiplicity="*" />
           <End Type="QLKHModel.DONDATHANG" Role="DONDATHANG" Multiplicity="*" />
         </Association>
-      </Schema>
+        </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
     <edmx:Mappings>
@@ -674,6 +658,7 @@
                 <ScalarProperty Name="MA_NCCAP" ColumnName="MA_NCCAP" />
                 <ScalarProperty Name="TEN_SP" ColumnName="TEN_SP" />
                 <ScalarProperty Name="MA_DATHANG" ColumnName="MA_DATHANG" />
+                <ScalarProperty Name="MASP" ColumnName="MASP" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -731,32 +716,21 @@
                 <ScalarProperty Name="TENTOMTAT" ColumnName="TENTOMTAT" />
                 <ScalarProperty Name="LOAISP" ColumnName="LOAISP" />
                 <ScalarProperty Name="TENSP" ColumnName="TENSP" />
-                <ScalarProperty Name="MA_DATHANG" ColumnName="MA_DATHANG" />
                 <ScalarProperty Name="MA_NCCAP" ColumnName="MA_NCCAP" />
                 <ScalarProperty Name="MASP" ColumnName="MASP" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="sysdiagrams">
-            <EntityTypeMapping TypeName="QLKHModel.sysdiagrams">
-              <MappingFragment StoreEntitySet="sysdiagrams">
-                <ScalarProperty Name="definition" ColumnName="definition" />
-                <ScalarProperty Name="version" ColumnName="version" />
-                <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
-                <ScalarProperty Name="principal_id" ColumnName="principal_id" />
-                <ScalarProperty Name="name" ColumnName="name" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <AssociationSetMapping Name="KIEMTRA" TypeName="QLKHModel.KIEMTRA" StoreEntitySet="KIEMTRA">
             <EndProperty Name="DONDATHANG">
               <ScalarProperty Name="MA_DATHANG" ColumnName="MA_DATHANG" />
+              <ScalarProperty Name="MASP" ColumnName="MASP" />
             </EndProperty>
             <EndProperty Name="DONTHANHTOAN">
               <ScalarProperty Name="MATT" ColumnName="MATT" />
             </EndProperty>
           </AssociationSetMapping>
-  </EntityContainerMapping>
+          </EntityContainerMapping>
 </Mapping></edmx:Mappings>
   </edmx:Runtime>
   <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->

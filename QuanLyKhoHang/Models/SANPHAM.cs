@@ -18,12 +18,12 @@ namespace QuanLyKhoHang.Models
         public SANPHAM()
         {
             this.DATVAO = new HashSet<DATVAO>();
+            this.DONDATHANG = new HashSet<DONDATHANG>();
             this.HANGTON = new HashSet<HANGTON>();
         }
     
         public string MASP { get; set; }
         public string MA_NCCAP { get; set; }
-        public string MA_DATHANG { get; set; }
         public string TENSP { get; set; }
         public string LOAISP { get; set; }
         public string TENTOMTAT { get; set; }
@@ -35,7 +35,8 @@ namespace QuanLyKhoHang.Models
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<DATVAO> DATVAO { get; set; }
-        public virtual DONDATHANG DONDATHANG { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<DONDATHANG> DONDATHANG { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<HANGTON> HANGTON { get; set; }
         public virtual NHACUNGCAP NHACUNGCAP { get; set; }

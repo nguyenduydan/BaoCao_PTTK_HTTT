@@ -17,19 +17,18 @@ namespace QuanLyKhoHang.Models
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public DONDATHANG()
         {
-            this.SANPHAM = new HashSet<SANPHAM>();
             this.DONTHANHTOAN = new HashSet<DONTHANHTOAN>();
         }
     
+        public string MASP { get; set; }
         public string MA_DATHANG { get; set; }
         public string TEN_SP { get; set; }
         public string MA_NCCAP { get; set; }
         public Nullable<decimal> SOLUONG { get; set; }
         public Nullable<System.DateTime> NGAY_DATHANG { get; set; }
     
+        public virtual SANPHAM SANPHAM { get; set; }
         public virtual NHACUNGCAP NHACUNGCAP { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<SANPHAM> SANPHAM { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<DONTHANHTOAN> DONTHANHTOAN { get; set; }
     }
