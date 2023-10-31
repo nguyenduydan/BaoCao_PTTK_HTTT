@@ -32,3 +32,4 @@ C:\Users\angna\Documents\GitHub\BaoCao_PTTK_HTTT\Manage\obj\Debug\Manage.csproj.
 C:\Users\angna\Documents\GitHub\BaoCao_PTTK_HTTT\Manage\obj\Debug\Manage.csproj.CoreCompileInputs.cache
 C:\Users\angna\Documents\GitHub\BaoCao_PTTK_HTTT\Manage\obj\Debug\Manage.dll
 C:\Users\angna\Documents\GitHub\BaoCao_PTTK_HTTT\Manage\obj\Debug\Manage.pdb
+D:\ASP.NET MVC\BaoCao_PTTK_HTTT\Manage\bin\Debug\Manage.dll.config

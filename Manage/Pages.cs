@@ -26,14 +26,13 @@ namespace Manage
         {
             int totalPages = (int)Math.Ceiling((decimal)totalItems / (decimal)pageSize);
             int currentPage = page;
+            int startPage = currentPage - 2;
+            int endPage = currentPage + 2;
 
-            int startPage = currentPage - 5;
-            int endPage = currentPage + 4;
-
-            if(startPage >= 0)
+            if(startPage <= 0)
             {
-                startPage = 1;
                 endPage = endPage - (startPage - 1);
+                startPage = 1;
             }
 
             if(endPage > totalPages)

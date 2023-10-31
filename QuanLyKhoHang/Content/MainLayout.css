@@ -1,10 +1,47 @@
 ﻿@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
 
+
+ul.paginations {
+    list-style: none;
+    margin: 0 auto;
+    width: fit-content;
+    margin-top: 20px;
+}
+ul.paginations li {
+    font-size: 26px;
+    font-weight: 600;
+    color: rgba(0, 0, 0, 0.53);
+    width: 40px;
+    height: 40px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 10px;
+    border: 2px solid rgba(0, 0, 0, 0.47);
+    background: #FFF;
+}
+ul.paginations a{
+   margin: 0;
+}
+ul.paginations li.active {
+    background: rgba(80, 48, 229, 0.20);
+    color: #5030E5;
+    border: 2px solid rgba(80, 48, 229, 0.20);
+}
+
 body {
     font-family: 'Inter', sans-serif;
     height:100vh;
 }
 
+.table td, .table th {
+    font-size: 18px;
+    text-align: center;
+    vertical-align: middle
+}
+.table tr{
+    height:44px;
+}
 
 select:focus, select:focus-visible {
     border: 2px solid rgba(80, 48, 229, 0.86);

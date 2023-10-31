@@ -21,7 +21,7 @@ namespace QuanLyKhoHang.Controllers
         {
             List<SANPHAM> products = db.SANPHAM.ToList();
             
-            const int pageSize = 10;
+            const int pageSize = 14;
             if(pg < 1)
             {
                 pg = 1;
@@ -33,7 +33,7 @@ namespace QuanLyKhoHang.Controllers
             var data = products.Skip(recSkip).Take(pageSize).ToList();
 
             this.ViewBag.pages = pages;
-            return View(products);
+            return View(data);
         }
 
         public ActionResult Add()

@@ -46,6 +46,7 @@
                     <td>@Html.DisplayFor(model => item.LOAISP)</td>
                     <td>@Html.DisplayFor(model => item.GIACA)</td>
                     <td>@Html.DisplayFor(model => item.SOLUONG)</td>
+                    <td><a href="~/Import_Product/Update" id="@item.MASP">Cập nhật</a></td>
                 </tr>
             }
 
@@ -54,7 +55,7 @@
     <div>
         @if(pager.TotalPages > 0)
             {
-                <ul>
+                <ul class="paginations">
                     @for(var pge = pager.StartPage; pge <= pager.EndPage; pge++)
                 {
                     <li class="@(pge == pager.CurrentPage ? "active":"")">
