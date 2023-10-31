@@ -506,3 +506,4 @@ C:\Users\angna\Documents\GitHub\BaoCao_PTTK_HTTT\QuanLyKhoHang\obj\Debug\QuanLyK
 C:\Users\angna\Documents\GitHub\BaoCao_PTTK_HTTT\QuanLyKhoHang\obj\Debug\QuanLyKhoHang.csproj.CopyComplete
 C:\Users\angna\Documents\GitHub\BaoCao_PTTK_HTTT\QuanLyKhoHang\obj\Debug\QuanLyKhoHang.dll
 C:\Users\angna\Documents\GitHub\BaoCao_PTTK_HTTT\QuanLyKhoHang\obj\Debug\QuanLyKhoHang.pdb
+D:\ASP.NET MVC\BaoCao_PTTK_HTTT\QuanLyKhoHang\bin\Manage.dll.config

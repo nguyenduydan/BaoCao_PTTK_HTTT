@@ -5,82 +5,182 @@
     ImportProduct childrenFeatures = new ImportProduct();
     ViewBag.Children = childrenFeatures.Show();
     ViewBag.showFeature = true;
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js" integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            var add_sup = $('#add-sup')
+            add_sup.hide()
+            $('select[name="MA_NCCAP"]').change(function () {
+                var selectedOption = $(this).find(':selected').attr('id');
+
+                if (selectedOption === 'add') {
+                    add_sup.show();
+                    $(this).val('')
+                }
+            });
+
+            $('#add-sup svg').click(function () {
+                add_sup.hide();
+            });
+        })
+
+    </script>
 }
 @section Style{
     <link rel="Stylesheet" href="~/Content/Import.css" />
 }
-<div class="margin">
-    <div class="m"><h3>Nhập hàng</h3></div>
+<div class=" position-relative" style="
+    height: 100%;
+    top: -40px;">
+    <div class="margin info" style="padding-top:40px">
+        <div class="m"><h3>Nhập hàng</h3></div>
 
-    @using (Html.BeginForm())
-    {
-        @Html.AntiForgeryToken()
+        <div class="d-flex align-items-start">
+            @using (Html.BeginForm())
+            {
+                @Html.AntiForgeryToken()
+                <div class="add">
+                    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                    <div class="d-flex flex-fill">
+                        <div class="d-flex align-items-center">
+                            <span>Mã hàng</span>
+                            <div class="col c1">
+                                @Html.EditorFor(model => model.MASP, new { htmlAttributes = new { @class = "form-control" } })
+                                @Html.ValidationMessageFor(model => model.MASP, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
 
-<div class="add">
-    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-    <div class="d-flex flex-fill">
-        <div class="d-flex align-items-center">
-            <span>Mã hàng</span>
-            <div class="col c1">
-                @Html.EditorFor(model => model.MASP, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.MASP, "", new { @class = "text-danger" })
+                        <div class="d-flex align-items-center">
+                            <span style="width:120px">Số lượng</span>
+                            <div class="col c2">
+                                @Html.EditorFor(model => model.SOLUONG, new { htmlAttributes = new { @class = "form-control" } })
+                                @Html.ValidationMessageFor(model => model.SOLUONG, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+
+                    </div>
+
+                    <div class="d-flex align-items-center">
+                        <span>Tên hàng</span>
+                        <div class="col c3">
+                            @Html.EditorFor(model => model.TENSP, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.TENSP, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                    <div class="d-flex align-items-center">
+                        <span>Giá bán</span>
+                        <div class="col c5">
+                            @Html.EditorFor(model => model.GIACA, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.GIACA, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div class="d-flex align-items-center">
+                        <span>Ngày hết hạn</span>
+                        <div class="col c6">
+                            @Html.EditorFor(model => model.NGAYHETHAN, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.NGAYHETHAN, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+
+                    <div class="d-flex align-items-center">
+                        <span>Nhà cung cấp</span>
+                        <div class="col">
+                            <select name="MA_NCCAP" class="form-control">
+                                <option hidden>Chọn nhà cung cấp...</option>
+                                @foreach (var i in new QuanLyKhoHang.Models.QLKHEntities1().NHACUNGCAP.ToList())
+                                {
+                                    <option value="@i.MA_NCCAP">@i.TEN_NCCAP</option>
+                                }
+                                <option id="add">Thêm nhà cung cấp...</option>
+                            </select>
+                            @Html.ValidationMessageFor(model => model.MA_NCCAP, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div class="d-flex btn">
+                        <input type="submit" value="THÊM HÀNG" class="btn btn-default" />
+                    </div>
+                </div>
+            }
+            <div style=" width: 3px; height: 627px; background: #E9E9E9; border-radius: 4px; margin: 0 28px"></div>
+            <div class="d-flex flex-column align-items-center" style="width:40%">
+                <div class="border" style="width: 100%; height: 532px; border-radius: 10px; ">
+                    <table class="table">
+                        <tr>
+                            <th>Mã hàng</th>
+                            <th>Tên hàng</th>
+                            <th>Số lượng</th>
+                        </tr>
+
+                    </table>
+                </div>
+                <form class="import" method="post" style="margin-top: 24px">
+                    @Html.AntiForgeryToken()
+                    <input type="submit" value="Thanh toán" style="" />
+                </form>
             </div>
         </div>
 
-        <div class="d-flex align-items-center">
-            <span style="width:120px">Số lượng</span>
-            <div class="col c2">
-                @Html.EditorFor(model => model.SOLUONG, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.SOLUONG, "", new { @class = "text-danger" })
+    </div>
+    <div id="add-sup" class=" align-items-center justify-content-center">
+
+        @using (Html.BeginForm())
+        {
+            @Html.AntiForgeryToken()
+            <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 32 32" fill="none">
+                <path d="M16 31C24.25 31 31 24.25 31 16C31 7.75 24.25 1 16 1C7.75 1 1 7.75 1 16C1 24.25 7.75 31 16 31Z" stroke="#292D32" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+                <path d="M11.7549 20.2449L20.2449 11.755" stroke="#292D32" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+                <path d="M20.2449 20.2449L11.7549 11.755" stroke="#292D32" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+            </svg>
+            <h4>Thông tin nhà cung cấp</h4>
+            <div class="add">
+                @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                <div class="">
+                    <span>Mã nhà cung cấp</span>
+                    <div class="">
+                        <input type="text" name="MA_NCC" />
+                        @Html.ValidationMessageFor(model => model.MASP, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="">
+                    <span>Tên nhà cung cấp</span>
+                    <div class="">
+                        <input type="text" name="TEN_NCC" />
+                        @Html.ValidationMessageFor(model => model.SOLUONG, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="">
+                    <span>Loại hàng</span>
+                    <div class="">
+                        <input type="text" name="LOAISP" />
+                        @Html.ValidationMessageFor(model => model.TENSP, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+                <div class="">
+                    <span>Số điện thoại</span>
+                    <div class="">
+                        <input type="tel" name="SDT" />
+                        @Html.ValidationMessageFor(model => model.GIACA, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="">
+                    <span>Email</span>
+                    <div class="">
+                        <input type="text" name="EMAIL" />
+                        @Html.ValidationMessageFor(model => model.NGAYHETHAN, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="btn">
+                    <input type="submit" value="Thêm nhà cung cấp" class="btn btn-default" />
+                </div>
             </div>
-        </div>
-
+        }
     </div>
 
-    <div class="d-flex align-items-center">
-        <span>Tên hàng</span>
-        <div class="col c3">
-            @Html.EditorFor(model => model.TENSP, new { htmlAttributes = new { @class = "form-control" } })
-            @Html.ValidationMessageFor(model => model.TENSP, "", new { @class = "text-danger" })
-        </div>
-    </div>
-
-    <div class="d-flex justify-content-between">
-        <div class="d-flex align-items-center">
-            <span>Giá bán</span>
-            <div class="col c5">
-                @Html.EditorFor(model => model.GIACA, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.GIACA, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        <div class="d-flex align-items-center">
-            <span>Ngày hết hạn</span>
-            <div class="col c6">
-                @Html.EditorFor(model => model.NGAYHETHAN, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.NGAYHETHAN, "", new { @class = "text-danger" })
-            </div>
-        </div>
-    </div>
-
-
-    <div class="d-flex align-items-center">
-        <span style="margin-right:6px">Nhà cung cấp</span>
-        <div class="col">
-            <select name="MA_NCCAP" class="form-control">
-                <option>Chọn nhà cung cấp</option>
-                @foreach (var i in new QuanLyKhoHang.Models.QLKHEntities1().NHACUNGCAP.ToList())
-                {
-                    <option value="@i.MA_NCCAP">@i.TEN_NCCAP</option>
-                }
-            </select>
-            @Html.ValidationMessageFor(model => model.MA_NCCAP, "", new { @class = "text-danger" })
-        </div>
-    </div>
-
-    <div class="d-flex btn">
-        <input type="submit" value="THÊM" class="btn btn-default" />
-    </div>
-</div>
-    }
 </div>

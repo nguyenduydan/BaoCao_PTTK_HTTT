@@ -1,13 +1,6 @@
 ﻿@using QuanLyKhoHang.Views.Manage_Product
 @model IEnumerable<QuanLyKhoHang.Models.SANPHAM>
 @{
-    ViewBag.Title = "Quản lý hàng hóa";
-    ManageProduct childrenFeatures = new ManageProduct();
-    ViewBag.Children = childrenFeatures.Show();
-    ViewBag.showFeature = true;
-}
-@{
-    //t
     ViewBag.Title = "Xuất hàng";
     ViewBag.showFeature = true;
 }
@@ -32,17 +25,17 @@
                 <th>Số lượng</th>
                 <th></th>
             </tr>
-                @foreach (var item in Model)
-                {   
-                    <tr>
-                        <td>@Html.DisplayFor(model => item.MASP)</td>
-                        <td>@Html.DisplayFor(model => item.TENSP)</td>
-                        <td>@Html.DisplayFor(model => item.NHACUNGCAP.TEN_NCCAP)</td>
-                        <td>@Html.DisplayFor(model => item.LOAISP)</td>
-                        <td>@Html.DisplayFor(model => item.GIACA)</td>
-                        <td>@Html.DisplayFor(model => item.SOLUONG)</td>
-                    </tr>
-                }
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>@Html.DisplayFor(model => item.MASP)</td>
+                    <td>@Html.DisplayFor(model => item.TENSP)</td>
+                    <td>@Html.DisplayFor(model => item.NHACUNGCAP.TEN_NCCAP)</td>
+                    <td>@Html.DisplayFor(model => item.LOAISP)</td>
+                    <td>@Html.DisplayFor(model => item.GIACA)</td>
+                    <td>@Html.DisplayFor(model => item.SOLUONG)</td>
+                </tr>
+            }
         </table>
     </div>
 </div>

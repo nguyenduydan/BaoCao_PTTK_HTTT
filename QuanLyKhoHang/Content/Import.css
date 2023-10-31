@@ -40,7 +40,7 @@
 }
 
 .add div span{
-    width:160px;
+    width:170px;
 }
 
 .add select {
@@ -56,6 +56,27 @@
     border: 1px solid #ced4da;
     appearance: none;
     border-radius: 0.375rem;
+}
+
+.info table{
+    width: 100%;
+}
+.import input {
+    width: 258px;
+    height: 66px;
+    border-radius: 13px;
+    color: #54515E;
+    font-size: 20px;
+    font-weight: 600;
+    border: 2px solid #5030E5;
+}
+
+.import input:hover {
+    background: #5030E5;
+    color: #fff;
+}
+.info tr{
+    height:fit-content;
 }
 
 select:focus, select:focus-visible {
@@ -94,6 +115,13 @@ select:focus-visible {
 .c4 input{
     min-width:40%;
 }
+.c5 input {
+    min-width: 60%;
+}
+.c6 input {
+    min-width: 60%;
+}
+
 
 .add input:focus {
     outline: none;
@@ -134,4 +162,79 @@ select:focus-visible {
 
 .btn:active{
     border-color:transparent!important
+}
+/*Add sup*/
+
+#add-sup {
+    display:flex;
+    position:absolute;
+    top: 0;
+    left:0;
+    height:100%;
+    width: 100%;
+    z-index: 0;
+    background: rgba(217, 217, 217, 0.67);
+}
+
+#add-sup form{
+    border-radius: 22px;
+    border: 1px solid rgba(102, 102, 102, 0.66);
+    background: #FFF;
+    box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+    width: 617px;
+    height: 760px;
+    position: relative;
+    padding:28px;
+}
+
+#add-sup h4{
+    font-size: 2.2rem;
+    margin-bottom:2rem;
+    font-weight: 600;
+}
+
+#add-sup div{
+    margin-bottom:1rem; 
+    width: 100%;
+}
+
+#add-sup span{
+font-size: 1.4rem;
+    padding-bottom: 12px
+}
+#add-sup form input {
+    font-size:20px;
+    min-width: 100%;
+    border: 2px solid #D9D9D9;
+    position: relative;
+    transform: translateY(0);
+    border-radius: 6px;
+    height:40px;
+    padding: 0 10px;
+}
+
+#add-sup form input[type=submit]{
+    margin: 0 auto;
+    width: 230px;
+    height: 62px;
+    font-size:22px;
+}
+#add-sup .add{
+    display:flex;
+    flex-direction: column;
+    align-items:center;
+}
+
+#add-sup .add div {
+    flex:1
+}
+
+#add-sup svg{
+    position:absolute;
+    right:10px;
+    top:10px;
+}
+
+#add-sup svg:hover{
+    cursor:pointer
 }

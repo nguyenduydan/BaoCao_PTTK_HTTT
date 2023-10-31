@@ -1,13 +1,6 @@
 ﻿@using QuanLyKhoHang.Views.Manage_Product
 @model IEnumerable<QuanLyKhoHang.Models.SANPHAM>
 @{
-    ViewBag.Title = "Quản lý hàng hóa";
-    ManageProduct childrenFeatures = new ManageProduct();
-    ViewBag.Children = childrenFeatures.Show();
-    ViewBag.showFeature = true;
-}
-@{
-    //t
     ViewBag.Title = "Xuất hàng";
     ViewBag.showFeature = true;
 }
@@ -30,7 +23,7 @@
                 <th>Loại hàng hóa</th>
                 <th>Giá cả</th>
                 <th>Số lượng</th>
-                <th>Xuất(?)</th>
+                <th>Xuất</th>
             </tr>
             <tr>
                 @foreach (var item in Model)
