@@ -1,0 +1,65 @@
+﻿@using QuanLyKhoHang.Views.Manage_Product
+@using Manage
+@model IEnumerable<QuanLyKhoHang.Models.HANGTON>
+@{
+    ViewBag.Title = "Hàng tồn";
+    ManageProduct childrenFeatures = new ManageProduct();
+    ViewBag.Children = childrenFeatures.Show();
+    ViewBag.showFeature = true;
+    Pages pager = new Pages();
+    int pageNo = 0;
+    if (ViewBag.pages != null)
+    {
+        pager = ViewBag.pages;
+        pageNo = pager.CurrentPage;
+    }
+}
+@section Style{
+    <link rel="Stylesheet" href="~/Content/Manage.css" />
+    <link rel="Stylesheet" href="~/Content/Import.css" />
+    <link rel="Stylesheet" href="~/Content/Export.css" />
+}
+<div class="margin">
+    <div class="report d-flex align-items-center justify-content-between m">
+        <h3>Hàng tồn</h3>
+        <a href="~/Manage_Product/Report">
+            <span>Báo cáo</span>
+        </a>
+    </div>
+    <div class="info-products">
+        <table class="table">
+            <tr>
+                <th>Mã sản phẩm</th>
+                <th>Mã hàng tồn</th>
+                <th>Số lượng</th>
+                <th>Mô tả</th>
+                <th>Ngày hết hạn</th>
+                <th></th>
+            </tr>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>@Html.DisplayFor(model => item.MASP)</td>
+                    <td>@Html.DisplayFor(model => item.MA_HANGTON)</td>
+                    <td>@Html.DisplayFor(model => item.SOLUONG)</td>
+                    <td>@Html.DisplayFor(model => item.MOTA_HANGTON)</td>
+                    <td>@Html.DisplayFor(model => item.NGAYHETHAN)</td>
+                    >
+                </tr>
+            }
+        </table>
+    </div>
+    <div>
+        @if (pager.TotalPages > 0)
+        {
+            <ul class="paginations">
+                @for (var pge = pager.StartPage; pge <= pager.EndPage; pge++)
+                {
+                    <li class="@(pge == pager.CurrentPage ? "active":"")">
+                        <a class="page-link" asp-controler="Import_Product" asp-action="Index" asp-route-pg="@pge">@pge</a>
+                    </li>
+                }
+            </ul>
+        }
+    </div>
+</div>
