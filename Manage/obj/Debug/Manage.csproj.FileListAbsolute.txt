@@ -33,3 +33,10 @@ C:\Users\angna\Documents\GitHub\BaoCao_PTTK_HTTT\Manage\obj\Debug\Manage.csproj.
 C:\Users\angna\Documents\GitHub\BaoCao_PTTK_HTTT\Manage\obj\Debug\Manage.dll
 C:\Users\angna\Documents\GitHub\BaoCao_PTTK_HTTT\Manage\obj\Debug\Manage.pdb
 D:\ASP.NET MVC\BaoCao_PTTK_HTTT\Manage\bin\Debug\Manage.dll.config
+C:\Users\truongvodich11\Desktop\BaoCao_PTTK_HTTT\BaoCao_PTTK_HTTT\Manage\bin\Debug\Manage.dll.config
+C:\Users\truongvodich11\Desktop\BaoCao_PTTK_HTTT\BaoCao_PTTK_HTTT\Manage\bin\Debug\Manage.dll
+C:\Users\truongvodich11\Desktop\BaoCao_PTTK_HTTT\BaoCao_PTTK_HTTT\Manage\bin\Debug\Manage.pdb
+C:\Users\truongvodich11\Desktop\BaoCao_PTTK_HTTT\BaoCao_PTTK_HTTT\Manage\obj\Debug\Manage.csproj.AssemblyReference.cache
+C:\Users\truongvodich11\Desktop\BaoCao_PTTK_HTTT\BaoCao_PTTK_HTTT\Manage\obj\Debug\Manage.csproj.CoreCompileInputs.cache
+C:\Users\truongvodich11\Desktop\BaoCao_PTTK_HTTT\BaoCao_PTTK_HTTT\Manage\obj\Debug\Manage.dll
+C:\Users\truongvodich11\Desktop\BaoCao_PTTK_HTTT\BaoCao_PTTK_HTTT\Manage\obj\Debug\Manage.pdb
