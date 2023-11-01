@@ -40,3 +40,10 @@ C:\Users\truongvodich11\Desktop\BaoCao_PTTK_HTTT\BaoCao_PTTK_HTTT\Manage\obj\Deb
 C:\Users\truongvodich11\Desktop\BaoCao_PTTK_HTTT\BaoCao_PTTK_HTTT\Manage\obj\Debug\Manage.csproj.CoreCompileInputs.cache
 C:\Users\truongvodich11\Desktop\BaoCao_PTTK_HTTT\BaoCao_PTTK_HTTT\Manage\obj\Debug\Manage.dll
 C:\Users\truongvodich11\Desktop\BaoCao_PTTK_HTTT\BaoCao_PTTK_HTTT\Manage\obj\Debug\Manage.pdb
+E:\HK1_Nam3\PTTK HTTH\Web\BaoCao_PTTK_HTTT\Manage\bin\Debug\Manage.dll.config
+E:\HK1_Nam3\PTTK HTTH\Web\BaoCao_PTTK_HTTT\Manage\bin\Debug\Manage.dll
+E:\HK1_Nam3\PTTK HTTH\Web\BaoCao_PTTK_HTTT\Manage\bin\Debug\Manage.pdb
+E:\HK1_Nam3\PTTK HTTH\Web\BaoCao_PTTK_HTTT\Manage\obj\Debug\Manage.csproj.AssemblyReference.cache
+E:\HK1_Nam3\PTTK HTTH\Web\BaoCao_PTTK_HTTT\Manage\obj\Debug\Manage.csproj.CoreCompileInputs.cache
+E:\HK1_Nam3\PTTK HTTH\Web\BaoCao_PTTK_HTTT\Manage\obj\Debug\Manage.dll
+E:\HK1_Nam3\PTTK HTTH\Web\BaoCao_PTTK_HTTT\Manage\obj\Debug\Manage.pdb

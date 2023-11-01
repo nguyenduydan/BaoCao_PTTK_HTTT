@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.Remoting.Messaging;
 using System.Web;
 using System.Web.Mvc;
 using Manage;
@@ -84,37 +85,61 @@ namespace QuanLyKhoHang.Controllers
             }
             return View(product);
         }
-        //Đưa sản phẩm qua hàng tồn
-        public ActionResult Del(string productId)
+        [HttpPost]
+        // Đưa sản phẩm qua hàng tồn
+        public ActionResult Del(string id)
         {
-            // Lấy thông tin sản phẩm cần xóa từ bảng "Sản phẩm"
-            var sanPham = db.SANPHAM.Find(productId);
-
-            if (sanPham != null)
+            if (string.IsNullOrEmpty(id))
             {
-                // Tạo một bản ghi mới trong bảng "Hàng tồn" với thông tin từ sản phẩm cần xóa
-                var hangTon = new HANGTON
-                {
-                    MASP = sanPham.MASP,
-                    MA_HANGTON = sanPham.MASP + "_" + sanPham.TENTOMTAT,
-                    NGAYHETHAN = sanPham.NGAYHETHAN,
-                    SOLUONG = sanPham.SOLUONG,
-                    // Copy các thuộc tính khác từ sản phẩm nếu cần thiết
-                };
-
-                // Thêm bản ghi mới vào bảng "Hàng tồn"
-                db.HANGTON.Add(hangTon);
-                db.SaveChanges();
-
-                // Xóa sản phẩm từ bảng "Sản phẩm"
-                db.SANPHAM.Remove(sanPham);
-                db.SaveChanges();
-
-                // Các xử lý khác sau khi xóa thành công
+                return View("Search");
             }
 
-            // Redirect hoặc trả về kết quả tương ứng
+            var product = db.SANPHAM.FirstOrDefault(p => p.MASP == id);
+
+            if (product != null)
+            {
+                var hangton = new HANGTON
+                {
+                    MASP = product.MASP,
+                    MA_HANGTON = product.MASP + "_" + product.TENTOMTAT,
+                    SOLUONG = product.SOLUONG,
+                    NGAYHETHAN = product.NGAYHETHAN
+                    // Sao chép các trường thông tin khác của sản phẩm
+                };
+                db.HANGTON.Add(hangton);
+                db.SaveChanges();
+            }
+
             return RedirectToAction("Search");
+        }
+
+
+        //Hàng tồn
+        public ActionResult CheckProduct(int pg = 1)
+        {
+            List<HANGTON> products = db.HANGTON.ToList();
+
+            const int pageSize = 14;
+            if (pg < 1)
+            {
+                pg = 1;
+            }
+
+            int recsCount = products.Count();
+            var pages = new Pages(recsCount, pg, pageSize);
+            int recSkip = pg - 1 * pageSize;
+            var data = products.Skip(recSkip).Take(pageSize).ToList();
+
+            this.ViewBag.pages = pages;
+            return View(data);
+        }
+
+        //Báo cáo
+        public ActionResult Report()
+        {
+            List<HANGTON> products = db.HANGTON.ToList();
+
+            return View(products);
         }
     }
     
