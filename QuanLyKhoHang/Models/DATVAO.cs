@@ -16,7 +16,7 @@ namespace QuanLyKhoHang.Models
     {
         public string MASP { get; set; }
         public string MA_KEHANG { get; set; }
-        public Nullable<decimal> SOLUONG { get; set; }
+        public Nullable<int> SOLUONG { get; set; }
     
         public virtual SANPHAM SANPHAM { get; set; }
         public virtual KEHANG KEHANG { get; set; }

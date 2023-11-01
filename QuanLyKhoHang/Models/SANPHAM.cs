@@ -27,11 +27,12 @@ namespace QuanLyKhoHang.Models
         public string TENSP { get; set; }
         public string LOAISP { get; set; }
         public string TENTOMTAT { get; set; }
-        public Nullable<decimal> SOLUONG { get; set; }
+        public Nullable<int> SOLUONG { get; set; }
         public Nullable<System.DateTime> NGAYTAO { get; set; }
         public Nullable<System.DateTime> NGAYCAPNHAT { get; set; }
         public Nullable<System.DateTime> NGAYHETHAN { get; set; }
         public Nullable<decimal> GIACA { get; set; }
+        public Nullable<byte> STATUS { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<DATVAO> DATVAO { get; set; }

@@ -1,10 +1,19 @@
-﻿@using QuanLyKhoHang.Views.Manage_Product
-@model IEnumerable<QuanLyKhoHang.Models.SANPHAM>
+﻿@model IEnumerable<QuanLyKhoHang.Models.SANPHAM>
+
+@using Manage
 @{
     ViewBag.Title = "Xuất hàng";
     ViewBag.showFeature = true;
+    Pages pager = new Pages();
+    int pageNo = 0;
+    if (ViewBag.pages != null)
+    {
+        pager = ViewBag.pages;
+        pageNo = pager.CurrentPage;
+    }
 }
 @section Style{
+    <link rel="Stylesheet" href="~/Content/Import.css" />
     <link rel="Stylesheet" href="~/Content/Export.css" />
 }
 <div class="margin">
@@ -37,6 +46,19 @@
                 </tr>
             }
         </table>
+    </div>
+    <div>
+        @if (pager.TotalPages > 0)
+        {
+            <ul class="paginations">
+                @for (var pge = pager.StartPage; pge <= pager.EndPage; pge++)
+                {
+                    <li class="@(pge == pager.CurrentPage ? "active":"")">
+                        <a class="page-link" asp-controler="Import_Product" asp-action="Index" asp-route-pg="@pge">@pge</a>
+                    </li>
+                }
+            </ul>
+        }
     </div>
 </div>
 

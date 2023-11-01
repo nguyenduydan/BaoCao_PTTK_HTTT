@@ -12,14 +12,12 @@ namespace QuanLyKhoHang.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class BANBAOCAO
+    public partial class sysdiagrams
     {
-        public string MA_BAOCAO { get; set; }
-        public string MASP { get; set; }
-        public string MA_HANGTON { get; set; }
-        public Nullable<int> SOLUONG { get; set; }
-        public Nullable<System.DateTime> NGAYBAOCAO { get; set; }
-    
-        public virtual HANGTON HANGTON { get; set; }
+        public string name { get; set; }
+        public int principal_id { get; set; }
+        public int diagram_id { get; set; }
+        public Nullable<int> version { get; set; }
+        public byte[] definition { get; set; }
     }
 }

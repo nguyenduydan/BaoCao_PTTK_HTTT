@@ -20,78 +20,101 @@
             @using (Html.BeginForm())
             {
                 @Html.AntiForgeryToken()
-            <div class="add">
-                @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-                <div class="d-flex flex-fill">
+                <div class="add">
+                    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                    <div class="d-flex flex-fill">
+                        <div class="d-flex align-items-center">
+                            <span>Mã hàng</span>
+                            <div class="col mx-1 c1">
+                                @Html.EditorFor(model => model.MASP, new { htmlAttributes = new { @class = "form-control" } })
+                                @Html.ValidationMessageFor(model => model.MASP, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+
+                        <div class="d-flex align-items-center" style="margin-left:3rem">
+                            <span style="width:120px">Số lượng</span>
+                            <div class="col c2">
+                                @Html.EditorFor(model => model.SOLUONG, new { htmlAttributes = new { @class = "form-control" } })
+                                @Html.ValidationMessageFor(model => model.SOLUONG, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+
+                    </div>
+
+
                     <div class="d-flex align-items-center">
-                        <span>Mã hàng</span>
-                        <div class="col mx-1 c1">
-                            @Html.EditorFor(model => model.MASP, new { htmlAttributes = new { @class = "form-control" } })
-                            @Html.ValidationMessageFor(model => model.MASP, "", new { @class = "text-danger" })
+                        <span>Tên hàng</span>
+                        <div class="col c3">
+                            @Html.EditorFor(model => model.TENSP, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.TENSP, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                    <div class="d-flex align-items-center">
+                        <span>Giá bán</span>
+                        <div class="col c3">
+                            @Html.EditorFor(model => model.GIACA, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.GIACA, "", new { @class = "text-danger" })
                         </div>
                     </div>
 
-                    <div class="d-flex align-items-center" style="margin-left:3rem">
-                        <span style="width:120px">Số lượng</span>
-                        <div class="col c2">
-                            @Html.EditorFor(model => model.SOLUONG, new { htmlAttributes = new { @class = "form-control" } })
-                            @Html.ValidationMessageFor(model => model.SOLUONG, "", new { @class = "text-danger" })
+                    <div class="d-flex align-items-center">
+                        <span>Ngày hết hạn</span>
+                        <div class="col c6">
+                            @Html.EditorFor(model => model.NGAYHETHAN, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.NGAYHETHAN, "", new { @class = "text-danger" })
                         </div>
                     </div>
 
-                </div>
 
+                    <div class="d-flex align-items-center">
+                        <span>Nhà cung cấp</span>
+                        <div class="c5">
+                            <select name="MA_NCCAP">
+                                <option hidden>Chọn nhà cung cấp...</option>
+                                @foreach (var i in new QuanLyKhoHang.Models.QLKHEntities1().NHACUNGCAP.ToList())
+                                {
+                                    <option value="@i.MA_NCCAP">@i.TEN_NCCAP - "@i.LOAISP"</option>
+                                }
+                            </select>
+                            @Html.ValidationMessageFor(model => model.MA_NCCAP, "", new { @class = "text-danger" })
+                        </div>
+                        <a href="~/Import_Product/AddNCC">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="43" height="43" viewBox="0 0 43 45" fill="none">
+                                <path d="M13.2999 21.5H29.6999" stroke="#5030E5" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+                                <path d="M21.5 29.7V13.3" stroke="#5030E5" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+                                <path d="M15.35 42H27.65C37.9 42 42 37.9 42 27.65V15.35C42 5.1 37.9 1 27.65 1H15.35C5.1 1 1 5.1 1 15.35V27.65C1 37.9 5.1 42 15.35 42Z" stroke="#5030E5" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+                            </svg>
+                        </a>
+                    </div>
 
-                <div class="d-flex align-items-center">
-                    <span>Tên hàng</span>
-                    <div class="col c3">
-                        @Html.EditorFor(model => model.TENSP, new { htmlAttributes = new { @class = "form-control" } })
-                        @Html.ValidationMessageFor(model => model.TENSP, "", new { @class = "text-danger" })
+                    <div class="d-flex btn align-items-center">
+                        <a href="@Url.Action("Index","Import_Product")">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="50" height="50"
+                                 fill="currentColor" class="bi bi-arrow-left-circle-fill" viewBox="0 0 16 16">
+                                <path d="M8 0a8 8 0 1 0 0 16A8 8 0 0 0 8 0zm3.5 7.5a.5.5 0 0 1 0 1H5.707l2.147 2.146a.5.5 0 0 1-.708.708l-3-3a.5.5 0 0 1 0-.708l3-3a.5.5 0 1 1 .708.708L5.707 7.5H11.5z" />
+                            </svg>
+                        </a>
+                        <input type="submit" value="THÊM HÀNG" class="btn btn-default mx-5" />
                     </div>
                 </div>
-                <div class="d-flex align-items-center">
-                    <span>Giá bán</span>
-                    <div class="col c3">
-                        @Html.EditorFor(model => model.GIACA, new { htmlAttributes = new { @class = "form-control" } })
-                        @Html.ValidationMessageFor(model => model.GIACA, "", new { @class = "text-danger" })
-                    </div>
-                </div>
-
-                <div class="d-flex align-items-center">
-                    <span>Ngày hết hạn</span>
-                    <div class="col c6">
-                        @Html.EditorFor(model => model.NGAYHETHAN, new { htmlAttributes = new { @class = "form-control" } })
-                        @Html.ValidationMessageFor(model => model.NGAYHETHAN, "", new { @class = "text-danger" })
-                    </div>
-                </div>
-
-
-                <div class="d-flex align-items-center">
-                    <span>Nhà cung cấp</span>
-                    <div class="c5">
-                        <select name="MA_NCCAP">
-                            <option hidden>Chọn nhà cung cấp...</option>
-                            @foreach (var i in new QuanLyKhoHang.Models.QLKHEntities1().NHACUNGCAP.ToList())
-                            {
-                                <option value="@i.MA_NCCAP">@i.TEN_NCCAP</option>
-                            }
-                        </select>
-                        @Html.ValidationMessageFor(model => model.MA_NCCAP, "", new { @class = "text-danger" })
-                    </div>
-                    <a href="~/Import_Product/AddNCC">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="43" height="43" viewBox="0 0 43 45" fill="none">
-                            <path d="M13.2999 21.5H29.6999" stroke="#5030E5" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
-                            <path d="M21.5 29.7V13.3" stroke="#5030E5" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
-                            <path d="M15.35 42H27.65C37.9 42 42 37.9 42 27.65V15.35C42 5.1 37.9 1 27.65 1H15.35C5.1 1 1 5.1 1 15.35V27.65C1 37.9 5.1 42 15.35 42Z" stroke="#5030E5" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
-                        </svg>
-                    </a>
-                </div>
-
-                <div class="d-flex btn">
-                    <input type="submit" value="THÊM HÀNG" class="btn btn-default" />
-                </div>
-            </div>
             }
+            <div style=" width: 3px; height: 627px; background: #E9E9E9; border-radius: 4px; margin: 0 28px"></div>
+            <div class="d-flex flex-column align-items-center" style="width:40%">
+                <div class="border" style="width: 100%; height: 532px; border-radius: 10px; ">
+                    <table class="table">
+                        <tr>
+                            <th>Mã hàng</th>
+                            <th>Tên hàng</th>
+                            <th>Số lượng</th>
+                        </tr>
+
+                    </table>
+                </div>
+                <form class="import" method="post" style="margin-top: 24px">
+                    @Html.AntiForgeryToken()
+                    <input type="submit" value="Thanh toán" style="" />
+                </form>
+            </div>
         </div>
 
     </div>

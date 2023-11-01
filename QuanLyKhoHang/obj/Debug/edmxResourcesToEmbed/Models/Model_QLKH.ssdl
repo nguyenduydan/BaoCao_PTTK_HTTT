@@ -7,7 +7,7 @@
     <Property Name="MA_BAOCAO" Type="varchar" MaxLength="10" Nullable="false" />
     <Property Name="MASP" Type="varchar" MaxLength="10" Nullable="false" />
     <Property Name="MA_HANGTON" Type="varchar" MaxLength="10" Nullable="false" />
-    <Property Name="SOLUONG" Type="numeric" Precision="5" Scale="0" />
+    <Property Name="SOLUONG" Type="int" />
     <Property Name="NGAYBAOCAO" Type="datetime" />
   </EntityType>
   <EntityType Name="DATVAO">
@@ -17,7 +17,7 @@
     </Key>
     <Property Name="MASP" Type="varchar" MaxLength="10" Nullable="false" />
     <Property Name="MA_KEHANG" Type="varchar" MaxLength="10" Nullable="false" />
-    <Property Name="SOLUONG" Type="numeric" Precision="18" Scale="0" />
+    <Property Name="SOLUONG" Type="int" />
   </EntityType>
   <EntityType Name="DONDATHANG">
     <Key>
@@ -28,7 +28,7 @@
     <Property Name="MA_DATHANG" Type="varchar" MaxLength="10" Nullable="false" />
     <Property Name="TEN_SP" Type="nvarchar" MaxLength="100" />
     <Property Name="MA_NCCAP" Type="varchar" MaxLength="10" Nullable="false" />
-    <Property Name="SOLUONG" Type="numeric" Precision="5" Scale="0" />
+    <Property Name="SOLUONG" Type="int" />
     <Property Name="NGAY_DATHANG" Type="datetime" />
   </EntityType>
   <EntityType Name="DONTHANHTOAN">
@@ -38,7 +38,7 @@
     <Property Name="MATT" Type="varchar" MaxLength="10" Nullable="false" />
     <Property Name="TENSP" Type="nvarchar" MaxLength="100" />
     <Property Name="NGAYTHANHTOAN" Type="datetime" />
-    <Property Name="SOLUONG" Type="numeric" Precision="5" Scale="0" />
+    <Property Name="SOLUONG" Type="int" />
     <Property Name="GIACA" Type="decimal" Precision="18" Scale="0" />
   </EntityType>
   <EntityType Name="HANGTON">
@@ -48,7 +48,7 @@
     </Key>
     <Property Name="MASP" Type="varchar" MaxLength="10" Nullable="false" />
     <Property Name="MA_HANGTON" Type="varchar" MaxLength="10" Nullable="false" />
-    <Property Name="SOLUONG" Type="numeric" Precision="5" Scale="0" />
+    <Property Name="SOLUONG" Type="int" />
     <Property Name="MOTA_HANGTON" Type="nvarchar" MaxLength="1000" />
     <Property Name="NGAYHETHAN" Type="datetime" />
   </EntityType>
@@ -62,13 +62,13 @@
   </EntityType>
   <EntityType Name="KIEMTRA">
     <Key>
-      <PropertyRef Name="MATT" />
-      <PropertyRef Name="MASP" />
-      <PropertyRef Name="MA_DATHANG" />
+      <PropertyRef Name="DONTHANHTOAN_MATT" />
+      <PropertyRef Name="DONDATHANG_MASP" />
+      <PropertyRef Name="DONDATHANG_MA_DATHANG" />
     </Key>
-    <Property Name="MATT" Type="varchar" MaxLength="10" Nullable="false" />
-    <Property Name="MASP" Type="varchar" MaxLength="10" Nullable="false" />
-    <Property Name="MA_DATHANG" Type="varchar" MaxLength="10" Nullable="false" />
+    <Property Name="DONTHANHTOAN_MATT" Type="varchar" MaxLength="10" Nullable="false" />
+    <Property Name="DONDATHANG_MASP" Type="varchar" MaxLength="10" Nullable="false" />
+    <Property Name="DONDATHANG_MA_DATHANG" Type="varchar" MaxLength="10" Nullable="false" />
   </EntityType>
   <EntityType Name="NHACUNGCAP">
     <Key>
@@ -77,7 +77,7 @@
     <Property Name="MA_NCCAP" Type="varchar" MaxLength="10" Nullable="false" />
     <Property Name="TEN_NCCAP" Type="nvarchar" MaxLength="100" />
     <Property Name="LOAISP" Type="nvarchar" MaxLength="100" />
-    <Property Name="SDT" Type="numeric" Precision="10" Scale="0" />
+    <Property Name="SDT" Type="decimal" Precision="10" Scale="0" />
     <Property Name="DIACHI" Type="nchar" MaxLength="200" />
     <Property Name="EMAIL" Type="nchar" MaxLength="100" />
   </EntityType>
@@ -90,11 +90,22 @@
     <Property Name="TENSP" Type="nvarchar" MaxLength="100" />
     <Property Name="LOAISP" Type="nvarchar" MaxLength="100" />
     <Property Name="TENTOMTAT" Type="varchar" MaxLength="100" />
-    <Property Name="SOLUONG" Type="numeric" Precision="5" Scale="0" />
+    <Property Name="SOLUONG" Type="int" />
     <Property Name="NGAYTAO" Type="datetime" />
     <Property Name="NGAYCAPNHAT" Type="datetime" />
     <Property Name="NGAYHETHAN" Type="datetime" />
     <Property Name="GIACA" Type="decimal" Precision="18" Scale="0" />
+    <Property Name="STATUS" Type="tinyint" />
+  </EntityType>
+  <EntityType Name="sysdiagrams">
+    <Key>
+      <PropertyRef Name="diagram_id" />
+    </Key>
+    <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+    <Property Name="principal_id" Type="int" Nullable="false" />
+    <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="version" Type="int" />
+    <Property Name="definition" Type="varbinary(max)" />
   </EntityType>
   <Association Name="FK_BANBAOCA_BAOCAO_HANGTON">
     <End Role="HANGTON" Type="Self.HANGTON" Multiplicity="1" />
@@ -170,19 +181,7 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK_KIEMTRA_KIEMTRA_DONTHANH">
-    <End Role="DONTHANHTOAN" Type="Self.DONTHANHTOAN" Multiplicity="1" />
-    <End Role="KIEMTRA" Type="Self.KIEMTRA" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="DONTHANHTOAN">
-        <PropertyRef Name="MATT" />
-      </Principal>
-      <Dependent Role="KIEMTRA">
-        <PropertyRef Name="MATT" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="FK_KIEMTRA_KIEMTRA2_DONDATHA">
+  <Association Name="FK_KIEMTRA_DONDATHANG">
     <End Role="DONDATHANG" Type="Self.DONDATHANG" Multiplicity="1" />
     <End Role="KIEMTRA" Type="Self.KIEMTRA" Multiplicity="*" />
     <ReferentialConstraint>
@@ -191,8 +190,20 @@
         <PropertyRef Name="MA_DATHANG" />
       </Principal>
       <Dependent Role="KIEMTRA">
-        <PropertyRef Name="MASP" />
-        <PropertyRef Name="MA_DATHANG" />
+        <PropertyRef Name="DONDATHANG_MASP" />
+        <PropertyRef Name="DONDATHANG_MA_DATHANG" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_KIEMTRA_DONTHANHTOAN">
+    <End Role="DONTHANHTOAN" Type="Self.DONTHANHTOAN" Multiplicity="1" />
+    <End Role="KIEMTRA" Type="Self.KIEMTRA" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="DONTHANHTOAN">
+        <PropertyRef Name="MATT" />
+      </Principal>
+      <Dependent Role="KIEMTRA">
+        <PropertyRef Name="DONTHANHTOAN_MATT" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
@@ -249,6 +260,7 @@
     <EntitySet Name="KIEMTRA" EntityType="Self.KIEMTRA" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="NHACUNGCAP" EntityType="Self.NHACUNGCAP" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="SANPHAM" EntityType="Self.SANPHAM" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
     <AssociationSet Name="FK_BANBAOCA_BAOCAO_HANGTON" Association="Self.FK_BANBAOCA_BAOCAO_HANGTON">
       <End Role="HANGTON" EntitySet="HANGTON" />
       <End Role="BANBAOCAO" EntitySet="BANBAOCAO" />
@@ -273,12 +285,12 @@
       <End Role="SANPHAM" EntitySet="SANPHAM" />
       <End Role="HANGTON" EntitySet="HANGTON" />
     </AssociationSet>
-    <AssociationSet Name="FK_KIEMTRA_KIEMTRA_DONTHANH" Association="Self.FK_KIEMTRA_KIEMTRA_DONTHANH">
-      <End Role="DONTHANHTOAN" EntitySet="DONTHANHTOAN" />
+    <AssociationSet Name="FK_KIEMTRA_DONDATHANG" Association="Self.FK_KIEMTRA_DONDATHANG">
+      <End Role="DONDATHANG" EntitySet="DONDATHANG" />
       <End Role="KIEMTRA" EntitySet="KIEMTRA" />
     </AssociationSet>
-    <AssociationSet Name="FK_KIEMTRA_KIEMTRA2_DONDATHA" Association="Self.FK_KIEMTRA_KIEMTRA2_DONDATHA">
-      <End Role="DONDATHANG" EntitySet="DONDATHANG" />
+    <AssociationSet Name="FK_KIEMTRA_DONTHANHTOAN" Association="Self.FK_KIEMTRA_DONTHANHTOAN">
+      <End Role="DONTHANHTOAN" EntitySet="DONTHANHTOAN" />
       <End Role="KIEMTRA" EntitySet="KIEMTRA" />
     </AssociationSet>
     <AssociationSet Name="FK_SANPHAM_CUNGCAP_NHACUNGC" Association="Self.FK_SANPHAM_CUNGCAP_NHACUNGC">
