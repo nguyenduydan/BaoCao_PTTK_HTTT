@@ -136,7 +136,11 @@
                         <td>@Html.DisplayFor(model => item.GIACA)</td>
                         <td>@Html.DisplayFor(model => item.SOLUONG)</td>
                         <td class="d-flex align-items-center">
-                            <a href=" @Url.Action("Update","Manage_Product", new { id = item.MASP})" class="btn btn-sm btn-primary"> Cập nhật</a>
+                            <a href=" @Url.Action("Update","Manage_Product", new { id = item.MASP})" class="btn btn-sm btn-primary w-50"> Cập nhật</a>
+                            <form method="post" action="@Url.Action("Del", "Manage_Product", new { id = item.MASP })" class="m-0">
+                                @Html.AntiForgeryToken()
+                                <input type="submit" value="Xóa" class="btn btn-sm btn-danger w-50 text-light" />
+                            </form>
                         </td>
                     </tr>
                 }

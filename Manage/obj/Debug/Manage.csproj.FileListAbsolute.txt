@@ -47,3 +47,10 @@ E:\HK1_Nam3\PTTK HTTH\Web\BaoCao_PTTK_HTTT\Manage\obj\Debug\Manage.csproj.Assemb
 E:\HK1_Nam3\PTTK HTTH\Web\BaoCao_PTTK_HTTT\Manage\obj\Debug\Manage.csproj.CoreCompileInputs.cache
 E:\HK1_Nam3\PTTK HTTH\Web\BaoCao_PTTK_HTTT\Manage\obj\Debug\Manage.dll
 E:\HK1_Nam3\PTTK HTTH\Web\BaoCao_PTTK_HTTT\Manage\obj\Debug\Manage.pdb
+D:\Workspace\project-pttkht\Manage\bin\Debug\Manage.dll.config
+D:\Workspace\project-pttkht\Manage\bin\Debug\Manage.dll
+D:\Workspace\project-pttkht\Manage\bin\Debug\Manage.pdb
+D:\Workspace\project-pttkht\Manage\obj\Debug\Manage.csproj.AssemblyReference.cache
+D:\Workspace\project-pttkht\Manage\obj\Debug\Manage.csproj.CoreCompileInputs.cache
+D:\Workspace\project-pttkht\Manage\obj\Debug\Manage.dll
+D:\Workspace\project-pttkht\Manage\obj\Debug\Manage.pdb

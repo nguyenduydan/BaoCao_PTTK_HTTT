@@ -117,22 +117,43 @@ namespace QuanLyKhoHang.Controllers
         //Hàng tồn
         public ActionResult CheckProduct(int pg = 1)
         {
-            List<HANGTON> products = db.HANGTON.ToList();
-
+            List<SANPHAM> sanPhamList = db.SANPHAM.ToList();
             const int pageSize = 14;
+
             if (pg < 1)
             {
                 pg = 1;
             }
 
-            int recsCount = products.Count();
-            var pages = new Pages(recsCount, pg, pageSize);
-            int recSkip = pg - 1 * pageSize;
-            var data = products.Skip(recSkip).Take(pageSize).ToList();
+            int recSkip = (pg - 1) * pageSize;
+            var data = sanPhamList.Skip(recSkip).Take(pageSize).ToList();
 
-            this.ViewBag.pages = pages;
+            foreach (var sanPham in data)
+            {
+                var hangTon = db.HANGTON.FirstOrDefault(ht => ht.MASP == sanPham.MASP);
+                if (hangTon != null)
+                {
+                    hangTon.SOLUONG += sanPham.SOLUONG; 
+                }
+                else
+                {
+                    HANGTON newHangTon = new HANGTON
+                    {
+                        MASP = sanPham.MASP,
+                        SOLUONG = sanPham.SOLUONG, 
+                        NGAYHETHAN = sanPham.NGAYHETHAN
+                    };
+                    db.HANGTON.Add(newHangTon);
+                }
+            }
+            db.SaveChanges();
+
+            ViewBag.pages = new Pages(sanPhamList.Count, pg, pageSize);
+
             return View(data);
         }
+
+
 
         //Báo cáo
         public ActionResult Report()

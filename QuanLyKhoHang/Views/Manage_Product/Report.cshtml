@@ -13,16 +13,20 @@
     <h6>NGÀY: @date.ToString("dd/MM/yyyy")</h6>
     <table class="table">
         <tr>
-            <th>Mã sản phẩm</th>
             <th>Mã hàng tồn</th>
+            <th>Mã sản phẩm</th>
+            <th>Tên sản phẩm</th>
             <th>Số lượng</th>
+            <th>Ngày hết hạn</th>
         </tr>
         @foreach (var item in Model)
         {
             <tr>
-                <td>@Html.DisplayFor(model => item.MASP)</td>
                 <td>@Html.DisplayFor(model => item.MA_HANGTON)</td>
+                <td>@Html.DisplayFor(model => item.MASP)</td>
+                <td>@Html.DisplayFor(model => item.SANPHAM.TENSP)</td>
                 <td>@Html.DisplayFor(model => item.SOLUONG)</td>
+                <td>@Html.DisplayFor(model => item.NGAYHETHAN)</td>
             </tr>
         }
     </table>
