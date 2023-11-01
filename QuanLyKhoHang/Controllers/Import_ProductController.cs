@@ -6,12 +6,10 @@ using System.Web.Mvc;
 using Manage;
 using QuanLyKhoHang.Views.Import_Product;
 using QuanLyKhoHang.Models;
-/*using QuanLyKhoHang.Libary;*/
+using QuanLyKhoHang.Library;
 
 namespace QuanLyKhoHang.Controllers
 {
-
-    
     public class Import_ProductController : Controller
     {
         private QLKHEntities1 db = new QLKHEntities1();
@@ -51,7 +49,7 @@ namespace QuanLyKhoHang.Controllers
                 sanpham.NGAYTAO = DateTime.Now;
                 //thời gian cập nhật
                 sanpham.NGAYCAPNHAT = DateTime.Now;
-                /*sanpham.TENTOMTAT = XString.Str_Slug(sanpham.TENSP);*/
+                sanpham.TENTOMTAT = Xstring.Str_Slug(sanpham.TENSP);
                 //thêm loại sp của nhà cung cấp vào trong sản phẩm
                 NHACUNGCAP nhacungcap = db.NHACUNGCAP.FirstOrDefault(x => x.MA_NCCAP == sanpham.MA_NCCAP);
                 if (nhacungcap != null)
@@ -62,13 +60,28 @@ namespace QuanLyKhoHang.Controllers
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-
             ViewBag.listncc = new SelectList(db.NHACUNGCAP, "MA_NCCAP", "TEN_NCCAP");
             return View(sanpham);
         }
-        public ActionResult Update() 
+
+        public ActionResult AddNCC()
         {
             return View();
         }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult AddNCC(NHACUNGCAP ncc)
+        {
+            if (ModelState.IsValid)
+            {
+                db.NHACUNGCAP.Add(ncc);
+                db.SaveChanges();
+                return RedirectToAction("Add");
+            }
+            return View(ncc);
+        }
+
+        
     }
 }

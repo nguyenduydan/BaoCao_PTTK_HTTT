@@ -24,7 +24,7 @@ namespace QuanLyKhoHang.Models
         public string MA_DATHANG { get; set; }
         public string TEN_SP { get; set; }
         public string MA_NCCAP { get; set; }
-        public Nullable<decimal> SOLUONG { get; set; }
+        public Nullable<int> SOLUONG { get; set; }
         public Nullable<System.DateTime> NGAY_DATHANG { get; set; }
     
         public virtual SANPHAM SANPHAM { get; set; }

@@ -69,6 +69,7 @@
     <EntitySet Name="KEHANG" EntityType="QLKHModel.KEHANG" />
     <EntitySet Name="NHACUNGCAP" EntityType="QLKHModel.NHACUNGCAP" />
     <EntitySet Name="SANPHAM" EntityType="QLKHModel.SANPHAM" />
+    <EntitySet Name="sysdiagrams" EntityType="QLKHModel.sysdiagrams" />
     <AssociationSet Name="FK_BANBAOCA_BAOCAO_HANGTON" Association="QLKHModel.FK_BANBAOCA_BAOCAO_HANGTON">
       <End Role="HANGTON" EntitySet="HANGTON" />
       <End Role="BANBAOCAO" EntitySet="BANBAOCAO" />
@@ -98,8 +99,8 @@
       <End Role="SANPHAM" EntitySet="SANPHAM" />
     </AssociationSet>
     <AssociationSet Name="KIEMTRA" Association="QLKHModel.KIEMTRA">
-      <End Role="DONTHANHTOAN" EntitySet="DONTHANHTOAN" />
       <End Role="DONDATHANG" EntitySet="DONDATHANG" />
+      <End Role="DONTHANHTOAN" EntitySet="DONTHANHTOAN" />
     </AssociationSet>
   </EntityContainer>
   <ComplexType Name="sp_helpdiagramdefinition1_Result">
@@ -120,7 +121,7 @@
     <Property Name="MA_BAOCAO" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="false" />
     <Property Name="MASP" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="false" />
     <Property Name="MA_HANGTON" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="false" />
-    <Property Name="SOLUONG" Type="Decimal" Precision="5" Scale="0" />
+    <Property Name="SOLUONG" Type="Int32" />
     <Property Name="NGAYBAOCAO" Type="DateTime" Precision="3" />
     <NavigationProperty Name="HANGTON" Relationship="QLKHModel.FK_BANBAOCA_BAOCAO_HANGTON" FromRole="BANBAOCAO" ToRole="HANGTON" />
   </EntityType>
@@ -131,7 +132,7 @@
     </Key>
     <Property Name="MASP" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="false" />
     <Property Name="MA_KEHANG" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="false" />
-    <Property Name="SOLUONG" Type="Decimal" Precision="18" Scale="0" />
+    <Property Name="SOLUONG" Type="Int32" />
     <NavigationProperty Name="SANPHAM" Relationship="QLKHModel.FK_DATVAO_DATVAO_SANPHAM" FromRole="DATVAO" ToRole="SANPHAM" />
     <NavigationProperty Name="KEHANG" Relationship="QLKHModel.FK_DATVAO_DATVAO2_KEHANG" FromRole="DATVAO" ToRole="KEHANG" />
   </EntityType>
@@ -144,7 +145,7 @@
     <Property Name="MA_DATHANG" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="false" />
     <Property Name="TEN_SP" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
     <Property Name="MA_NCCAP" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="false" />
-    <Property Name="SOLUONG" Type="Decimal" Precision="5" Scale="0" />
+    <Property Name="SOLUONG" Type="Int32" />
     <Property Name="NGAY_DATHANG" Type="DateTime" Precision="3" />
     <NavigationProperty Name="SANPHAM" Relationship="QLKHModel.FK_DONDATHA_DATHANG_SANPHAM" FromRole="DONDATHANG" ToRole="SANPHAM" />
     <NavigationProperty Name="NHACUNGCAP" Relationship="QLKHModel.FK_DONDATHA_LAY_NHACUNGC" FromRole="DONDATHANG" ToRole="NHACUNGCAP" />
@@ -157,7 +158,7 @@
     <Property Name="MATT" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="false" />
     <Property Name="TENSP" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
     <Property Name="NGAYTHANHTOAN" Type="DateTime" Precision="3" />
-    <Property Name="SOLUONG" Type="Decimal" Precision="5" Scale="0" />
+    <Property Name="SOLUONG" Type="Int32" />
     <Property Name="GIACA" Type="Decimal" Precision="18" Scale="0" />
     <NavigationProperty Name="DONDATHANG" Relationship="QLKHModel.KIEMTRA" FromRole="DONTHANHTOAN" ToRole="DONDATHANG" />
   </EntityType>
@@ -168,7 +169,7 @@
     </Key>
     <Property Name="MASP" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="false" />
     <Property Name="MA_HANGTON" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="false" />
-    <Property Name="SOLUONG" Type="Decimal" Precision="5" Scale="0" />
+    <Property Name="SOLUONG" Type="Int32" />
     <Property Name="MOTA_HANGTON" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" />
     <Property Name="NGAYHETHAN" Type="DateTime" Precision="3" />
     <NavigationProperty Name="BANBAOCAO" Relationship="QLKHModel.FK_BANBAOCA_BAOCAO_HANGTON" FromRole="HANGTON" ToRole="BANBAOCAO" />
@@ -205,15 +206,26 @@
     <Property Name="TENSP" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
     <Property Name="LOAISP" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
     <Property Name="TENTOMTAT" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
-    <Property Name="SOLUONG" Type="Decimal" Precision="5" Scale="0" />
+    <Property Name="SOLUONG" Type="Int32" />
     <Property Name="NGAYTAO" Type="DateTime" Precision="3" />
     <Property Name="NGAYCAPNHAT" Type="DateTime" Precision="3" />
     <Property Name="NGAYHETHAN" Type="DateTime" Precision="3" />
     <Property Name="GIACA" Type="Decimal" Precision="18" Scale="0" />
+    <Property Name="STATUS" Type="Byte" />
     <NavigationProperty Name="DATVAO" Relationship="QLKHModel.FK_DATVAO_DATVAO_SANPHAM" FromRole="SANPHAM" ToRole="DATVAO" />
     <NavigationProperty Name="DONDATHANG" Relationship="QLKHModel.FK_DONDATHA_DATHANG_SANPHAM" FromRole="SANPHAM" ToRole="DONDATHANG" />
     <NavigationProperty Name="HANGTON" Relationship="QLKHModel.FK_HANGTON_LUUTRU_SANPHAM" FromRole="SANPHAM" ToRole="HANGTON" />
     <NavigationProperty Name="NHACUNGCAP" Relationship="QLKHModel.FK_SANPHAM_CUNGCAP_NHACUNGC" FromRole="SANPHAM" ToRole="NHACUNGCAP" />
+  </EntityType>
+  <EntityType Name="sysdiagrams">
+    <Key>
+      <PropertyRef Name="diagram_id" />
+    </Key>
+    <Property Name="name" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+    <Property Name="principal_id" Type="Int32" Nullable="false" />
+    <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="version" Type="Int32" />
+    <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
   </EntityType>
   <Association Name="FK_BANBAOCA_BAOCAO_HANGTON">
     <End Type="QLKHModel.HANGTON" Role="HANGTON" Multiplicity="1" />
@@ -302,7 +314,7 @@
     </ReferentialConstraint>
   </Association>
   <Association Name="KIEMTRA">
-    <End Type="QLKHModel.DONTHANHTOAN" Role="DONTHANHTOAN" Multiplicity="*" />
     <End Type="QLKHModel.DONDATHANG" Role="DONDATHANG" Multiplicity="*" />
+    <End Type="QLKHModel.DONTHANHTOAN" Role="DONTHANHTOAN" Multiplicity="*" />
   </Association>
 </Schema>

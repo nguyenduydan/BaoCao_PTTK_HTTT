@@ -23,7 +23,7 @@ namespace QuanLyKhoHang.Models
         public string MATT { get; set; }
         public string TENSP { get; set; }
         public Nullable<System.DateTime> NGAYTHANHTOAN { get; set; }
-        public Nullable<decimal> SOLUONG { get; set; }
+        public Nullable<int> SOLUONG { get; set; }
         public Nullable<decimal> GIACA { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

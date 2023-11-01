@@ -137,6 +137,8 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Library\Xmessage.cs" />
+    <Compile Include="Library\Xstring.cs" />
     <Compile Include="Models\BANBAOCAO.cs">
       <DependentUpon>Model_QLKH.tt</DependentUpon>
     </Compile>
@@ -180,6 +182,9 @@
       <DependentUpon>Model_QLKH.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\sp_helpdiagrams1_Result.cs">
+      <DependentUpon>Model_QLKH.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\sysdiagrams.cs">
       <DependentUpon>Model_QLKH.tt</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -264,6 +269,7 @@
     <Content Include="Views\Export_Product\Update.cshtml" />
     <Content Include="Views\Export_Product\ExportSelectedItems.cshtml" />
     <Content Include="Views\Manage_Product\Update.cshtml" />
+    <Content Include="Views\Import_Product\AddNCC.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

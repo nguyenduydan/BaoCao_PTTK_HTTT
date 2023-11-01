@@ -4,15 +4,16 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="a354dd0039754e3297540cba04a54b38" Name="Diagram1" ZoomLevel="56">
-        <EntityTypeShape EntityType="QLKHModel.BANBAOCAO" Width="1.5" PointX="7.5" PointY="11.125" />
-        <EntityTypeShape EntityType="QLKHModel.DATVAO" Width="1.5" PointX="8.25" PointY="7.375" />
-        <EntityTypeShape EntityType="QLKHModel.DONDATHANG" Width="1.5" PointX="5.25" PointY="6.5" />
-        <EntityTypeShape EntityType="QLKHModel.DONTHANHTOAN" Width="1.5" PointX="3" PointY="3.75" />
-        <EntityTypeShape EntityType="QLKHModel.HANGTON" Width="1.5" PointX="5.25" PointY="11" />
-        <EntityTypeShape EntityType="QLKHModel.KEHANG" Width="1.5" PointX="6" PointY="3.5" />
-        <EntityTypeShape EntityType="QLKHModel.NHACUNGCAP" Width="1.5" PointX="0.75" PointY="4.375" />
-        <EntityTypeShape EntityType="QLKHModel.SANPHAM" Width="1.5" PointX="3" PointY="7.5" />
+      <Diagram DiagramId="a354dd0039754e3297540cba04a54b38" Name="Diagram1" ZoomLevel="67">
+        <EntityTypeShape EntityType="QLKHModel.BANBAOCAO" Width="1.5" PointX="7.25" PointY="11.125" />
+        <EntityTypeShape EntityType="QLKHModel.DATVAO" Width="1.5" PointX="8" PointY="7.375" />
+        <EntityTypeShape EntityType="QLKHModel.DONDATHANG" Width="1.5" PointX="4.625" PointY="3.875" />
+        <EntityTypeShape EntityType="QLKHModel.DONTHANHTOAN" Width="1.5" PointX="7.25" PointY="3.875" />
+        <EntityTypeShape EntityType="QLKHModel.HANGTON" Width="1.5" PointX="5" PointY="11" />
+        <EntityTypeShape EntityType="QLKHModel.KEHANG" Width="1.5" PointX="5.75" PointY="0.5" />
+        <EntityTypeShape EntityType="QLKHModel.NHACUNGCAP" Width="1.5" PointX="0.5" PointY="4.375" />
+        <EntityTypeShape EntityType="QLKHModel.SANPHAM" Width="1.5" PointX="2.75" PointY="7.375" />
+        <EntityTypeShape EntityType="QLKHModel.sysdiagrams" Width="1.5" PointX="0.5" PointY="0.75" />
         <AssociationConnector Association="QLKHModel.FK_BANBAOCA_BAOCAO_HANGTON" />
         <AssociationConnector Association="QLKHModel.FK_DATVAO_DATVAO_SANPHAM" />
         <AssociationConnector Association="QLKHModel.FK_DATVAO_DATVAO2_KEHANG" />
