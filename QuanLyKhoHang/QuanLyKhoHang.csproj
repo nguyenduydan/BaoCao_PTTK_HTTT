@@ -134,6 +134,7 @@
     <Compile Include="Controllers\Import_ProductController.cs" />
     <Compile Include="Controllers\LoginController.cs" />
     <Compile Include="Controllers\Manage_ProductController.cs" />
+    <Compile Include="Controllers\OderController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -270,6 +271,9 @@
     <Content Include="Views\Export_Product\ExportSelectedItems.cshtml" />
     <Content Include="Views\Manage_Product\Update.cshtml" />
     <Content Include="Views\Import_Product\AddNCC.cshtml" />
+    <Content Include="Views\Oder\Index.cshtml" />
+    <Content Include="Views\Manage_Product\CheckProduct.cshtml" />
+    <Content Include="Views\Manage_Product\Report.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
