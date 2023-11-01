@@ -45,40 +45,21 @@ namespace QuanLyKhoHang.Controllers
         {
             if (ModelState.IsValid)
             {
-                // Kiểm tra các ràng buộc thuộc tính ở đây
-                if (string.IsNullOrEmpty(sanpham.MASP))
+                //thời gian tạo
+                sanpham.NGAYTAO = DateTime.Now;
+                //thời gian cập nhật
+                sanpham.NGAYCAPNHAT = DateTime.Now;
+                sanpham.TENTOMTAT = Xstring.Str_Slug(sanpham.TENSP);
+                //thêm loại sp của nhà cung cấp vào trong sản phẩm
+                NHACUNGCAP nhacungcap = db.NHACUNGCAP.FirstOrDefault(x => x.MA_NCCAP == sanpham.MA_NCCAP);
+                if (nhacungcap != null)
                 {
-                    ModelState.AddModelError("sanpham.MASP", "Mã sản phẩm không được để trống");
+                    sanpham.LOAISP = nhacungcap.LOAISP;
                 }
-                if (string.IsNullOrEmpty(sanpham.TENSP))
-                {
-                    ModelState.AddModelError("sanpham.TENSP", "Tên sản phẩm không được để trống");
-                }
-                if (sanpham.MA_NCCAP == null)
-                {
-                    ModelState.AddModelError("sanpham.MA_NCCAP", "Nhà cung cấp không được để trống");
-                }
-
-                if (ModelState.IsValid)
-                {
-                    //thời gian tạo
-                    sanpham.NGAYTAO = DateTime.Now;
-                    //thời gian cập nhật
-                    sanpham.NGAYCAPNHAT = DateTime.Now;
-                    sanpham.TENTOMTAT = Xstring.Str_Slug(sanpham.TENSP);
-                    //thêm loại sp của nhà cung cấp vào trong sản phẩm
-                    NHACUNGCAP nhacungcap = db.NHACUNGCAP.FirstOrDefault(x => x.MA_NCCAP == sanpham.MA_NCCAP);
-                    if (nhacungcap != null)
-                    {
-                        sanpham.LOAISP = nhacungcap.LOAISP;
-                    }
-                    db.SANPHAM.Add(sanpham);
-                    db.SaveChanges();
-                    return RedirectToAction("Index");
-                }
+                db.SANPHAM.Add(sanpham);
+                db.SaveChanges();
+                return RedirectToAction("Index");
             }
-           
-
             ViewBag.listncc = new SelectList(db.NHACUNGCAP, "MA_NCCAP", "TEN_NCCAP");
             return View(sanpham);
         }
@@ -101,35 +82,6 @@ namespace QuanLyKhoHang.Controllers
             return View(ncc);
         }
 
-        public ActionResult Update(string id) 
-        {
-            ViewBag.listncc = new SelectList(db.NHACUNGCAP, "MA_NCCAP", "TEN_NCCAP");
-            return View();
-        }
-
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Update(SANPHAM sanpham)
-        {
-
-            if (ModelState.IsValid)
-            {
-                //thời gian cập nhật
-                sanpham.NGAYCAPNHAT = DateTime.Now;
-                sanpham.TENTOMTAT = Xstring.Str_Slug(sanpham.TENSP);
-                //thêm loại sp của nhà cung cấp vào trong sản phẩm
-                NHACUNGCAP nhacungcap = db.NHACUNGCAP.FirstOrDefault(x => x.MA_NCCAP == sanpham.MA_NCCAP);
-                if (nhacungcap != null)
-                {
-                    sanpham.LOAISP = nhacungcap.LOAISP;
-                }
-                db.SANPHAM.Add(sanpham);
-                db.SaveChanges();
-                return RedirectToAction("Index");
-            }
-
-            ViewBag.listncc = new SelectList(db.NHACUNGCAP, "MA_NCCAP", "TEN_NCCAP");
-            return View(sanpham);
-        }
+        
     }
 }

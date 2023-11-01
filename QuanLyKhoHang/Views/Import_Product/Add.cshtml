@@ -41,18 +41,6 @@
 
                 </div>
 
-                <div class="d-flex align-items-center">
-                    <span style="margin-right:6px">Loại sản phẩm</span>
-                    <div class="col-5">
-                        <select name="MA_NCCAP" class="form-control">
-                            @foreach (var i in new QuanLyKhoHang.Models.QLKHEntities1().NHACUNGCAP.ToList())
-                            {
-                                <option value="@i.MA_NCCAP">@i.LOAISP</option>
-                            }
-                        </select>
-                        @Html.ValidationMessageFor(model => model.MA_NCCAP, "", new { @class = "text-danger" })
-                    </div>
-                </div>
 
                 <div class="d-flex align-items-center">
                     <span>Tên hàng</span>
