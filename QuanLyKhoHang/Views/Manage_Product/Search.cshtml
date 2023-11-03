@@ -70,22 +70,16 @@
                 <path d="M25.096 26.0025C24.8662 26.0025 24.6364 25.9178 24.455 25.7364L22.0361 23.3176C21.6854 22.9668 21.6854 22.3863 22.0361 22.0356C22.3869 21.6848 22.9674 21.6848 23.3181 22.0356L25.7369 24.4544C26.0877 24.8051 26.0877 25.3857 25.7369 25.7364C25.5555 25.9178 25.3257 26.0025 25.096 26.0025Z" fill="#292D32" fill-opacity="0.7" />
             </svg>
         </button>
-    </form>
-    <div class="sep"></div>
-    <form class="form" name="reset" id="reset">
-        <select>
-            <option>Mặc định</option>
-            <option>Tên sản phẩm</option>
-        </select>
-        <button>
-            <svg xmlns="http://www.w3.org/2000/svg" width="23" height="23" viewBox="0 0 23 23" fill="none">
-                <path d="M13.9225 20.6865C17.998 19.613 21 15.908 21 11.5C21 6.256 16.782 2 11.5 2C5.1635 2 2 7.282 2 7.282M2 7.282V2.95M2 7.282H3.9095H6.218" stroke="white" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" />
-                <path opacity="0.4" d="M2 11.5C2 16.744 6.256 21 11.5 21" stroke="white" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" stroke-dasharray="22.09 22.09" />
-            </svg>
-        </button>
+        <div class="mx-5">
+            @Html.DropDownList("SearchType", new List<SelectListItem>
+    {
+    new SelectListItem{ Text="Tên sản phẩm", Value = "tensp" },
+    new SelectListItem{ Text="Nhà cung cấp", Value = "tennhacc" },
+    new SelectListItem{ Text="Loại hàng", Value = "loaihang" }
+    }, "Mặc định")
+        </div>
     </form>
 </div>
-
 <div class="margin">
     <div class="info-products">
         <table class="table" id="myTable">
@@ -136,11 +130,7 @@
                         <td>@Html.DisplayFor(model => item.GIACA)</td>
                         <td>@Html.DisplayFor(model => item.SOLUONG)</td>
                         <td class="d-flex align-items-center">
-                            <a href=" @Url.Action("Update","Manage_Product", new { id = item.MASP})" class="btn btn-sm btn-primary w-50"> Cập nhật</a>
-                            <form method="post" action="@Url.Action("Del", "Manage_Product", new { id = item.MASP })" class="m-0">
-                                @Html.AntiForgeryToken()
-                                <input type="submit" value="Xóa" class="btn btn-sm btn-danger w-50 text-light" />
-                            </form>
+                            <a href=" @Url.Action("Edit","Manage_Product", new { id = item.MASP})" class="btn btn-sm btn-primary w-100"> Cập nhật</a>
                         </td>
                     </tr>
                 }

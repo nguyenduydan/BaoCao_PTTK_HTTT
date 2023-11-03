@@ -15,23 +15,27 @@ namespace QuanLyKhoHang.Controllers
         private QLKHEntities1 db = new QLKHEntities1();
         // GET: Import_Product
         //Hiển thị trang index
-        public ActionResult Index(int pg = 1)
+        public ActionResult Index(int page = 1, int pageSize = 10)
         {
-            List<SANPHAM> products = db.SANPHAM.ToList();
-            
-            const int pageSize = 14;
-            if(pg < 1)
-            {
-                pg = 1;
-            }
+            /// Tính toán số lượng mục bắt đầu và kết thúc
+            int start = (page - 1) * pageSize;
+            int end = page * pageSize;
 
-            int recsCount = products.Count();
-            var pages = new Pages (recsCount,pg,pageSize);
-            int recSkip = pg - 1 * pageSize;
-            var data = products.Skip(recSkip).Take(pageSize).ToList();
+            // Truy vấn dữ liệu từ cơ sở dữ liệu
+            var products = db.SANPHAM.OrderBy(p => p.MASP).Skip(start).Take(pageSize).ToList();
 
-            this.ViewBag.pages = pages;
-            return View(data);
+            // Tính toán số trang dựa trên tổng số mục và số mục trên mỗi trang
+            int totalItems = db.SANPHAM.Count();
+            int totalPages = (int)Math.Ceiling((double)totalItems / pageSize);
+
+            // Truyền dữ liệu phân trang và thông tin trang đến giao diện người dùng
+            ViewBag.Page = page;
+            ViewBag.PageSize = pageSize;
+            ViewBag.TotalItems = totalItems;
+            ViewBag.TotalPages = totalPages;
+
+
+            return View(products);
         }
 
         public ActionResult Add()
@@ -50,6 +54,7 @@ namespace QuanLyKhoHang.Controllers
                 //thời gian cập nhật
                 sanpham.NGAYCAPNHAT = DateTime.Now;
                 sanpham.TENTOMTAT = Xstring.Str_Slug(sanpham.TENSP);
+                sanpham.STATUS = 1;
                 //thêm loại sp của nhà cung cấp vào trong sản phẩm
                 NHACUNGCAP nhacungcap = db.NHACUNGCAP.FirstOrDefault(x => x.MA_NCCAP == sanpham.MA_NCCAP);
                 if (nhacungcap != null)
@@ -82,6 +87,52 @@ namespace QuanLyKhoHang.Controllers
             return View(ncc);
         }
 
-        
+        //Nhà cung cấp
+        public ActionResult NCC(int page = 1, int pageSize = 10)
+        {
+            // Tính toán số lượng mục bắt đầu và kết thúc
+            int start = (page - 1) * pageSize;
+            int end = page * pageSize;
+
+            // Truy vấn dữ liệu từ cơ sở dữ liệu
+            var ncc = db.NHACUNGCAP.OrderBy(p => p.MA_NCCAP).Skip(start).Take(pageSize).ToList();
+
+            // Tính toán số trang dựa trên tổng số mục và số mục trên mỗi trang
+            int totalItems = db.SANPHAM.Count();
+            int totalPages = (int)Math.Ceiling((double)totalItems / pageSize);
+
+            // Truyền dữ liệu phân trang và thông tin trang đến giao diện người dùng
+            ViewBag.Page = page;
+            ViewBag.PageSize = pageSize;
+            ViewBag.TotalItems = totalItems;
+            ViewBag.TotalPages = totalPages;
+
+            return View(ncc);
+        }
+
+        //bill
+        public ActionResult Bill()
+        {
+            return View();
+        }
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult Bill(DONTHANHTOAN bill)
+        {
+            
+            if (ModelState.IsValid)
+            {
+                var order =db.DONDATHANG.Select(m => m.TEN_SP).Distinct().ToString();
+                if(bill.TENSP == order)
+                {
+                    bill.NGAYTHANHTOAN = DateTime.Now;
+                    db.DONTHANHTOAN.Add(bill);
+                    db.SaveChanges();
+                    return RedirectToAction("Index");
+                }
+                
+            }
+            return View(bill);
+        }
     }
 }

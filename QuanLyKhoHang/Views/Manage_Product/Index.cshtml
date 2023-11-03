@@ -6,55 +6,72 @@
     ManageProduct childrenFeatures = new ManageProduct();
     ViewBag.Children = childrenFeatures.Show();
     ViewBag.showFeature = true;
-    Pages pager = new Pages();
-    int pageNo = 0;
-    if (ViewBag.pages != null)
-    {
-        pager = ViewBag.pages;
-        pageNo = pager.CurrentPage;
-    }
 }
 @section Style{
     <link rel="Stylesheet" href="~/Content/Manage.css" />
     <link rel="Stylesheet" href="~/Content/Import.css" />
+    <link rel="Stylesheet" href="~/Content/Export.css" />
 }
-<div class="margin">
-    <div class="info-products">
-        <table class="table">
-            <tr>
-                <th>Mã hàng</th>
-                <th>Tên hàng hóa</th>
-                <th>Nhà cung cấp</th>
-                <th>Loại hàng hóa</th>
-                <th>Giá cả</th>
-                <th>Số lượng</th>
-                <th></th>
-            </tr>
-            @foreach (var item in Model)
-            {
+@{
+    var firstItem = Model.FirstOrDefault();
+    string masp = (firstItem != null) ? firstItem.MASP : string.Empty;
+}
+@using (Html.BeginForm("Update", "Manage_Product", FormMethod.Post, new { enctype = "multipart/form-data" }))// Thay "ControllerName" bằng tên thực tế của controller
+{
+    @Html.AntiForgeryToken()
+    <div class="margin">
+        <div class="export d-flex align-items-center justify-content-between m">
+            <h3>Danh sách hàng hóa</h3>
+            <button type="submit" name="updateButton" class="btn btn-sm btn-primary py-2" style="width: 10rem">Cập nhật</button>
+        </div>
+        <div class="info-products" style="height:auto">
+            <table class="table">
                 <tr>
-                    <td>@Html.DisplayFor(model => item.MASP)</td>
-                    <td>@Html.DisplayFor(model => item.TENSP)</td>
-                    <td>@Html.DisplayFor(model => item.NHACUNGCAP.TEN_NCCAP)</td>
-                    <td>@Html.DisplayFor(model => item.NHACUNGCAP.LOAISP)</td>
-                    <td>@Html.DisplayFor(model => item.GIACA)</td>
-                    <td>@Html.DisplayFor(model => item.SOLUONG)</td>
+                    <th>Mã hàng</th>
+                    <th>Tên sản phẩm</th>
+                    <th>Nhà cung cấp</th>
+                    <th>Loại hàng hóa</th>
+                    <th>Giá cả</th>
+                    <th>Số lượng</th>
+                    <th>Trạng thái</th>
                 </tr>
-            }
-        </table>
-    </div>
-    <div>
-        @if (pager.TotalPages > 0)
-        {
-            <ul class="paginations">
-                @for (var pge = pager.StartPage; pge <= pager.EndPage; pge++)
+                @foreach (var item in Model)
                 {
-                    <li class="@(pge == pager.CurrentPage ? "active":"")">
-                        <a class="page-link" asp-controler="Import_Product" asp-action="Index" asp-route-pg="@pge">@pge</a>
-                    </li>
+                    <tr>
+                        <td>@Html.DisplayFor(model => item.MASP)</td>
+                        <td>@Html.DisplayFor(model => item.TENSP)</td>
+                        <td>@Html.DisplayFor(model => item.NHACUNGCAP.TEN_NCCAP)</td>
+                        <td>@Html.DisplayFor(model => item.NHACUNGCAP.LOAISP)</td>
+                        <td>@Html.DisplayFor(model => item.GIACA)  <span>đ</span></td>
+                        <td>@Html.DisplayFor(model => item.SOLUONG)</td>
+                        <td class="fw-bold ">
+                            @if (item.STATUS == 1)
+                            {
+                                <p class="text-success m-0">Hàng mới</p>
+                            }
+                            else if (item.STATUS == 2 || item.STATUS == 0)
+                            {
+                                <p class="text-danger m-0">Hàng tồn*</p>
+                            }
+                        </td>
+                    </tr>
                 }
-            </ul>
-        }
+            </table>
+        </div>
+
+        <!-- Hiển thị phân trang -->
+        <div class="d-flex mt-2  justify-content-center">
+            <div class="pagination">
+                @if (ViewBag.TotalPages > 1)
+                {
+
+                    for (int i = 1; i <= ViewBag.TotalPages; i++)
+                    {
+                        <a class="@(i == ViewBag.Page ? "active" : "") btn btn-sm btn-outline-success fs-5 px-2 py-1" href="@Url.Action("Index", new { page = i, pageSize = ViewBag.PageSize })">@i</a>
+                    }
+                }
+            </div>
+        </div>
     </div>
-</div>
+}
 

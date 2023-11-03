@@ -2,20 +2,16 @@
 
 @using Manage
 @{
+    //t
     ViewBag.Title = "Xuất hàng";
     ViewBag.showFeature = true;
-    Pages pager = new Pages();
-    int pageNo = 0;
-    if (ViewBag.pages != null)
-    {
-        pager = ViewBag.pages;
-        pageNo = pager.CurrentPage;
-    }
 }
 @section Style{
     <link rel="Stylesheet" href="~/Content/Import.css" />
     <link rel="Stylesheet" href="~/Content/Export.css" />
+    <link rel="Stylesheet" href="~/Content/Manage.css" />
 }
+
 <div class="margin">
     <div class="export d-flex align-items-center justify-content-between">
         <h3>Xuất hàng</h3>
@@ -23,16 +19,16 @@
             <span>Cập nhật</span>
         </a>
     </div>
-    <div class="info-products">
+    <div class="info-products" style="height:auto">
         <table class="table">
             <tr>
                 <th>Mã hàng</th>
-                <th>Tên hàng hóa</th>
+                <th>Tên sản phẩm</th>
                 <th>Nhà cung cấp</th>
                 <th>Loại hàng hóa</th>
                 <th>Giá cả</th>
                 <th>Số lượng</th>
-                <th></th>
+                <th>Chức năng</th>
             </tr>
             @foreach (var item in Model)
             {
@@ -40,27 +36,35 @@
                     <td>@Html.DisplayFor(model => item.MASP)</td>
                     <td>@Html.DisplayFor(model => item.TENSP)</td>
                     <td>@Html.DisplayFor(model => item.NHACUNGCAP.TEN_NCCAP)</td>
-                    <td>@Html.DisplayFor(model => item.LOAISP)</td>
+                    <td>@Html.DisplayFor(model => item.NHACUNGCAP.LOAISP)</td>
                     <td>@Html.DisplayFor(model => item.GIACA)</td>
                     <td>@Html.DisplayFor(model => item.SOLUONG)</td>
+                    <td>
+                        <div class="d-flex" style="max-height: 5rem !important">
+                            <form class="m-0" method="post" action="@Url.Action("ChangeStatus", "Export_Product", new { productId = item.MASP, status = 0 })">
+                                <input type="hidden" name="productId" value="@item.MASP" />
+                                <button type="submit" class="btn btn-primary">Xuất hàng</button>
+                            </form>
+                            <form  class="m-0" method="post" action="@Url.Action("ChangeStatus", "Export_Product", new { productId = item.MASP, status = 1 })">
+                                <button type="submit" class="btn btn-success">Khôi Phục</button>
+                            </form>
+                        </div>
+                    </td>
                 </tr>
             }
         </table>
     </div>
-    <div>
-        @if (pager.TotalPages > 0)
-        {
-            <ul class="paginations">
-                @for (var pge = pager.StartPage; pge <= pager.EndPage; pge++)
+    <!-- Hiển thị phân trang -->
+    <div class="d-flex mt-2  justify-content-center">
+        <div class="pagination">
+            @if (ViewBag.TotalPages > 1)
+            {
+
+                for (int i = 1; i <= ViewBag.TotalPages; i++)
                 {
-                    <li class="@(pge == pager.CurrentPage ? "active":"")">
-                        <a class="page-link" asp-controler="Import_Product" asp-action="Index" asp-route-pg="@pge">@pge</a>
-                    </li>
+                    <a class="@(i == ViewBag.Page ? "active" : "") btn btn-sm btn-outline-success fs-5 px-2 py-1" href="@Url.Action("Index", new { page = i, pageSize = ViewBag.PageSize })">@i</a>
                 }
-            </ul>
-        }
+            }
+        </div>
     </div>
 </div>
-
-
-

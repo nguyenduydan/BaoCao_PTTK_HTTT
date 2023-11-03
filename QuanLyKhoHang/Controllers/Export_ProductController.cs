@@ -13,43 +13,50 @@ namespace QuanLyKhoHang.Controllers
         private QLKHEntities1 db = new QLKHEntities1();
         // GET: Import_Product
         //Hiển thị trang index
-        public ActionResult Index(int pg = 1)
+        public ActionResult Index(int page = 1, int pageSize = 10)
         {
-            List<SANPHAM> products = db.SANPHAM.ToList();
+            // Tính toán số lượng mục bắt đầu và kết thúc
+            int start = (page - 1) * pageSize;
+            int end = page * pageSize;
 
-            const int pageSize = 10;
-            if (pg < 1)
-            {
-                pg = 1;
-            }
+            // Truy vấn dữ liệu từ cơ sở dữ liệu
+            var products = db.SANPHAM.Where(p => p.STATUS == 2).OrderBy(p => p.MASP).Skip(start).Take(pageSize).ToList();
 
-            int recsCount = products.Count();
-            var pages = new Pages(recsCount, pg, pageSize);
-            int recSkip = pg - 1 * pageSize;
-            var data = products.Skip(recSkip).Take(pageSize).ToList();
+            // Tính toán số trang dựa trên tổng số mục và số mục trên mỗi trang
+            int totalItems = db.SANPHAM.Count();
+            int totalPages = (int)Math.Ceiling((double)totalItems / pageSize);
 
-            this.ViewBag.pages = pages;
-            return View(data);
+            // Truyền dữ liệu phân trang và thông tin trang đến giao diện người dùng
+            ViewBag.Page = page;
+            ViewBag.PageSize = pageSize;
+            ViewBag.TotalItems = totalItems;
+            ViewBag.TotalPages = totalPages;
+
+            return View(products);
         }
 
-        public ActionResult Update(int pg = 1)
+        public ActionResult Update(int page = 1, int pageSize = 10)
         {
-            List<SANPHAM> products = db.SANPHAM.ToList();
+            // Tính toán số lượng mục bắt đầu và kết thúc
+            int start = (page - 1) * pageSize;
+            int end = page * pageSize;
 
-            const int pageSize = 10;
-            if (pg < 1)
-            {
-                pg = 1;
-            }
+            // Truy vấn dữ liệu từ cơ sở dữ liệu
+            var products = db.SANPHAM.Where(p => p.STATUS == 0).OrderBy(p => p.MASP).Skip(start).Take(pageSize).ToList();
 
-            int recsCount = products.Count();
-            var pages = new Pages(recsCount, pg, pageSize);
-            int recSkip = pg - 1 * pageSize;
-            var data = products.Skip(recSkip).Take(pageSize).ToList();
+            // Tính toán số trang dựa trên tổng số mục và số mục trên mỗi trang
+            int totalItems = db.SANPHAM.Count();
+            int totalPages = (int)Math.Ceiling((double)totalItems / pageSize);
 
-            this.ViewBag.pages = pages;
-            return View(data);
+            // Truyền dữ liệu phân trang và thông tin trang đến giao diện người dùng
+            ViewBag.Page = page;
+            ViewBag.PageSize = pageSize;
+            ViewBag.TotalItems = totalItems;
+            ViewBag.TotalPages = totalPages;
+
+            return View(products);
         }
+
         [HttpPost]
         public ActionResult ExportSelectedItems(List<int> selectedIds)
         {
@@ -66,10 +73,21 @@ namespace QuanLyKhoHang.Controllers
                 }
                 db.SaveChanges();
             }
-            return RedirectToAction("Index");
+            return RedirectToAction("Update");
         }
 
         //test
-
+        [HttpPost]
+        public ActionResult ChangeStatus(string productId, int status)
+        {
+            var product = db.SANPHAM.FirstOrDefault(p => p.MASP == productId);
+            if (product != null)
+            {
+                byte newStatus = (byte)status; // Chuyển đổi giá trị int sang byte
+                product.STATUS = newStatus; // Gán giá trị đã chuyển đổi
+                db.SaveChanges();
+            }
+            return RedirectToAction("Index");
+        }
     }
 }

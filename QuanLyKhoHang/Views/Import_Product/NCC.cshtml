@@ -1,0 +1,56 @@
+﻿@model IEnumerable<QuanLyKhoHang.Models.NHACUNGCAP>
+@using QuanLyKhoHang.Views.Import_Product
+@using Manage
+@{
+    ViewBag.Title = "Danh sách nhà cung cấp";
+    ImportProduct childrenFeatures = new ImportProduct();
+    ViewBag.Children = childrenFeatures.Show();
+    ViewBag.showFeature = true;
+    
+}
+@section Style{
+    <link rel="Stylesheet" href="~/Content/Import.css" />
+}
+<div class="margin">
+    <div class="d-flex align-items-center m">
+        <h3>Nhà Cung Cấp</h3>
+    </div>
+    <div class="info-products">
+        <table class="table">
+            <tr>
+                <th>Mã nhà cung cấp</th>
+                <th>Tên nhà cung cấp</th>
+                <th>Loại sản phẩm</th>
+                <th>Số điện thoại</th>
+                <th>Địa chỉ</th>
+                <th>Email</th>
+            </tr>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>@Html.DisplayFor(model => item.MA_NCCAP)</td>
+                    <td>@Html.DisplayFor(model => item.TEN_NCCAP)</td>
+                    <td>@Html.DisplayFor(model => item.LOAISP)</td>
+                    <td>@Html.DisplayFor(model => item.SDT)</td>
+                    <td>@Html.DisplayFor(model => item.DIACHI)</td>
+                    <td>@Html.DisplayFor(model => item.EMAIL)</td>
+                </tr>
+            }
+
+        </table>
+    </div>
+    <!-- Hiển thị phân trang -->
+    <div class="d-flex mt-2  justify-content-center">
+        <div class="pagination">
+            @if (ViewBag.TotalPages > 1)
+            {
+
+                for (int i = 1; i <= ViewBag.TotalPages; i++)
+                {
+                    <a class="@(i == ViewBag.Page ? "active" : "") btn btn-sm btn-outline-success fs-5 px-2 py-1" href="@Url.Action("Index", new { page = i, pageSize = ViewBag.PageSize })">@i</a>
+                }
+            }
+        </div>
+    </div>
+</div>
+

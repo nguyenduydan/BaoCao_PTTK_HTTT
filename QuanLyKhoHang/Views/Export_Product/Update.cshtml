@@ -25,8 +25,8 @@
                 <th>Số lượng</th>
                 <th>Xuất</th>
             </tr>
-                @foreach (var item in Model)
-                {
+            @foreach (var item in Model)
+            {
                 <tr>
                     <td>@Html.DisplayFor(model => item.MASP)</td>
                     <td>@Html.DisplayFor(model => item.TENSP)</td>
@@ -35,13 +35,33 @@
                     <td>@Html.DisplayFor(model => item.GIACA)</td>
                     <td>@Html.DisplayFor(model => item.SOLUONG)</td>
                     <td style="position:relative">
-                        <input type="checkbox" name="selectedItems" value="@item.MASP" style="position:absolute; top:50%;left:0%"/>
+                        <input type="checkbox" name="selectedItems" value="@item.MASP" style="position:absolute; top:50%;left:0%" />
                     </td>
                 </tr>
-                 }
-            </table>
+            }
+        </table>
+        <a href="@Url.Action("Index","Export_Product")">
+            <svg xmlns="http://www.w3.org/2000/svg" width="50" height="50"
+                 fill="currentColor" class="bi bi-arrow-left-circle-fill" viewBox="0 0 16 16">
+                <path d="M8 0a8 8 0 1 0 0 16A8 8 0 0 0 8 0zm3.5 7.5a.5.5 0 0 1 0 1H5.707l2.147 2.146a.5.5 0 0 1-.708.708l-3-3a.5.5 0 0 1 0-.708l3-3a.5.5 0 1 1 .708.708L5.707 7.5H11.5z" />
+            </svg>
+        </a>
+    </div>
+    <!-- Hiển thị phân trang -->
+    <div class="d-flex mt-2  justify-content-center">
+        <div class="pagination">
+            @if (ViewBag.TotalPages > 1)
+            {
+
+                for (int i = 1; i <= ViewBag.TotalPages; i++)
+                {
+                    <a class="@(i == ViewBag.Page ? "active" : "") btn btn-sm btn-outline-success fs-5 px-2 py-1" href="@Url.Action("Index", new { page = i, pageSize = ViewBag.PageSize })">@i</a>
+                }
+            }
+        </div>
     </div>
 </div>
+
 <script>
     function exportSelectedItems() {
         var selectedItems = document.querySelectorAll('input[name="selectedItems"]:checked');

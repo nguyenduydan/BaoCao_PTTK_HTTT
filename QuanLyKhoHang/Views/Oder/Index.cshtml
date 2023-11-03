@@ -1,19 +1,48 @@
-﻿
+﻿@model IEnumerable<QuanLyKhoHang.Models.DONDATHANG>
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "Đơn đặt hàng";
     ViewBag.showFeature = true;
 }
-<div class="margin">
-    <h3 style="text-align:center">ĐƠN ĐẶT HÀNG</h3>
-    <p class="text-center">Số:</p>
-    <table class="table">
-        <tr>
-            <th>STT</th>
-            <th>Tên mặt hàng</th>
-            <th>Số lượng</th>
-            <th>Đơn giá</th>
-            <th>Thành tiền</th>
-        </tr>
-    </table>
+@section Style{
+    <link rel="Stylesheet" href="~/Content/Import.css" />
+}
 
+<div class="margin">
+    <a href="@Url.Action("Add","Oder")" class="btn btn-primary px-3 py-2" style="width: 200px">
+        Thêm sản phẩm
+    </a>
+    <h3 style="text-align:center">ĐƠN ĐẶT HÀNG</h3>
+    <p class="text-center">Số: @Model.FirstOrDefault().MA_DATHANG</p>
+    <table class="table w-50 m-auto">
+        <tr class="text-center">
+            <th>STT</th>
+            <th>Tên sản phẩm</th>
+            <th>Tên nhà cung cấp</th>
+            <th>Số lượng</th>
+        </tr>
+        @{
+            int a = 1;
+            foreach (var i in Model)
+            {
+                <tr>
+                    <td>@a</td>
+                    <td>@Html.DisplayFor(model => i.TEN_SP)</td>
+                    <td>@Html.DisplayFor(model => i.NHACUNGCAP.TEN_NCCAP)</td>
+                    <td>@Html.DisplayFor(model => i.SOLUONG)</td>
+                </tr>
+                a++;
+            }
+        }
+    </table>
+    <div class="container d-flex align-items-center justify-content-center">
+        <form class="row ">
+            @using (Html.BeginForm("Send", "Oder", FormMethod.Post))
+            {
+                @Html.AntiForgeryToken()
+                <div class="col-10">
+                    <input type="submit" value="GỬi" class="btn btn-success text-light float-end w-25" />
+                </div>
+            }
+        </form>
+    </div>
 </div>
