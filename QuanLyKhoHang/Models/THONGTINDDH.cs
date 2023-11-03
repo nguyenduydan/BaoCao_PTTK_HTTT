@@ -12,12 +12,13 @@ namespace QuanLyKhoHang.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class sysdiagrams
+    public partial class THONGTINDDH
     {
-        public string name { get; set; }
-        public int principal_id { get; set; }
-        public int diagram_id { get; set; }
-        public Nullable<int> version { get; set; }
-        public byte[] definition { get; set; }
+        public string MA_DATHANG { get; set; }
+        public string MASP { get; set; }
+        public Nullable<int> SOLUONG { get; set; }
+    
+        public virtual DONDATHANG DONDATHANG { get; set; }
+        public virtual SANPHAM SANPHAM { get; set; }
     }
 }

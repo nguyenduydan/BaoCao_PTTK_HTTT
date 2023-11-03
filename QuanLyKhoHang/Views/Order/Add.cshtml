@@ -1,4 +1,4 @@
-﻿@model QuanLyKhoHang.Models.DONDATHANG
+﻿@model QuanLyKhoHang.Models.t
 
 @using QuanLyKhoHang.Views.Import_Product
 @{
@@ -33,7 +33,7 @@
                                     <option value="@i.MASP">@i.TENSP</option>
                                 }
                             </select>
-                            @Html.ValidationMessageFor(model => model.MASP, "", new { @class = "text-danger fs-6" })
+                            @Html.ValidationMessageFor(model => model.s, "", new { @class = "text-danger fs-6" })
                         </div>
                     </div>
                 </div>

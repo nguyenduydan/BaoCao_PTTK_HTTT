@@ -55,12 +55,6 @@ namespace QuanLyKhoHang.Controllers
                 sanpham.NGAYCAPNHAT = DateTime.Now;
                 sanpham.TENTOMTAT = Xstring.Str_Slug(sanpham.TENSP);
                 sanpham.STATUS = 1;
-                //thêm loại sp của nhà cung cấp vào trong sản phẩm
-                NHACUNGCAP nhacungcap = db.NHACUNGCAP.FirstOrDefault(x => x.MA_NCCAP == sanpham.MA_NCCAP);
-                if (nhacungcap != null)
-                {
-                    sanpham.LOAISP = nhacungcap.LOAISP;
-                }
                 db.SANPHAM.Add(sanpham);
                 db.SaveChanges();
                 return RedirectToAction("Index");
@@ -122,14 +116,10 @@ namespace QuanLyKhoHang.Controllers
             
             if (ModelState.IsValid)
             {
-                var order =db.DONDATHANG.Select(m => m.TEN_SP).Distinct().ToString();
-                if(bill.TENSP == order)
-                {
-                    bill.NGAYTHANHTOAN = DateTime.Now;
-                    db.DONTHANHTOAN.Add(bill);
-                    db.SaveChanges();
-                    return RedirectToAction("Index");
-                }
+                bill.NGAYTHANHTOAN = DateTime.Now;
+                db.DONTHANHTOAN.Add(bill);
+                db.SaveChanges();
+                return RedirectToAction("Index");
                 
             }
             return View(bill);

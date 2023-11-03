@@ -17,7 +17,6 @@ namespace QuanLyKhoHang.Models
         public string MA_BAOCAO { get; set; }
         public string MASP { get; set; }
         public string MA_HANGTON { get; set; }
-        public Nullable<int> SOLUONG { get; set; }
         public Nullable<System.DateTime> NGAYBAOCAO { get; set; }
     
         public virtual HANGTON HANGTON { get; set; }

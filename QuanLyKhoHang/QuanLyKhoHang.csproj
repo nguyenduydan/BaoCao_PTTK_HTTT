@@ -134,15 +134,13 @@
     <Compile Include="Controllers\Import_ProductController.cs" />
     <Compile Include="Controllers\LoginController.cs" />
     <Compile Include="Controllers\Manage_ProductController.cs" />
+    <Compile Include="Controllers\OrderController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Library\Xmessage.cs" />
     <Compile Include="Library\Xstring.cs" />
     <Compile Include="Models\BANBAOCAO.cs">
-      <DependentUpon>Model_QLKH.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\DATVAO.cs">
       <DependentUpon>Model_QLKH.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\DONDATHANG.cs">
@@ -172,6 +170,11 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Model_QLKH.edmx</DependentUpon>
     </Compile>
+    <Compile Include="Models\Model_QLKH1.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Model_QLKH.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\NHACUNGCAP.cs">
       <DependentUpon>Model_QLKH.tt</DependentUpon>
     </Compile>
@@ -184,7 +187,10 @@
     <Compile Include="Models\sp_helpdiagrams1_Result.cs">
       <DependentUpon>Model_QLKH.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\sysdiagrams.cs">
+    <Compile Include="Models\THONGTINDDH.cs">
+      <DependentUpon>Model_QLKH.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\THONGTINKEHANG.cs">
       <DependentUpon>Model_QLKH.tt</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -215,7 +221,7 @@
     <Content Include="Models\Model_QLKH.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <DependentUpon>Model_QLKH.edmx</DependentUpon>
-      <LastGenOutput>Model_QLKH.cs</LastGenOutput>
+      <LastGenOutput>Model_QLKH1.cs</LastGenOutput>
     </Content>
     <Content Include="Scripts\bootstrap.bundle.js" />
     <Content Include="Scripts\bootstrap.bundle.min.js" />
@@ -270,6 +276,8 @@
     <Content Include="Views\Export_Product\ExportSelectedItems.cshtml" />
     <Content Include="Views\Manage_Product\Update.cshtml" />
     <Content Include="Views\Import_Product\AddNCC.cshtml" />
+    <Content Include="Views\Order\Add.cshtml" />
+    <Content Include="Views\Order\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

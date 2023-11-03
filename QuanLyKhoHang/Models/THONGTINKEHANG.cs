@@ -12,13 +12,13 @@ namespace QuanLyKhoHang.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class DATVAO
+    public partial class THONGTINKEHANG
     {
-        public string MASP { get; set; }
         public string MA_KEHANG { get; set; }
-        public Nullable<int> SOLUONG { get; set; }
+        public string MASP { get; set; }
+        public Nullable<int> VITRI { get; set; }
     
-        public virtual SANPHAM SANPHAM { get; set; }
         public virtual KEHANG KEHANG { get; set; }
+        public virtual SANPHAM SANPHAM { get; set; }
     }
 }

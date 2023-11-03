@@ -59,17 +59,8 @@ namespace QuanLyKhoHang.Controllers
                             product.STATUS = 2;
                         }
                         db.Entry(product).State = EntityState.Modified;
+                        db.SaveChanges();
                     }
-                }
-
-                try
-                {
-                    db.SaveChanges();
-                }
-                catch (DbEntityValidationException ex)
-                {
-                    // Xử lý lỗi DbEntityValidationException
-                    // Ví dụ: log lỗi, thông báo cho người dùng, v.v.
                 }
             }
 
@@ -97,12 +88,6 @@ namespace QuanLyKhoHang.Controllers
             {
                 sanpham.NGAYCAPNHAT = DateTime.Now;
                 sanpham.TENTOMTAT = Xstring.Str_Slug(sanpham.TENSP);
-                NHACUNGCAP nhacungcap = db.NHACUNGCAP.FirstOrDefault(x => x.MA_NCCAP == sanpham.MA_NCCAP);
-                if (nhacungcap != null)
-                {
-                    sanpham.LOAISP = nhacungcap.LOAISP;
-                }
-
                 db.Entry(sanpham).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");
@@ -114,7 +99,7 @@ namespace QuanLyKhoHang.Controllers
         //
         public ActionResult Classify()
         {
-            var uniqueTypes = db.SANPHAM.Select(p => p.LOAISP).Distinct().ToList();
+            var uniqueTypes = db.SANPHAM.Select(p => p.NHACUNGCAP.LOAISP).Distinct().ToList();
 
             ViewBag.UniqueTypes = uniqueTypes;
             return View(db.SANPHAM.ToList());
@@ -127,10 +112,10 @@ namespace QuanLyKhoHang.Controllers
 
             if (sortingOption != null && sortingOption != "default")
             {
-                allProducts = db.SANPHAM.Where(p => p.LOAISP == sortingOption).ToList();
+                allProducts = db.SANPHAM.Where(p => p.NHACUNGCAP.LOAISP == sortingOption).ToList();
             }
 
-            var uniqueTypes = db.SANPHAM.Select(p => p.LOAISP).Distinct().ToList();
+            var uniqueTypes = db.SANPHAM.Select(p => p.NHACUNGCAP.LOAISP).Distinct().ToList();
             ViewBag.UniqueTypes = uniqueTypes;
 
             return View(allProducts);

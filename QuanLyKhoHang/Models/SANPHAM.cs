@@ -18,18 +18,17 @@ namespace QuanLyKhoHang.Models
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public SANPHAM()
         {
-            this.DATVAO = new HashSet<DATVAO>();
-            this.DONDATHANG = new HashSet<DONDATHANG>();
             this.HANGTON = new HashSet<HANGTON>();
+            this.THONGTINDDH = new HashSet<THONGTINDDH>();
+            this.THONGTINKEHANG = new HashSet<THONGTINKEHANG>();
         }
-        [Required(ErrorMessage ="Không được để trống")]    
-        
+
+        [Required(ErrorMessage = "Không được để trống")]
         public string MASP { get; set; }
         [Required(ErrorMessage = "Không được để trống")]
         public string MA_NCCAP { get; set; }
         [Required(ErrorMessage = "Không được để trống")]
         public string TENSP { get; set; }
-        public string LOAISP { get; set; }
         public string TENTOMTAT { get; set; }
         [Required(ErrorMessage = "Không được để trống")]
         public Nullable<int> SOLUONG { get; set; }
@@ -41,13 +40,13 @@ namespace QuanLyKhoHang.Models
         [DisplayFormat(DataFormatString = "{0:0.###}", ApplyFormatInEditMode = true)]
         public Nullable<decimal> GIACA { get; set; }
         public Nullable<byte> STATUS { get; set; }
-    
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<DATVAO> DATVAO { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<DONDATHANG> DONDATHANG { get; set; }
+
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<HANGTON> HANGTON { get; set; }
         public virtual NHACUNGCAP NHACUNGCAP { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<THONGTINDDH> THONGTINDDH { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<THONGTINKEHANG> THONGTINKEHANG { get; set; }
     }
 }

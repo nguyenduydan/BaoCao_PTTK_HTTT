@@ -11,8 +11,7 @@ namespace QuanLyKhoHang.Models
 {
     using System;
     using System.Collections.Generic;
-    using System.ComponentModel.DataAnnotations;
-
+    
     public partial class HANGTON
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
@@ -25,7 +24,7 @@ namespace QuanLyKhoHang.Models
         public string MA_HANGTON { get; set; }
         public Nullable<int> SOLUONG { get; set; }
         public string MOTA_HANGTON { get; set; }
-        public Nullable<System.DateTime> NGAYHETHAN { get; set; }
+        public string NGAYTAO { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<BANBAOCAO> BANBAOCAO { get; set; }

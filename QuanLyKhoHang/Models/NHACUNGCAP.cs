@@ -19,9 +19,10 @@ namespace QuanLyKhoHang.Models
         public NHACUNGCAP()
         {
             this.DONDATHANG = new HashSet<DONDATHANG>();
+            this.DONTHANHTOAN = new HashSet<DONTHANHTOAN>();
             this.SANPHAM = new HashSet<SANPHAM>();
         }
-        [Required(ErrorMessage ="Không được để trống")]
+        [Required(ErrorMessage = "Không được để trống")]
         public string MA_NCCAP { get; set; }
         [Required(ErrorMessage = "Không được để trống")]
         public string TEN_NCCAP { get; set; }
@@ -32,9 +33,13 @@ namespace QuanLyKhoHang.Models
         public Nullable<decimal> SDT { get; set; }
         public string DIACHI { get; set; }
         public string EMAIL { get; set; }
+        public Nullable<System.DateTime> NGAYTAO { get; set; }
+        public Nullable<System.DateTime> NGAYCAPNHAT { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<DONDATHANG> DONDATHANG { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<DONTHANHTOAN> DONTHANHTOAN { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<SANPHAM> SANPHAM { get; set; }
     }
