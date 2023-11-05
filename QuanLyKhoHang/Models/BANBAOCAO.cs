@@ -14,11 +14,16 @@ namespace QuanLyKhoHang.Models
     
     public partial class BANBAOCAO
     {
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public BANBAOCAO()
+        {
+            this.THONGTINBAOCAO = new HashSet<THONGTINBAOCAO>();
+        }
+    
         public string MA_BAOCAO { get; set; }
-        public string MASP { get; set; }
-        public string MA_HANGTON { get; set; }
         public Nullable<System.DateTime> NGAYBAOCAO { get; set; }
     
-        public virtual HANGTON HANGTON { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<THONGTINBAOCAO> THONGTINBAOCAO { get; set; }
     }
 }

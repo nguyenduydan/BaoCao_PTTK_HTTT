@@ -56,7 +56,7 @@ namespace QuanLyKhoHang.Controllers
                         if (daysRemaining < 10)
                         {
                             // Cập nhật trạng thái status về 2
-                            product.STATUS = 2;
+                            product.TRANGTHAI = 2;
                         }
                         db.Entry(product).State = EntityState.Modified;
                         db.SaveChanges();
@@ -97,12 +97,26 @@ namespace QuanLyKhoHang.Controllers
             return View(sanpham);
         }
         //
-        public ActionResult Classify()
+        public ActionResult Classify(int page = 1, int pageSize = 10)
         {
-            var uniqueTypes = db.SANPHAM.Select(p => p.NHACUNGCAP.LOAISP).Distinct().ToList();
+            // Tính toán số lượng mục bắt đầu và kết thúc
+            int start = (page - 1) * pageSize;
+            int end = page * pageSize;
 
+            // Truy vấn dữ liệu từ cơ sở dữ liệu
+            var products = db.SANPHAM.OrderBy(p => p.MASP).Skip(start).Take(pageSize).ToList();
+
+            // Tính toán số trang dựa trên tổng số mục và số mục trên mỗi trang
+            int totalItems = db.SANPHAM.Count();
+            int totalPages = (int)Math.Ceiling((double)totalItems / pageSize);
+            var uniqueTypes = db.SANPHAM.Select(p => p.NHACUNGCAP.LOAISP).Distinct().ToList();
+            // Truyền dữ liệu phân trang và thông tin trang đến giao diện người dùng
             ViewBag.UniqueTypes = uniqueTypes;
-            return View(db.SANPHAM.ToList());
+            ViewBag.Page = page;
+            ViewBag.PageSize = pageSize;
+            ViewBag.TotalItems = totalItems;
+            ViewBag.TotalPages = totalPages;
+            return View(products);
         }
 
         [HttpPost]
@@ -160,33 +174,10 @@ namespace QuanLyKhoHang.Controllers
         }
 
 
-        //Hàng tồn
-        public ActionResult CheckProduct(int page = 1, int pageSize = 10)
-        {
-            // Tính toán số lượng mục bắt đầu và kết thúc
-            int start = (page - 1) * pageSize;
-            int end = page * pageSize;
-
-            // Truy vấn dữ liệu từ cơ sở dữ liệu
-            var products = db.HANGTON.OrderBy(p => p.MASP).Skip(start).Take(pageSize).ToList();
-
-            // Tính toán số trang dựa trên tổng số mục và số mục trên mỗi trang
-            int totalItems = db.HANGTON.Count();
-            int totalPages = (int)Math.Ceiling((double)totalItems / pageSize);
-
-            // Truyền dữ liệu phân trang và thông tin trang đến giao diện người dùng
-            ViewBag.Page = page;
-            ViewBag.PageSize = pageSize;
-            ViewBag.TotalItems = totalItems;
-            ViewBag.TotalPages = totalPages;
-
-            return View(products);
-        }
-
         //Báo cáo
         public ActionResult Report()
         {
-            List<HANGTON> products = db.HANGTON.ToList();
+            List<SANPHAM> products = db.SANPHAM.ToList();
 
             return View(products);
         }

@@ -64,15 +64,14 @@
     <EntitySet Name="BANBAOCAO" EntityType="QLKHModel.BANBAOCAO" />
     <EntitySet Name="DONDATHANG" EntityType="QLKHModel.DONDATHANG" />
     <EntitySet Name="DONTHANHTOAN" EntityType="QLKHModel.DONTHANHTOAN" />
-    <EntitySet Name="HANGTON" EntityType="QLKHModel.HANGTON" />
     <EntitySet Name="KEHANG" EntityType="QLKHModel.KEHANG" />
     <EntitySet Name="NHACUNGCAP" EntityType="QLKHModel.NHACUNGCAP" />
     <EntitySet Name="SANPHAM" EntityType="QLKHModel.SANPHAM" />
+    <EntitySet Name="THONGTINBAOCAO" EntityType="QLKHModel.THONGTINBAOCAO" />
     <EntitySet Name="THONGTINDDH" EntityType="QLKHModel.THONGTINDDH" />
-    <EntitySet Name="THONGTINKEHANG" EntityType="QLKHModel.THONGTINKEHANG" />
-    <AssociationSet Name="FK_BANBAOCA_BAOCAO_HANGTON" Association="QLKHModel.FK_BANBAOCA_BAOCAO_HANGTON">
-      <End Role="HANGTON" EntitySet="HANGTON" />
+    <AssociationSet Name="FK_THONGTIN_THONGTINB_BANBAOCA" Association="QLKHModel.FK_THONGTIN_THONGTINB_BANBAOCA">
       <End Role="BANBAOCAO" EntitySet="BANBAOCAO" />
+      <End Role="THONGTINBAOCAO" EntitySet="THONGTINBAOCAO" />
     </AssociationSet>
     <AssociationSet Name="FK_DONDATHA_LAY_NHACUNGC" Association="QLKHModel.FK_DONDATHA_LAY_NHACUNGC">
       <End Role="NHACUNGCAP" EntitySet="NHACUNGCAP" />
@@ -90,25 +89,21 @@
       <End Role="NHACUNGCAP" EntitySet="NHACUNGCAP" />
       <End Role="DONTHANHTOAN" EntitySet="DONTHANHTOAN" />
     </AssociationSet>
-    <AssociationSet Name="FK_HANGTON_LUUTRU_SANPHAM" Association="QLKHModel.FK_HANGTON_LUUTRU_SANPHAM">
-      <End Role="SANPHAM" EntitySet="SANPHAM" />
-      <End Role="HANGTON" EntitySet="HANGTON" />
-    </AssociationSet>
-    <AssociationSet Name="FK_THONGTIN_THONGTINK_KEHANG" Association="QLKHModel.FK_THONGTIN_THONGTINK_KEHANG">
+    <AssociationSet Name="FK_SANPHAM_LUUTRU_KEHANG" Association="QLKHModel.FK_SANPHAM_LUUTRU_KEHANG">
       <End Role="KEHANG" EntitySet="KEHANG" />
-      <End Role="THONGTINKEHANG" EntitySet="THONGTINKEHANG" />
+      <End Role="SANPHAM" EntitySet="SANPHAM" />
     </AssociationSet>
     <AssociationSet Name="FK_SANPHAM_CUNGCAP_NHACUNGC" Association="QLKHModel.FK_SANPHAM_CUNGCAP_NHACUNGC">
       <End Role="NHACUNGCAP" EntitySet="NHACUNGCAP" />
       <End Role="SANPHAM" EntitySet="SANPHAM" />
     </AssociationSet>
+    <AssociationSet Name="FK_THONGTIN_THONGTINB_SANPHAM" Association="QLKHModel.FK_THONGTIN_THONGTINB_SANPHAM">
+      <End Role="SANPHAM" EntitySet="SANPHAM" />
+      <End Role="THONGTINBAOCAO" EntitySet="THONGTINBAOCAO" />
+    </AssociationSet>
     <AssociationSet Name="FK_THONGTIN_THONGTIND_SANPHAM" Association="QLKHModel.FK_THONGTIN_THONGTIND_SANPHAM">
       <End Role="SANPHAM" EntitySet="SANPHAM" />
       <End Role="THONGTINDDH" EntitySet="THONGTINDDH" />
-    </AssociationSet>
-    <AssociationSet Name="FK_THONGTIN_THONGTINK_SANPHAM" Association="QLKHModel.FK_THONGTIN_THONGTINK_SANPHAM">
-      <End Role="SANPHAM" EntitySet="SANPHAM" />
-      <End Role="THONGTINKEHANG" EntitySet="THONGTINKEHANG" />
     </AssociationSet>
   </EntityContainer>
   <ComplexType Name="sp_helpdiagramdefinition1_Result">
@@ -127,10 +122,8 @@
       <PropertyRef Name="MA_BAOCAO" />
     </Key>
     <Property Name="MA_BAOCAO" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="false" />
-    <Property Name="MASP" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="false" />
-    <Property Name="MA_HANGTON" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="false" />
     <Property Name="NGAYBAOCAO" Type="DateTime" Precision="3" />
-    <NavigationProperty Name="HANGTON" Relationship="QLKHModel.FK_BANBAOCA_BAOCAO_HANGTON" FromRole="BANBAOCAO" ToRole="HANGTON" />
+    <NavigationProperty Name="THONGTINBAOCAO" Relationship="QLKHModel.FK_THONGTIN_THONGTINB_BANBAOCA" FromRole="BANBAOCAO" ToRole="THONGTINBAOCAO" />
   </EntityType>
   <EntityType Name="DONDATHANG">
     <Key>
@@ -138,8 +131,9 @@
     </Key>
     <Property Name="MA_DATHANG" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="false" />
     <Property Name="MA_NCCAP" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="false" />
+    <Property Name="LOAISP" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
     <Property Name="NGAY_DATHANG" Type="DateTime" Precision="3" />
-    <Property Name="TONGGIATIEN" Type="Decimal" Precision="18" Scale="0" />
+    <Property Name="GIATIEN" Type="Decimal" Precision="18" Scale="0" />
     <NavigationProperty Name="NHACUNGCAP" Relationship="QLKHModel.FK_DONDATHA_LAY_NHACUNGC" FromRole="DONDATHANG" ToRole="NHACUNGCAP" />
     <NavigationProperty Name="DONTHANHTOAN" Relationship="QLKHModel.FK_DONTHANH_KIEMTRA_DONDATHA" FromRole="DONDATHANG" ToRole="DONTHANHTOAN" />
     <NavigationProperty Name="THONGTINDDH" Relationship="QLKHModel.FK_THONGTIN_THONGTIND_DONDATHA" FromRole="DONDATHANG" ToRole="THONGTINDDH" />
@@ -151,34 +145,21 @@
     <Property Name="MATT" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="false" />
     <Property Name="MA_NCCAP" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="false" />
     <Property Name="MA_DATHANG" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="false" />
-    <Property Name="TENSP" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="LOAISP" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
     <Property Name="NGAYTHANHTOAN" Type="DateTime" Precision="3" />
     <Property Name="SOLUONG" Type="Int32" />
-    <Property Name="GIACA" Type="Decimal" Precision="18" Scale="0" />
+    <Property Name="GIATIEN" Type="Decimal" Precision="18" Scale="0" />
     <NavigationProperty Name="DONDATHANG" Relationship="QLKHModel.FK_DONTHANH_KIEMTRA_DONDATHA" FromRole="DONTHANHTOAN" ToRole="DONDATHANG" />
     <NavigationProperty Name="NHACUNGCAP" Relationship="QLKHModel.FK_DONTHANH_DUARA_NHACUNGC" FromRole="DONTHANHTOAN" ToRole="NHACUNGCAP" />
-  </EntityType>
-  <EntityType Name="HANGTON">
-    <Key>
-      <PropertyRef Name="MASP" />
-      <PropertyRef Name="MA_HANGTON" />
-    </Key>
-    <Property Name="MASP" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="false" />
-    <Property Name="MA_HANGTON" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="false" />
-    <Property Name="SOLUONG" Type="Int32" />
-    <Property Name="MOTA_HANGTON" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" />
-    <Property Name="NGAYTAO" Type="String" MaxLength="10" FixedLength="true" Unicode="false" />
-    <NavigationProperty Name="BANBAOCAO" Relationship="QLKHModel.FK_BANBAOCA_BAOCAO_HANGTON" FromRole="HANGTON" ToRole="BANBAOCAO" />
-    <NavigationProperty Name="SANPHAM" Relationship="QLKHModel.FK_HANGTON_LUUTRU_SANPHAM" FromRole="HANGTON" ToRole="SANPHAM" />
   </EntityType>
   <EntityType Name="KEHANG">
     <Key>
       <PropertyRef Name="MA_KEHANG" />
     </Key>
     <Property Name="MA_KEHANG" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="false" />
-    <Property Name="LOAIHANG" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
-    <Property Name="MOTA_KEHANG" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" />
-    <NavigationProperty Name="THONGTINKEHANG" Relationship="QLKHModel.FK_THONGTIN_THONGTINK_KEHANG" FromRole="KEHANG" ToRole="THONGTINKEHANG" />
+    <Property Name="LOAISP" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="VITRI" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="SANPHAM" Relationship="QLKHModel.FK_SANPHAM_LUUTRU_KEHANG" FromRole="KEHANG" ToRole="SANPHAM" />
   </EntityType>
   <EntityType Name="NHACUNGCAP">
     <Key>
@@ -202,18 +183,32 @@
     </Key>
     <Property Name="MASP" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="false" />
     <Property Name="MA_NCCAP" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="false" />
+    <Property Name="MA_KEHANG" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="false" />
     <Property Name="TENSP" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="LOAISP" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
     <Property Name="TENTOMTAT" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
     <Property Name="SOLUONG" Type="Int32" />
     <Property Name="NGAYTAO" Type="DateTime" Precision="3" />
     <Property Name="NGAYCAPNHAT" Type="DateTime" Precision="3" />
     <Property Name="NGAYHETHAN" Type="DateTime" Precision="3" />
-    <Property Name="GIACA" Type="Decimal" Precision="18" Scale="0" />
-    <Property Name="STATUS" Type="Byte" />
-    <NavigationProperty Name="HANGTON" Relationship="QLKHModel.FK_HANGTON_LUUTRU_SANPHAM" FromRole="SANPHAM" ToRole="HANGTON" />
+    <Property Name="GIATIEN" Type="Decimal" Precision="18" Scale="0" />
+    <Property Name="TRANGTHAI" Type="Byte" />
+    <NavigationProperty Name="KEHANG" Relationship="QLKHModel.FK_SANPHAM_LUUTRU_KEHANG" FromRole="SANPHAM" ToRole="KEHANG" />
     <NavigationProperty Name="NHACUNGCAP" Relationship="QLKHModel.FK_SANPHAM_CUNGCAP_NHACUNGC" FromRole="SANPHAM" ToRole="NHACUNGCAP" />
+    <NavigationProperty Name="THONGTINBAOCAO" Relationship="QLKHModel.FK_THONGTIN_THONGTINB_SANPHAM" FromRole="SANPHAM" ToRole="THONGTINBAOCAO" />
     <NavigationProperty Name="THONGTINDDH" Relationship="QLKHModel.FK_THONGTIN_THONGTIND_SANPHAM" FromRole="SANPHAM" ToRole="THONGTINDDH" />
-    <NavigationProperty Name="THONGTINKEHANG" Relationship="QLKHModel.FK_THONGTIN_THONGTINK_SANPHAM" FromRole="SANPHAM" ToRole="THONGTINKEHANG" />
+  </EntityType>
+  <EntityType Name="THONGTINBAOCAO">
+    <Key>
+      <PropertyRef Name="MASP" />
+      <PropertyRef Name="MA_BAOCAO" />
+    </Key>
+    <Property Name="MASP" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="false" />
+    <Property Name="MA_BAOCAO" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="false" />
+    <Property Name="TENSP" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="SOLUONG" Type="Int32" />
+    <NavigationProperty Name="BANBAOCAO" Relationship="QLKHModel.FK_THONGTIN_THONGTINB_BANBAOCA" FromRole="THONGTINBAOCAO" ToRole="BANBAOCAO" />
+    <NavigationProperty Name="SANPHAM" Relationship="QLKHModel.FK_THONGTIN_THONGTINB_SANPHAM" FromRole="THONGTINBAOCAO" ToRole="SANPHAM" />
   </EntityType>
   <EntityType Name="THONGTINDDH">
     <Key>
@@ -226,28 +221,15 @@
     <NavigationProperty Name="DONDATHANG" Relationship="QLKHModel.FK_THONGTIN_THONGTIND_DONDATHA" FromRole="THONGTINDDH" ToRole="DONDATHANG" />
     <NavigationProperty Name="SANPHAM" Relationship="QLKHModel.FK_THONGTIN_THONGTIND_SANPHAM" FromRole="THONGTINDDH" ToRole="SANPHAM" />
   </EntityType>
-  <EntityType Name="THONGTINKEHANG">
-    <Key>
-      <PropertyRef Name="MA_KEHANG" />
-      <PropertyRef Name="MASP" />
-    </Key>
-    <Property Name="MA_KEHANG" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="false" />
-    <Property Name="MASP" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="false" />
-    <Property Name="VITRI" Type="Int32" />
-    <NavigationProperty Name="KEHANG" Relationship="QLKHModel.FK_THONGTIN_THONGTINK_KEHANG" FromRole="THONGTINKEHANG" ToRole="KEHANG" />
-    <NavigationProperty Name="SANPHAM" Relationship="QLKHModel.FK_THONGTIN_THONGTINK_SANPHAM" FromRole="THONGTINKEHANG" ToRole="SANPHAM" />
-  </EntityType>
-  <Association Name="FK_BANBAOCA_BAOCAO_HANGTON">
-    <End Type="QLKHModel.HANGTON" Role="HANGTON" Multiplicity="1" />
-    <End Type="QLKHModel.BANBAOCAO" Role="BANBAOCAO" Multiplicity="*" />
+  <Association Name="FK_THONGTIN_THONGTINB_BANBAOCA">
+    <End Type="QLKHModel.BANBAOCAO" Role="BANBAOCAO" Multiplicity="1" />
+    <End Type="QLKHModel.THONGTINBAOCAO" Role="THONGTINBAOCAO" Multiplicity="*" />
     <ReferentialConstraint>
-      <Principal Role="HANGTON">
-        <PropertyRef Name="MASP" />
-        <PropertyRef Name="MA_HANGTON" />
+      <Principal Role="BANBAOCAO">
+        <PropertyRef Name="MA_BAOCAO" />
       </Principal>
-      <Dependent Role="BANBAOCAO">
-        <PropertyRef Name="MASP" />
-        <PropertyRef Name="MA_HANGTON" />
+      <Dependent Role="THONGTINBAOCAO">
+        <PropertyRef Name="MA_BAOCAO" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
@@ -299,26 +281,14 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK_HANGTON_LUUTRU_SANPHAM">
-    <End Type="QLKHModel.SANPHAM" Role="SANPHAM" Multiplicity="1" />
-    <End Type="QLKHModel.HANGTON" Role="HANGTON" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="SANPHAM">
-        <PropertyRef Name="MASP" />
-      </Principal>
-      <Dependent Role="HANGTON">
-        <PropertyRef Name="MASP" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="FK_THONGTIN_THONGTINK_KEHANG">
+  <Association Name="FK_SANPHAM_LUUTRU_KEHANG">
     <End Type="QLKHModel.KEHANG" Role="KEHANG" Multiplicity="1" />
-    <End Type="QLKHModel.THONGTINKEHANG" Role="THONGTINKEHANG" Multiplicity="*" />
+    <End Type="QLKHModel.SANPHAM" Role="SANPHAM" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="KEHANG">
         <PropertyRef Name="MA_KEHANG" />
       </Principal>
-      <Dependent Role="THONGTINKEHANG">
+      <Dependent Role="SANPHAM">
         <PropertyRef Name="MA_KEHANG" />
       </Dependent>
     </ReferentialConstraint>
@@ -335,6 +305,18 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
+  <Association Name="FK_THONGTIN_THONGTINB_SANPHAM">
+    <End Type="QLKHModel.SANPHAM" Role="SANPHAM" Multiplicity="1" />
+    <End Type="QLKHModel.THONGTINBAOCAO" Role="THONGTINBAOCAO" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="SANPHAM">
+        <PropertyRef Name="MASP" />
+      </Principal>
+      <Dependent Role="THONGTINBAOCAO">
+        <PropertyRef Name="MASP" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
   <Association Name="FK_THONGTIN_THONGTIND_SANPHAM">
     <End Type="QLKHModel.SANPHAM" Role="SANPHAM" Multiplicity="1" />
     <End Type="QLKHModel.THONGTINDDH" Role="THONGTINDDH" Multiplicity="*" />
@@ -343,18 +325,6 @@
         <PropertyRef Name="MASP" />
       </Principal>
       <Dependent Role="THONGTINDDH">
-        <PropertyRef Name="MASP" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="FK_THONGTIN_THONGTINK_SANPHAM">
-    <End Type="QLKHModel.SANPHAM" Role="SANPHAM" Multiplicity="1" />
-    <End Type="QLKHModel.THONGTINKEHANG" Role="THONGTINKEHANG" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="SANPHAM">
-        <PropertyRef Name="MASP" />
-      </Principal>
-      <Dependent Role="THONGTINKEHANG">
         <PropertyRef Name="MASP" />
       </Dependent>
     </ReferentialConstraint>

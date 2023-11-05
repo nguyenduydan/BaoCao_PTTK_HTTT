@@ -4,26 +4,24 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="a354dd0039754e3297540cba04a54b38" Name="Diagram1" ZoomLevel="118">
-        <EntityTypeShape EntityType="QLKHModel.BANBAOCAO" Width="1.5" PointX="7.5" PointY="10.75" />
-        <EntityTypeShape EntityType="QLKHModel.DONDATHANG" Width="1.5" PointX="3" PointY="3.75" />
-        <EntityTypeShape EntityType="QLKHModel.DONTHANHTOAN" Width="1.5" PointX="5.25" PointY="4.875" />
-        <EntityTypeShape EntityType="QLKHModel.HANGTON" Width="1.5" PointX="5.25" PointY="10.5" />
-        <EntityTypeShape EntityType="QLKHModel.KEHANG" Width="1.5" PointX="6" PointY="2" />
-        <EntityTypeShape EntityType="QLKHModel.NHACUNGCAP" Width="1.5" PointX="0.75" PointY="5.625" />
-        <EntityTypeShape EntityType="QLKHModel.SANPHAM" Width="1.5" PointX="3" PointY="7" />
-        <EntityTypeShape EntityType="QLKHModel.THONGTINDDH" Width="1.5" PointX="8.25" PointY="6.25" />
-        <EntityTypeShape EntityType="QLKHModel.THONGTINKEHANG" Width="1.5" PointX="8.25" PointY="2.875" />
-        <AssociationConnector Association="QLKHModel.FK_BANBAOCA_BAOCAO_HANGTON" />
+      <Diagram DiagramId="a354dd0039754e3297540cba04a54b38" Name="Diagram1" ZoomLevel="109">
+        <EntityTypeShape EntityType="QLKHModel.BANBAOCAO" Width="1.5" PointX="3" PointY="2" />
+        <EntityTypeShape EntityType="QLKHModel.DONDATHANG" Width="1.5" PointX="3" PointY="10.5" />
+        <EntityTypeShape EntityType="QLKHModel.DONTHANHTOAN" Width="1.5" PointX="5.25" PointY="10.75" />
+        <EntityTypeShape EntityType="QLKHModel.KEHANG" Width="1.5" PointX="0.75" PointY="1.875" />
+        <EntityTypeShape EntityType="QLKHModel.NHACUNGCAP" Width="1.5" PointX="0.75" PointY="5.125" />
+        <EntityTypeShape EntityType="QLKHModel.SANPHAM" Width="1.5" PointX="3" PointY="4.625" />
+        <EntityTypeShape EntityType="QLKHModel.THONGTINBAOCAO" Width="1.5" PointX="5.25" PointY="4.625" />
+        <EntityTypeShape EntityType="QLKHModel.THONGTINDDH" Width="1.5" PointX="5.25" PointY="8" />
+        <AssociationConnector Association="QLKHModel.FK_THONGTIN_THONGTINB_BANBAOCA" />
         <AssociationConnector Association="QLKHModel.FK_DONDATHA_LAY_NHACUNGC" />
         <AssociationConnector Association="QLKHModel.FK_DONTHANH_KIEMTRA_DONDATHA" />
         <AssociationConnector Association="QLKHModel.FK_THONGTIN_THONGTIND_DONDATHA" />
         <AssociationConnector Association="QLKHModel.FK_DONTHANH_DUARA_NHACUNGC" />
-        <AssociationConnector Association="QLKHModel.FK_HANGTON_LUUTRU_SANPHAM" />
-        <AssociationConnector Association="QLKHModel.FK_THONGTIN_THONGTINK_KEHANG" />
+        <AssociationConnector Association="QLKHModel.FK_SANPHAM_LUUTRU_KEHANG" />
         <AssociationConnector Association="QLKHModel.FK_SANPHAM_CUNGCAP_NHACUNGC" />
+        <AssociationConnector Association="QLKHModel.FK_THONGTIN_THONGTINB_SANPHAM" />
         <AssociationConnector Association="QLKHModel.FK_THONGTIN_THONGTIND_SANPHAM" />
-        <AssociationConnector Association="QLKHModel.FK_THONGTIN_THONGTINK_SANPHAM" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

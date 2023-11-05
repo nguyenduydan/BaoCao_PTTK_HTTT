@@ -30,12 +30,11 @@ namespace QuanLyKhoHang.Models
         public virtual DbSet<BANBAOCAO> BANBAOCAO { get; set; }
         public virtual DbSet<DONDATHANG> DONDATHANG { get; set; }
         public virtual DbSet<DONTHANHTOAN> DONTHANHTOAN { get; set; }
-        public virtual DbSet<HANGTON> HANGTON { get; set; }
         public virtual DbSet<KEHANG> KEHANG { get; set; }
         public virtual DbSet<NHACUNGCAP> NHACUNGCAP { get; set; }
         public virtual DbSet<SANPHAM> SANPHAM { get; set; }
+        public virtual DbSet<THONGTINBAOCAO> THONGTINBAOCAO { get; set; }
         public virtual DbSet<THONGTINDDH> THONGTINDDH { get; set; }
-        public virtual DbSet<THONGTINKEHANG> THONGTINKEHANG { get; set; }
     
         public virtual int sp_alterdiagram(string diagramname, Nullable<int> owner_id, Nullable<int> version, byte[] definition)
         {

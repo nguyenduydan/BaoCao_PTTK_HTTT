@@ -17,14 +17,14 @@ namespace QuanLyKhoHang.Models
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public KEHANG()
         {
-            this.THONGTINKEHANG = new HashSet<THONGTINKEHANG>();
+            this.SANPHAM = new HashSet<SANPHAM>();
         }
     
         public string MA_KEHANG { get; set; }
-        public string LOAIHANG { get; set; }
-        public string MOTA_KEHANG { get; set; }
+        public string LOAISP { get; set; }
+        public string VITRI { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<THONGTINKEHANG> THONGTINKEHANG { get; set; }
+        public virtual ICollection<SANPHAM> SANPHAM { get; set; }
     }
 }

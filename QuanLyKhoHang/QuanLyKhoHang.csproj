@@ -149,9 +149,6 @@
     <Compile Include="Models\DONTHANHTOAN.cs">
       <DependentUpon>Model_QLKH.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\HANGTON.cs">
-      <DependentUpon>Model_QLKH.tt</DependentUpon>
-    </Compile>
     <Compile Include="Models\KEHANG.cs">
       <DependentUpon>Model_QLKH.tt</DependentUpon>
     </Compile>
@@ -187,10 +184,10 @@
     <Compile Include="Models\sp_helpdiagrams1_Result.cs">
       <DependentUpon>Model_QLKH.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\THONGTINDDH.cs">
+    <Compile Include="Models\THONGTINBAOCAO.cs">
       <DependentUpon>Model_QLKH.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\THONGTINKEHANG.cs">
+    <Compile Include="Models\THONGTINDDH.cs">
       <DependentUpon>Model_QLKH.tt</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -268,7 +265,6 @@
     <Content Include="Views\Manage_Product\Classify.cshtml" />
     <Content Include="Views\Manage_Product\Search.cshtml" />
     <Content Include="Views\Login\Index.cshtml" />
-    <Content Include="Views\Import_Product\Index.cshtml" />
     <Content Include="Views\Import_Product\Update.cshtml" />
     <Content Include="Views\Export_Product\Index.cshtml" />
     <Content Include="Views\Import_Product\Add.cshtml" />
@@ -278,6 +274,11 @@
     <Content Include="Views\Import_Product\AddNCC.cshtml" />
     <Content Include="Views\Order\Add.cshtml" />
     <Content Include="Views\Order\Index.cshtml" />
+    <Content Include="Views\Manage_Product\Report.cshtml" />
+    <Content Include="Views\Import_Product\Bill.cshtml" />
+    <Content Include="Views\Import_Product\NCC.cshtml" />
+    <Content Include="Views\Import_Product\Kehang.cshtml" />
+    <Content Include="Views\Manage_Product\Edit.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -20,7 +20,7 @@ namespace QuanLyKhoHang.Controllers
             int end = page * pageSize;
 
             // Truy vấn dữ liệu từ cơ sở dữ liệu
-            var products = db.SANPHAM.Where(p => p.STATUS == 2).OrderBy(p => p.MASP).Skip(start).Take(pageSize).ToList();
+            var products = db.SANPHAM.Where(p => p.TRANGTHAI == 2).OrderBy(p => p.MASP).Skip(start).Take(pageSize).ToList();
 
             // Tính toán số trang dựa trên tổng số mục và số mục trên mỗi trang
             int totalItems = db.SANPHAM.Count();
@@ -42,7 +42,7 @@ namespace QuanLyKhoHang.Controllers
             int end = page * pageSize;
 
             // Truy vấn dữ liệu từ cơ sở dữ liệu
-            var products = db.SANPHAM.Where(p => p.STATUS == 0).OrderBy(p => p.MASP).Skip(start).Take(pageSize).ToList();
+            var products = db.SANPHAM.Where(p => p.TRANGTHAI == 0).OrderBy(p => p.MASP).Skip(start).Take(pageSize).ToList();
 
             // Tính toán số trang dựa trên tổng số mục và số mục trên mỗi trang
             int totalItems = db.SANPHAM.Count();
@@ -84,7 +84,7 @@ namespace QuanLyKhoHang.Controllers
             if (product != null)
             {
                 byte newStatus = (byte)status; // Chuyển đổi giá trị int sang byte
-                product.STATUS = newStatus; // Gán giá trị đã chuyển đổi
+                product.TRANGTHAI = newStatus; // Gán giá trị đã chuyển đổi
                 db.SaveChanges();
             }
             return RedirectToAction("Index");

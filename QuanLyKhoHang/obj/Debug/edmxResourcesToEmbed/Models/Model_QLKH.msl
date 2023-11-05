@@ -1,128 +1,95 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
   <EntityContainerMapping StorageEntityContainer="QLKHModelStoreContainer" CdmEntityContainer="QLKHEntities1">
-    <FunctionImportMapping FunctionImportName="sp_alterdiagram1" FunctionName="QLKHModel.Store.sp_alterdiagram" />
-    <FunctionImportMapping FunctionImportName="sp_creatediagram1" FunctionName="QLKHModel.Store.sp_creatediagram" />
-    <FunctionImportMapping FunctionImportName="sp_dropdiagram1" FunctionName="QLKHModel.Store.sp_dropdiagram" />
-    <FunctionImportMapping FunctionImportName="sp_helpdiagramdefinition1" FunctionName="QLKHModel.Store.sp_helpdiagramdefinition">
-      <ResultMapping>
-        <ComplexTypeMapping TypeName="QLKHModel.sp_helpdiagramdefinition1_Result">
-          <ScalarProperty Name="version" ColumnName="version" />
-          <ScalarProperty Name="definition" ColumnName="definition" />
-        </ComplexTypeMapping>
-      </ResultMapping>
-    </FunctionImportMapping>
-    <FunctionImportMapping FunctionImportName="sp_helpdiagrams1" FunctionName="QLKHModel.Store.sp_helpdiagrams">
-      <ResultMapping>
-        <ComplexTypeMapping TypeName="QLKHModel.sp_helpdiagrams1_Result">
-          <ScalarProperty Name="Database" ColumnName="Database" />
-          <ScalarProperty Name="Name" ColumnName="Name" />
-          <ScalarProperty Name="ID" ColumnName="ID" />
-          <ScalarProperty Name="Owner" ColumnName="Owner" />
-          <ScalarProperty Name="OwnerID" ColumnName="OwnerID" />
-        </ComplexTypeMapping>
-      </ResultMapping>
-    </FunctionImportMapping>
-    <FunctionImportMapping FunctionImportName="sp_renamediagram1" FunctionName="QLKHModel.Store.sp_renamediagram" />
-    <FunctionImportMapping FunctionImportName="sp_upgraddiagrams1" FunctionName="QLKHModel.Store.sp_upgraddiagrams" />
     <EntitySetMapping Name="BANBAOCAO">
-      <EntityTypeMapping TypeName="QLKHModel.BANBAOCAO">
+      <EntityTypeMapping TypeName="IsTypeOf(QLKHModel.BANBAOCAO)">
         <MappingFragment StoreEntitySet="BANBAOCAO">
-          <ScalarProperty Name="NGAYBAOCAO" ColumnName="NGAYBAOCAO" />
-          <ScalarProperty Name="MA_HANGTON" ColumnName="MA_HANGTON" />
-          <ScalarProperty Name="MASP" ColumnName="MASP" />
           <ScalarProperty Name="MA_BAOCAO" ColumnName="MA_BAOCAO" />
+          <ScalarProperty Name="NGAYBAOCAO" ColumnName="NGAYBAOCAO" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="DONDATHANG">
-      <EntityTypeMapping TypeName="QLKHModel.DONDATHANG">
+      <EntityTypeMapping TypeName="IsTypeOf(QLKHModel.DONDATHANG)">
         <MappingFragment StoreEntitySet="DONDATHANG">
-          <ScalarProperty Name="TONGGIATIEN" ColumnName="TONGGIATIEN" />
-          <ScalarProperty Name="NGAY_DATHANG" ColumnName="NGAY_DATHANG" />
-          <ScalarProperty Name="MA_NCCAP" ColumnName="MA_NCCAP" />
           <ScalarProperty Name="MA_DATHANG" ColumnName="MA_DATHANG" />
+          <ScalarProperty Name="MA_NCCAP" ColumnName="MA_NCCAP" />
+          <ScalarProperty Name="LOAISP" ColumnName="LOAISP" />
+          <ScalarProperty Name="NGAY_DATHANG" ColumnName="NGAY_DATHANG" />
+          <ScalarProperty Name="GIATIEN" ColumnName="GIATIEN" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="DONTHANHTOAN">
-      <EntityTypeMapping TypeName="QLKHModel.DONTHANHTOAN">
+      <EntityTypeMapping TypeName="IsTypeOf(QLKHModel.DONTHANHTOAN)">
         <MappingFragment StoreEntitySet="DONTHANHTOAN">
-          <ScalarProperty Name="GIACA" ColumnName="GIACA" />
-          <ScalarProperty Name="SOLUONG" ColumnName="SOLUONG" />
-          <ScalarProperty Name="NGAYTHANHTOAN" ColumnName="NGAYTHANHTOAN" />
-          <ScalarProperty Name="TENSP" ColumnName="TENSP" />
-          <ScalarProperty Name="MA_DATHANG" ColumnName="MA_DATHANG" />
-          <ScalarProperty Name="MA_NCCAP" ColumnName="MA_NCCAP" />
           <ScalarProperty Name="MATT" ColumnName="MATT" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
-    <EntitySetMapping Name="HANGTON">
-      <EntityTypeMapping TypeName="QLKHModel.HANGTON">
-        <MappingFragment StoreEntitySet="HANGTON">
-          <ScalarProperty Name="NGAYTAO" ColumnName="NGAYTAO" />
-          <ScalarProperty Name="MOTA_HANGTON" ColumnName="MOTA_HANGTON" />
+          <ScalarProperty Name="MA_NCCAP" ColumnName="MA_NCCAP" />
+          <ScalarProperty Name="MA_DATHANG" ColumnName="MA_DATHANG" />
+          <ScalarProperty Name="LOAISP" ColumnName="LOAISP" />
+          <ScalarProperty Name="NGAYTHANHTOAN" ColumnName="NGAYTHANHTOAN" />
           <ScalarProperty Name="SOLUONG" ColumnName="SOLUONG" />
-          <ScalarProperty Name="MA_HANGTON" ColumnName="MA_HANGTON" />
-          <ScalarProperty Name="MASP" ColumnName="MASP" />
+          <ScalarProperty Name="GIATIEN" ColumnName="GIATIEN" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="KEHANG">
-      <EntityTypeMapping TypeName="QLKHModel.KEHANG">
+      <EntityTypeMapping TypeName="IsTypeOf(QLKHModel.KEHANG)">
         <MappingFragment StoreEntitySet="KEHANG">
-          <ScalarProperty Name="MOTA_KEHANG" ColumnName="MOTA_KEHANG" />
-          <ScalarProperty Name="LOAIHANG" ColumnName="LOAIHANG" />
           <ScalarProperty Name="MA_KEHANG" ColumnName="MA_KEHANG" />
+          <ScalarProperty Name="LOAISP" ColumnName="LOAISP" />
+          <ScalarProperty Name="VITRI" ColumnName="VITRI" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="NHACUNGCAP">
-      <EntityTypeMapping TypeName="QLKHModel.NHACUNGCAP">
+      <EntityTypeMapping TypeName="IsTypeOf(QLKHModel.NHACUNGCAP)">
         <MappingFragment StoreEntitySet="NHACUNGCAP">
-          <ScalarProperty Name="NGAYCAPNHAT" ColumnName="NGAYCAPNHAT" />
-          <ScalarProperty Name="NGAYTAO" ColumnName="NGAYTAO" />
-          <ScalarProperty Name="EMAIL" ColumnName="EMAIL" />
-          <ScalarProperty Name="DIACHI" ColumnName="DIACHI" />
-          <ScalarProperty Name="SDT" ColumnName="SDT" />
-          <ScalarProperty Name="LOAISP" ColumnName="LOAISP" />
-          <ScalarProperty Name="TEN_NCCAP" ColumnName="TEN_NCCAP" />
           <ScalarProperty Name="MA_NCCAP" ColumnName="MA_NCCAP" />
+          <ScalarProperty Name="TEN_NCCAP" ColumnName="TEN_NCCAP" />
+          <ScalarProperty Name="LOAISP" ColumnName="LOAISP" />
+          <ScalarProperty Name="SDT" ColumnName="SDT" />
+          <ScalarProperty Name="DIACHI" ColumnName="DIACHI" />
+          <ScalarProperty Name="EMAIL" ColumnName="EMAIL" />
+          <ScalarProperty Name="NGAYTAO" ColumnName="NGAYTAO" />
+          <ScalarProperty Name="NGAYCAPNHAT" ColumnName="NGAYCAPNHAT" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="SANPHAM">
-      <EntityTypeMapping TypeName="QLKHModel.SANPHAM">
+      <EntityTypeMapping TypeName="IsTypeOf(QLKHModel.SANPHAM)">
         <MappingFragment StoreEntitySet="SANPHAM">
-          <ScalarProperty Name="STATUS" ColumnName="STATUS" />
-          <ScalarProperty Name="GIACA" ColumnName="GIACA" />
-          <ScalarProperty Name="NGAYHETHAN" ColumnName="NGAYHETHAN" />
-          <ScalarProperty Name="NGAYCAPNHAT" ColumnName="NGAYCAPNHAT" />
-          <ScalarProperty Name="NGAYTAO" ColumnName="NGAYTAO" />
-          <ScalarProperty Name="SOLUONG" ColumnName="SOLUONG" />
-          <ScalarProperty Name="TENTOMTAT" ColumnName="TENTOMTAT" />
-          <ScalarProperty Name="TENSP" ColumnName="TENSP" />
-          <ScalarProperty Name="MA_NCCAP" ColumnName="MA_NCCAP" />
           <ScalarProperty Name="MASP" ColumnName="MASP" />
+          <ScalarProperty Name="MA_NCCAP" ColumnName="MA_NCCAP" />
+          <ScalarProperty Name="MA_KEHANG" ColumnName="MA_KEHANG" />
+          <ScalarProperty Name="TENSP" ColumnName="TENSP" />
+          <ScalarProperty Name="LOAISP" ColumnName="LOAISP" />
+          <ScalarProperty Name="TENTOMTAT" ColumnName="TENTOMTAT" />
+          <ScalarProperty Name="SOLUONG" ColumnName="SOLUONG" />
+          <ScalarProperty Name="NGAYTAO" ColumnName="NGAYTAO" />
+          <ScalarProperty Name="NGAYCAPNHAT" ColumnName="NGAYCAPNHAT" />
+          <ScalarProperty Name="NGAYHETHAN" ColumnName="NGAYHETHAN" />
+          <ScalarProperty Name="GIATIEN" ColumnName="GIATIEN" />
+          <ScalarProperty Name="TRANGTHAI" ColumnName="TRANGTHAI" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="THONGTINBAOCAO">
+      <EntityTypeMapping TypeName="IsTypeOf(QLKHModel.THONGTINBAOCAO)">
+        <MappingFragment StoreEntitySet="THONGTINBAOCAO">
+          <ScalarProperty Name="MASP" ColumnName="MASP" />
+          <ScalarProperty Name="MA_BAOCAO" ColumnName="MA_BAOCAO" />
+          <ScalarProperty Name="TENSP" ColumnName="TENSP" />
+          <ScalarProperty Name="SOLUONG" ColumnName="SOLUONG" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="THONGTINDDH">
-      <EntityTypeMapping TypeName="QLKHModel.THONGTINDDH">
+      <EntityTypeMapping TypeName="IsTypeOf(QLKHModel.THONGTINDDH)">
         <MappingFragment StoreEntitySet="THONGTINDDH">
-          <ScalarProperty Name="SOLUONG" ColumnName="SOLUONG" />
-          <ScalarProperty Name="MASP" ColumnName="MASP" />
           <ScalarProperty Name="MA_DATHANG" ColumnName="MA_DATHANG" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
-    <EntitySetMapping Name="THONGTINKEHANG">
-      <EntityTypeMapping TypeName="QLKHModel.THONGTINKEHANG">
-        <MappingFragment StoreEntitySet="THONGTINKEHANG">
-          <ScalarProperty Name="VITRI" ColumnName="VITRI" />
           <ScalarProperty Name="MASP" ColumnName="MASP" />
-          <ScalarProperty Name="MA_KEHANG" ColumnName="MA_KEHANG" />
+          <ScalarProperty Name="SOLUONG" ColumnName="SOLUONG" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
