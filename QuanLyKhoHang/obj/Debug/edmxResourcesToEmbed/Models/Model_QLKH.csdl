@@ -61,9 +61,38 @@
       <Parameter Name="new_diagramname" Mode="In" Type="String" />
     </FunctionImport>
     <FunctionImport Name="sp_upgraddiagrams1" />
+    <FunctionImport Name="sp_alterdiagram2">
+      <Parameter Name="diagramname" Mode="In" Type="String" />
+      <Parameter Name="owner_id" Mode="In" Type="Int32" />
+      <Parameter Name="version" Mode="In" Type="Int32" />
+      <Parameter Name="definition" Mode="In" Type="Binary" />
+    </FunctionImport>
+    <FunctionImport Name="sp_creatediagram2">
+      <Parameter Name="diagramname" Mode="In" Type="String" />
+      <Parameter Name="owner_id" Mode="In" Type="Int32" />
+      <Parameter Name="version" Mode="In" Type="Int32" />
+      <Parameter Name="definition" Mode="In" Type="Binary" />
+    </FunctionImport>
+    <FunctionImport Name="sp_dropdiagram2">
+      <Parameter Name="diagramname" Mode="In" Type="String" />
+      <Parameter Name="owner_id" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="sp_helpdiagramdefinition2">
+      <Parameter Name="diagramname" Mode="In" Type="String" />
+      <Parameter Name="owner_id" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="sp_helpdiagrams2">
+      <Parameter Name="diagramname" Mode="In" Type="String" />
+      <Parameter Name="owner_id" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="sp_renamediagram2">
+      <Parameter Name="diagramname" Mode="In" Type="String" />
+      <Parameter Name="owner_id" Mode="In" Type="Int32" />
+      <Parameter Name="new_diagramname" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="sp_upgraddiagrams2" />
     <EntitySet Name="BANBAOCAO" EntityType="QLKHModel.BANBAOCAO" />
     <EntitySet Name="DONDATHANG" EntityType="QLKHModel.DONDATHANG" />
-    <EntitySet Name="DONTHANHTOAN" EntityType="QLKHModel.DONTHANHTOAN" />
     <EntitySet Name="KEHANG" EntityType="QLKHModel.KEHANG" />
     <EntitySet Name="NHACUNGCAP" EntityType="QLKHModel.NHACUNGCAP" />
     <EntitySet Name="SANPHAM" EntityType="QLKHModel.SANPHAM" />
@@ -77,17 +106,9 @@
       <End Role="NHACUNGCAP" EntitySet="NHACUNGCAP" />
       <End Role="DONDATHANG" EntitySet="DONDATHANG" />
     </AssociationSet>
-    <AssociationSet Name="FK_DONTHANH_KIEMTRA_DONDATHA" Association="QLKHModel.FK_DONTHANH_KIEMTRA_DONDATHA">
-      <End Role="DONDATHANG" EntitySet="DONDATHANG" />
-      <End Role="DONTHANHTOAN" EntitySet="DONTHANHTOAN" />
-    </AssociationSet>
     <AssociationSet Name="FK_THONGTIN_THONGTIND_DONDATHA" Association="QLKHModel.FK_THONGTIN_THONGTIND_DONDATHA">
       <End Role="DONDATHANG" EntitySet="DONDATHANG" />
       <End Role="THONGTINDDH" EntitySet="THONGTINDDH" />
-    </AssociationSet>
-    <AssociationSet Name="FK_DONTHANH_DUARA_NHACUNGC" Association="QLKHModel.FK_DONTHANH_DUARA_NHACUNGC">
-      <End Role="NHACUNGCAP" EntitySet="NHACUNGCAP" />
-      <End Role="DONTHANHTOAN" EntitySet="DONTHANHTOAN" />
     </AssociationSet>
     <AssociationSet Name="FK_SANPHAM_LUUTRU_KEHANG" Association="QLKHModel.FK_SANPHAM_LUUTRU_KEHANG">
       <End Role="KEHANG" EntitySet="KEHANG" />
@@ -133,24 +154,8 @@
     <Property Name="MA_NCCAP" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="false" />
     <Property Name="LOAISP" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
     <Property Name="NGAY_DATHANG" Type="DateTime" Precision="3" />
-    <Property Name="GIATIEN" Type="Decimal" Precision="18" Scale="0" />
     <NavigationProperty Name="NHACUNGCAP" Relationship="QLKHModel.FK_DONDATHA_LAY_NHACUNGC" FromRole="DONDATHANG" ToRole="NHACUNGCAP" />
-    <NavigationProperty Name="DONTHANHTOAN" Relationship="QLKHModel.FK_DONTHANH_KIEMTRA_DONDATHA" FromRole="DONDATHANG" ToRole="DONTHANHTOAN" />
     <NavigationProperty Name="THONGTINDDH" Relationship="QLKHModel.FK_THONGTIN_THONGTIND_DONDATHA" FromRole="DONDATHANG" ToRole="THONGTINDDH" />
-  </EntityType>
-  <EntityType Name="DONTHANHTOAN">
-    <Key>
-      <PropertyRef Name="MATT" />
-    </Key>
-    <Property Name="MATT" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="false" />
-    <Property Name="MA_NCCAP" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="false" />
-    <Property Name="MA_DATHANG" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="false" />
-    <Property Name="LOAISP" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
-    <Property Name="NGAYTHANHTOAN" Type="DateTime" Precision="3" />
-    <Property Name="SOLUONG" Type="Int32" />
-    <Property Name="GIATIEN" Type="Decimal" Precision="18" Scale="0" />
-    <NavigationProperty Name="DONDATHANG" Relationship="QLKHModel.FK_DONTHANH_KIEMTRA_DONDATHA" FromRole="DONTHANHTOAN" ToRole="DONDATHANG" />
-    <NavigationProperty Name="NHACUNGCAP" Relationship="QLKHModel.FK_DONTHANH_DUARA_NHACUNGC" FromRole="DONTHANHTOAN" ToRole="NHACUNGCAP" />
   </EntityType>
   <EntityType Name="KEHANG">
     <Key>
@@ -174,7 +179,6 @@
     <Property Name="NGAYTAO" Type="DateTime" Precision="3" />
     <Property Name="NGAYCAPNHAT" Type="DateTime" Precision="3" />
     <NavigationProperty Name="DONDATHANG" Relationship="QLKHModel.FK_DONDATHA_LAY_NHACUNGC" FromRole="NHACUNGCAP" ToRole="DONDATHANG" />
-    <NavigationProperty Name="DONTHANHTOAN" Relationship="QLKHModel.FK_DONTHANH_DUARA_NHACUNGC" FromRole="NHACUNGCAP" ToRole="DONTHANHTOAN" />
     <NavigationProperty Name="SANPHAM" Relationship="QLKHModel.FK_SANPHAM_CUNGCAP_NHACUNGC" FromRole="NHACUNGCAP" ToRole="SANPHAM" />
   </EntityType>
   <EntityType Name="SANPHAM">
@@ -182,8 +186,8 @@
       <PropertyRef Name="MASP" />
     </Key>
     <Property Name="MASP" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="false" />
-    <Property Name="MA_NCCAP" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="false" />
     <Property Name="MA_KEHANG" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="false" />
+    <Property Name="MA_NCCAP" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="false" />
     <Property Name="TENSP" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
     <Property Name="LOAISP" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
     <Property Name="TENTOMTAT" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
@@ -245,18 +249,6 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK_DONTHANH_KIEMTRA_DONDATHA">
-    <End Type="QLKHModel.DONDATHANG" Role="DONDATHANG" Multiplicity="1" />
-    <End Type="QLKHModel.DONTHANHTOAN" Role="DONTHANHTOAN" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="DONDATHANG">
-        <PropertyRef Name="MA_DATHANG" />
-      </Principal>
-      <Dependent Role="DONTHANHTOAN">
-        <PropertyRef Name="MA_DATHANG" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
   <Association Name="FK_THONGTIN_THONGTIND_DONDATHA">
     <End Type="QLKHModel.DONDATHANG" Role="DONDATHANG" Multiplicity="1" />
     <End Type="QLKHModel.THONGTINDDH" Role="THONGTINDDH" Multiplicity="*" />
@@ -266,18 +258,6 @@
       </Principal>
       <Dependent Role="THONGTINDDH">
         <PropertyRef Name="MA_DATHANG" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="FK_DONTHANH_DUARA_NHACUNGC">
-    <End Type="QLKHModel.NHACUNGCAP" Role="NHACUNGCAP" Multiplicity="1" />
-    <End Type="QLKHModel.DONTHANHTOAN" Role="DONTHANHTOAN" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="NHACUNGCAP">
-        <PropertyRef Name="MA_NCCAP" />
-      </Principal>
-      <Dependent Role="DONTHANHTOAN">
-        <PropertyRef Name="MA_NCCAP" />
       </Dependent>
     </ReferentialConstraint>
   </Association>

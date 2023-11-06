@@ -11,8 +11,7 @@ namespace QuanLyKhoHang.Models
 {
     using System;
     using System.Collections.Generic;
-    using System.ComponentModel.DataAnnotations;
-
+    
     public partial class SANPHAM
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
@@ -21,9 +20,10 @@ namespace QuanLyKhoHang.Models
             this.THONGTINBAOCAO = new HashSet<THONGTINBAOCAO>();
             this.THONGTINDDH = new HashSet<THONGTINDDH>();
         }
+    
         public string MASP { get; set; }
-        public string MA_NCCAP { get; set; }
         public string MA_KEHANG { get; set; }
+        public string MA_NCCAP { get; set; }
         public string TENSP { get; set; }
         public string LOAISP { get; set; }
         public string TENTOMTAT { get; set; }

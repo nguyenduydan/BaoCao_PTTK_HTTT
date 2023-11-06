@@ -31,20 +31,23 @@ namespace QuanLyKhoHang.Controllers
                 sanpham.NGAYCAPNHAT = DateTime.Now;
                 sanpham.TENTOMTAT = Xstring.Str_Slug(sanpham.TENSP);
                 sanpham.TRANGTHAI = 1;
+
                 NHACUNGCAP ncc = db.NHACUNGCAP.Where(x => x.MA_NCCAP == sanpham.MA_NCCAP).FirstOrDefault();
-                KEHANG kehang = db.KEHANG.FirstOrDefault(x => x.LOAISP == sanpham.LOAISP);
                 if (ncc != null)
                 {
-                    sanpham.LOAISP = ncc.LOAISP;
+                    sanpham.LOAISP = ncc.LOAISP; // Đảm bảo LOAISP của sản phẩm là LOAISP của nhà cung cấp
+                    KEHANG kehang = db.KEHANG.FirstOrDefault(x => x.LOAISP == ncc.LOAISP);
+                    if (kehang != null)
+                    {
+                        sanpham.MA_KEHANG = kehang.MA_KEHANG; // Đặt MA_KEHANG của sản phẩm bằng MA_KEHANG của kệ hàng có cùng LOAISP
+                    }
                 }
-                if (kehang != null)
-                {
-                    sanpham.MA_KEHANG = kehang.MA_KEHANG;
-                }    
+
                 db.SANPHAM.Add(sanpham);
                 db.SaveChanges();
                 return RedirectToAction("Add");
             }
+
             ViewBag.listncc = new SelectList(db.NHACUNGCAP, "MA_NCCAP", "TEN_NCCAP");
             return View(sanpham);
         }
@@ -115,25 +118,5 @@ namespace QuanLyKhoHang.Controllers
             return View(ncc);
         }
 
-        //bill
-        public ActionResult Bill()
-        {
-            return View();
-        }
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Bill(DONTHANHTOAN bill)
-        {
-            
-            if (ModelState.IsValid)
-            {
-                bill.NGAYTHANHTOAN = DateTime.Now;
-                db.DONTHANHTOAN.Add(bill);
-                db.SaveChanges();
-                return RedirectToAction("Index");
-                
-            }
-            return View(bill);
-        }
     }
 }

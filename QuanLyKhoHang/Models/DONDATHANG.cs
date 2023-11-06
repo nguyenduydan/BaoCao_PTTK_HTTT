@@ -17,7 +17,6 @@ namespace QuanLyKhoHang.Models
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public DONDATHANG()
         {
-            this.DONTHANHTOAN = new HashSet<DONTHANHTOAN>();
             this.THONGTINDDH = new HashSet<THONGTINDDH>();
         }
     
@@ -25,11 +24,8 @@ namespace QuanLyKhoHang.Models
         public string MA_NCCAP { get; set; }
         public string LOAISP { get; set; }
         public Nullable<System.DateTime> NGAY_DATHANG { get; set; }
-        public Nullable<decimal> GIATIEN { get; set; }
     
         public virtual NHACUNGCAP NHACUNGCAP { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<DONTHANHTOAN> DONTHANHTOAN { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<THONGTINDDH> THONGTINDDH { get; set; }
     }
