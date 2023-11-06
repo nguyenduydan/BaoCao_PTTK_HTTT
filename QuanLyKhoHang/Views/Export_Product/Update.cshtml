@@ -21,7 +21,6 @@
                 <th>Tên hàng hóa</th>
                 <th>Nhà cung cấp</th>
                 <th>Loại hàng hóa</th>
-                <th>Giá cả</th>
                 <th>Số lượng</th>
                 <th>Xuất</th>
             </tr>
@@ -32,7 +31,6 @@
                     <td>@Html.DisplayFor(model => item.TENSP)</td>
                     <td>@Html.DisplayFor(model => item.NHACUNGCAP.TEN_NCCAP)</td>
                     <td>@Html.DisplayFor(model => item.LOAISP)</td>
-                    <td>@Html.DisplayFor(model => item.GIACA)</td>
                     <td>@Html.DisplayFor(model => item.SOLUONG)</td>
                     <td style="position:relative">
                         <input type="checkbox" name="selectedItems" value="@item.MASP" style="position:absolute; top:50%;left:0%" />
