@@ -9,10 +9,9 @@
 		<Model ID="{CA44F081-C289-4F84-94A7-237267CCB4A2}" Loaded="No" Name="Mức Ngữ Cảnh" Type="{3D3C409C-B60D-430E-A1C4-B880653AC634}" URL="mức ngữ cảnh.bpm"/>
 		<Model Expanded="Yes" ID="{7B870A58-C1FD-468F-A41A-B2EF727B5EE0}" Loaded="No" Name="ERDQuanNiem" Type="{1E597170-9350-11D1-AB3C-0020AF71E433}" URL="../ERD/ERDQuanNiem .cdm"/>
 		<Model Expanded="Yes" ID="{7B870A58-C1FD-468F-A41A-B2EF727B5EE0}" Loaded="No" Name="ERDQuanNiem" Type="{1E597170-9350-11D1-AB3C-0020AF71E433}" URL="../ERD/ERDQuanNiem.cdm"/>
-		<Model Expanded="Yes" ID="{462A0BF3-E47C-434A-9A5C-F321E38A6B55}" Name="QLKH_LDM" Selected="Yes" Type="{5F45F978-C4F3-4E35-A3FC-AF3318663A0F}" URL="../ERD/QLKH_LDM.ldm"/>
+		<Model Expanded="Yes" ID="{462A0BF3-E47C-434A-9A5C-F321E38A6B55}" Loaded="No" Name="QLKH_LDM" Type="{5F45F978-C4F3-4E35-A3FC-AF3318663A0F}" URL="../ERD/QLKH_LDM.ldm"/>
 		<Model Expanded="Yes" ID="{E9D47FFE-DD6D-4E0A-8586-7C21F18F494A}" Loaded="No" Name="QLKH_PDM" Type="{CDE44E21-9669-11D1-9914-006097355D9B}" URL="../ERD/QLKH_PDM.pdm"/>
-		<Model Expanded="Yes" ID="{9FEFEF58-E715-437E-A024-7655663CB23A}" Loaded="No" Name="QLKH_PDM" Type="{5F45F978-C4F3-4E35-A3FC-AF3318663A0F}" URL="../ERD/QLKH_PDM.ldm"/>
-		<Model Expanded="Yes" ID="{7B870A58-C1FD-468F-A41A-B2EF727B5EE0}" Name="ERDQuanNiem" Type="{1E597170-9350-11D1-AB3C-0020AF71E433}" URL="../ERD/ERDQuanNiemf.cdm"/>
+		<Model Expanded="Yes" ID="{2EEC9FD4-016B-40FF-8F07-6E8DF08E1AEC}" Name="BusinessProcessModel_2" Selected="Yes" Type="{3D3C409C-B60D-430E-A1C4-B880653AC634}" URL="sodocap0.bpm"/>
 	</Local>
 	<BrowserModule Name="Repository"/>
 </Workspace>
