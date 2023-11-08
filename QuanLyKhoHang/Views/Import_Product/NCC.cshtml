@@ -24,6 +24,7 @@
                 <th>Số điện thoại</th>
                 <th>Địa chỉ</th>
                 <th>Email</th>
+                <th>Chức năng</th>
             </tr>
             @foreach (var item in Model)
             {
@@ -34,6 +35,10 @@
                     <td>@Html.DisplayFor(model => item.SDT)</td>
                     <td>@Html.DisplayFor(model => item.DIACHI)</td>
                     <td>@Html.DisplayFor(model => item.EMAIL)</td>
+                    <td>
+                        <a href=" @Url.Action("EditNCC","Import_Product", new { id = item.MA_NCCAP})" class="btn btn-sm btn-primary">Cập nhật</a>
+                        <a href=" @Url.Action("DeleteNCC","Import_Product", new { id = item.MA_NCCAP})" class="btn btn-sm btn-danger">Xóa</a>
+                    </td>
                 </tr>
             }
 

@@ -7,27 +7,41 @@ using Manage;
 using QuanLyKhoHang.Views.Import_Product;
 using QuanLyKhoHang.Models;
 using QuanLyKhoHang.Library;
+using System.Data.Entity;
 
 namespace QuanLyKhoHang.Controllers
 {
     public class Import_ProductController : Controller
     {
+        List<SANPHAM> sanPhamList = new List<SANPHAM>();
         private QLKHEntities1 db = new QLKHEntities1();
+
         // GET: Import_Product
         public ActionResult Add()
         {
             ViewBag.listncc = new SelectList(db.NHACUNGCAP, "MA_NCCAP", "TEN_NCCAP");
+
+            // Lấy danh sách sản phẩm từ TempData (nếu đã có)
+            List<SANPHAM> sanPhamList = TempData["SanPhamList"] as List<SANPHAM>;
+            if (sanPhamList == null)
+            {
+                sanPhamList = new List<SANPHAM>();
+                TempData["SanPhamList"] = sanPhamList;
+            }
+
+            ViewBag.sanPhamList = sanPhamList;
             return View();
         }
+
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Add(SANPHAM sanpham)
         {
             if (ModelState.IsValid)
             {
-                //thời gian tạo
+                // Thời gian tạo
                 sanpham.NGAYTAO = DateTime.Now;
-                //thời gian cập nhật
+                // Thời gian cập nhật
                 sanpham.NGAYCAPNHAT = DateTime.Now;
                 sanpham.TENTOMTAT = Xstring.Str_Slug(sanpham.TENSP);
                 sanpham.TRANGTHAI = 1;
@@ -43,12 +57,33 @@ namespace QuanLyKhoHang.Controllers
                     }
                 }
 
-                db.SANPHAM.Add(sanpham);
-                db.SaveChanges();
-                return RedirectToAction("Add");
-            }
+                // Lấy danh sách sản phẩm từ TempData
+                List<SANPHAM> sanPhamList = TempData["SanPhamList"] as List<SANPHAM>;
+                if (sanPhamList == null)
+                {
+                    sanPhamList = new List<SANPHAM>();
+                }
+                // Kiểm tra trùng mã sản phẩm
+                if (sanPhamList.Any(sp => sp.MASP == sanpham.MASP) || db.SANPHAM.Any(sp => sp.MASP == sanpham.MASP))
+                {
+                    ModelState.AddModelError("MASP", "Mã sản phẩm đã có.");
+                    ViewBag.listncc = new SelectList(db.NHACUNGCAP, "MA_NCCAP", "TEN_NCCAP");
+                    ViewBag.sanPhamList = sanPhamList;
+                    return View(sanpham);
+                }
+                sanPhamList.Add(sanpham); // Thêm sản phẩm mới vào danh sách
+                TempData["SanPhamList"] = sanPhamList; // Cập nhật danh sách sản phẩm trong TempData
 
-            ViewBag.listncc = new SelectList(db.NHACUNGCAP, "MA_NCCAP", "TEN_NCCAP");
+                ViewBag.listncc = new SelectList(db.NHACUNGCAP, "MA_NCCAP", "TEN_NCCAP");
+                ViewBag.sanPhamList = sanPhamList;
+            }
+            else
+            {
+                TempData["ErrorMessage"] = "Quên nhập dữ liệu rồi kìa!!";
+                return View(sanpham);
+            }
+            db.SANPHAM.Add(sanpham);
+            db.SaveChanges();
             return View(sanpham);
         }
 
@@ -65,11 +100,67 @@ namespace QuanLyKhoHang.Controllers
             {
                 ncc.NGAYTAO = DateTime.Now;
                 ncc.NGAYCAPNHAT = DateTime.Now;
-                db.NHACUNGCAP.Add(ncc);
-                db.SaveChanges();
-                return RedirectToAction("Add");
             }
+            else
+            {
+                TempData["ErrorMessage"] = "Quên nhập dữ liệu rồi kìa!!";
+                return View(ncc);
+            }
+            db.NHACUNGCAP.Add(ncc);
+            db.SaveChanges();
             return View(ncc);
+        }
+
+        public ActionResult EditNCC(string id)
+        {
+            // Tìm nhà cung cấp dựa trên ID trong cơ sở dữ liệu
+            var ncc = db.NHACUNGCAP.Find(id);
+
+            if (ncc == null)
+            {
+                return HttpNotFound(); // Hoặc thực hiện xử lý khi không tìm thấy nhà cung cấp
+            }
+
+            return View(ncc);
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult EditNCC(NHACUNGCAP ncc)
+        {
+            if (ModelState.IsValid)
+            {
+                // Cập nhật thông tin nhà cung cấp trong cơ sở dữ liệu
+                db.Entry(ncc).State = EntityState.Modified;
+                ncc.NGAYCAPNHAT = DateTime.Now; // Cập nhật ngày cập nhật
+
+                db.SaveChanges();
+                return RedirectToAction("NCC");
+            }
+
+            return View(ncc);
+        }
+
+        //Xóa nhà cung cấp
+        public ActionResult DeleteNCC(string id)
+        {
+            var ncc = db.NHACUNGCAP.Find(id);
+
+            if (ncc == null)
+            {
+                return HttpNotFound();
+            }
+            bool hasAssociatedProducts = db.SANPHAM.Any(sp => sp.MA_NCCAP == id);
+
+            if (hasAssociatedProducts)
+            {
+                ModelState.AddModelError("", "Không thể xóa nhà cung cấp vì nhà cung cấp đang liên kết với bảng sản phẩm.");
+                return RedirectToAction("NCC");
+            }
+            db.NHACUNGCAP.Remove(ncc);
+            db.SaveChanges();
+
+            return RedirectToAction("NCC");
         }
 
         // Kệ hàng
@@ -95,6 +186,7 @@ namespace QuanLyKhoHang.Controllers
             }
             return View(kh);
         }
+        
         //Nhà cung cấp
         public ActionResult NCC(int page = 1, int pageSize = 10)
         {
@@ -114,7 +206,6 @@ namespace QuanLyKhoHang.Controllers
             ViewBag.PageSize = pageSize;
             ViewBag.TotalItems = totalItems;
             ViewBag.TotalPages = totalPages;
-
             return View(ncc);
         }
 

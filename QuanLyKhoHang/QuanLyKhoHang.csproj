@@ -275,6 +275,7 @@
     <Content Include="Views\Import_Product\NCC.cshtml" />
     <Content Include="Views\Import_Product\Kehang.cshtml" />
     <Content Include="Views\Manage_Product\Edit.cshtml" />
+    <Content Include="Views\Import_Product\EditNCC.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

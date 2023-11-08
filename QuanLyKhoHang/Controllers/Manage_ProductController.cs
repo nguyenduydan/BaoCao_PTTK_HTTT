@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data.Entity;
+using System.Data.Entity.Core.Common.CommandTrees.ExpressionBuilder;
 using System.Data.Entity.Validation;
 using System.Linq;
 using System.Net;
@@ -145,6 +146,7 @@ namespace QuanLyKhoHang.Controllers
         {
             var searchType = Request.Form["SearchType"].ToString();
             var product = from m in db.SANPHAM
+                          where m.TRANGTHAI != 0
                           select m;
 
             if (!string.IsNullOrEmpty(searchString))
@@ -170,19 +172,92 @@ namespace QuanLyKhoHang.Controllers
             {
                 ViewBag.Message = "Không tìm thấy sản phẩm";
             }
+            // Lưu trữ thông tin tìm kiếm trong TempData
+            TempData["SearchString"] = searchString;
+            TempData["SearchType"] = searchType;
             return View(product);
         }
 
+        public ActionResult Export_Product(string ProductId)
+        {
+            var sanpham = db.SANPHAM.FirstOrDefault(p => p.MASP == ProductId);
+            sanpham.TRANGTHAI = 0;
+            db.SaveChanges();
+            var product = from m in db.SANPHAM
+                          where m.TRANGTHAI != 0
+                          select m;
+            // Lấy thông tin tìm kiếm từ TempData
+            var searchString = TempData["SearchString"]?.ToString();
+            var searchType = TempData["SearchType"]?.ToString();
+            if (!string.IsNullOrEmpty(searchString))
+            {
+                if (searchType == "tensp")
+                {
+                    product = product.Where(s => s.TENSP.Contains(searchString));
+                }
+                else if (searchType == "loaihang")
+                {
+                    product = product.Where(s => s.NHACUNGCAP.LOAISP.Contains(searchString));
+                }
+                else if (searchType == "tennhacc")
+                {
+                    product = product.Where(s => s.NHACUNGCAP.TEN_NCCAP.Contains(searchString));
+                }
+                else
+                {
+                    ViewBag.Message = "Loại tra cứu không hợp lệ";
+                }
+            }
+            else
+            {
+                ViewBag.Message = "Không tìm thấy sản phẩm";
+            }
+            return View("Search", product);
+        }
 
         //Báo cáo
-        public ActionResult Report()
+        public string MABC()
         {
-            List<SANPHAM> products = db.SANPHAM.ToList();
+            string baocao = $"{DateTime.Now.Day}{DateTime.Now.Month}{DateTime.Now.Year}";
+            return baocao;
+        }
+        
+        public ActionResult Report(string a = "")
+        {
+            string ma = MABC();
+            if (db.BANBAOCAO.Where(p => p.MA_BAOCAO == ma).ToList().Count() == 0)
+            {
+                //Nhập dữ liệu cho banbaocao
+                BANBAOCAO bANBAOCAO = new BANBAOCAO();
+                bANBAOCAO.MA_BAOCAO = ma;
+                bANBAOCAO.NGAYBAOCAO = DateTime.Now;
+                db.BANBAOCAO.Add(bANBAOCAO);
+                db.SaveChanges();
+                var list = db.SANPHAM.Where(p => p.TRANGTHAI == 2).ToList();
+                for (int i = 0; i < list.Count(); i++)
+                {
+                    //nhập dữ liệu cho bảng thongtinbaocao
+                    THONGTINBAOCAO tHONGTINBAOCAO = new THONGTINBAOCAO();
+                    tHONGTINBAOCAO.MASP = list[i].MASP;
+                    tHONGTINBAOCAO.SOLUONG = list[i].SOLUONG;
+                    tHONGTINBAOCAO.TENSP = list[i].TENSP;
+                    tHONGTINBAOCAO.MA_BAOCAO = ma;
+                    db.THONGTINBAOCAO.Add(tHONGTINBAOCAO);
+                    db.SaveChanges();
+                }
+                return View(db.THONGTINBAOCAO.Where(p => p.MA_BAOCAO == ma).ToList());
 
-            return View(products);
+            }
+            else return View(db.THONGTINBAOCAO.Where(p => p.MA_BAOCAO == ma).ToList());
+        }
+        public ActionResult Thongke()
+        {
+            string ma = MABC();
+            var dataFromDatabase = db.THONGTINBAOCAO.ToList();
+            var result = dataFromDatabase.Where(p => p.MA_BAOCAO == ma).Select(item => new object[] { item.TENSP, item.SOLUONG }).ToList();
+            return Json(result, JsonRequestBehavior.AllowGet);
         }
     }
-    
 }
 
 

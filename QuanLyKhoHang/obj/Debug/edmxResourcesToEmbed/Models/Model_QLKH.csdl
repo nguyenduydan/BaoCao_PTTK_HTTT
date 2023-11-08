@@ -152,7 +152,6 @@
     </Key>
     <Property Name="MA_DATHANG" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="false" />
     <Property Name="MA_NCCAP" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="false" />
-    <Property Name="LOAISP" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
     <Property Name="NGAY_DATHANG" Type="DateTime" Precision="3" />
     <NavigationProperty Name="NHACUNGCAP" Relationship="QLKHModel.FK_DONDATHA_LAY_NHACUNGC" FromRole="DONDATHANG" ToRole="NHACUNGCAP" />
     <NavigationProperty Name="THONGTINDDH" Relationship="QLKHModel.FK_THONGTIN_THONGTIND_DONDATHA" FromRole="DONDATHANG" ToRole="THONGTINDDH" />

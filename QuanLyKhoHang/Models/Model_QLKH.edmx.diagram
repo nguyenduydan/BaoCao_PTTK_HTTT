@@ -6,7 +6,7 @@
     <edmx:Diagrams>
       <Diagram DiagramId="a354dd0039754e3297540cba04a54b38" Name="Diagram1" ZoomLevel="109">
         <EntityTypeShape EntityType="QLKHModel.BANBAOCAO" Width="1.5" PointX="3" PointY="0.875" />
-        <EntityTypeShape EntityType="QLKHModel.DONDATHANG" Width="1.5" PointX="3" PointY="9.625" />
+        <EntityTypeShape EntityType="QLKHModel.DONDATHANG" Width="1.5" PointX="3" PointY="9.25" />
         <EntityTypeShape EntityType="QLKHModel.KEHANG" Width="1.5" PointX="0.75" PointY="0.75" />
         <EntityTypeShape EntityType="QLKHModel.NHACUNGCAP" Width="1.5" PointX="0.75" PointY="4.125" />
         <EntityTypeShape EntityType="QLKHModel.SANPHAM" Width="1.5" PointX="3" PointY="3.5" />

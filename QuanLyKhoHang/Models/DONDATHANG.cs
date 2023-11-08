@@ -22,7 +22,6 @@ namespace QuanLyKhoHang.Models
     
         public string MA_DATHANG { get; set; }
         public string MA_NCCAP { get; set; }
-        public string LOAISP { get; set; }
         public Nullable<System.DateTime> NGAY_DATHANG { get; set; }
     
         public virtual NHACUNGCAP NHACUNGCAP { get; set; }
