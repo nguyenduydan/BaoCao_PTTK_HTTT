@@ -8,12 +8,25 @@
 }
 @section Style{
     <link rel="Stylesheet" href="~/Content/Import.css" />
+    <link rel="Stylesheet" href="~/Content/Home.css" />
 }
 <div class=" position-relative" style="
     height: 100%;
     top: -40px;">
     <div class="margin info" style="padding-top:40px">
         <div class="m"><h3>Nhập kệ hàng</h3></div>
+        @if (TempData["ErrorMessage"] != null)
+        {
+            <div class="alert alert-danger" role="alert">
+                @TempData["ErrorMessage"]
+            </div>
+        }
+        @if (TempData["SuccessMessage"] != null)
+        {
+            <div class="alert alert-success" role="alert">
+                @TempData["SuccessMessage"]
+            </div>
+        }
         <div class="d-flex align-items-start">
             @using (Html.BeginForm())
             {
@@ -51,22 +64,29 @@
                     </div>
                 </div>
             }
-            <div class="margin info my-4 mx-4 px-5"  style="padding-top:40px; 
+
+
+            <div class="margin info my-4 mx-4 px-5" style="padding-top:40px;
                                                   border:5px solid; border-radius:1rem">
                 <h4 class="fw-bold text-info">Danh sách kệ hàng</h4>
-                <table  class="text-center table" >
+                <table class="text-center table">
                     <tr>
                         <th>Mã kệ hàng</th>
                         <th>Loại sản phẩm</th>
                         <th>Vị trí kệ</th>
                     </tr>
-                    @foreach (var item in ViewBag.KeHangList)
-                    {
-                        <tr>
-                            <td>@item.MA_KEHANG</td>
-                            <td>@item.LOAISP</td>
-                            <td>@item.VITRI</td>
-                        </tr>
+                    @{
+                        if (ViewBag.KeHangList != null)
+                        {
+                            foreach (var item in ViewBag.KeHangList)
+                            {
+                                <tr>
+                                    <td>@item.MA_KEHANG</td>
+                                    <td>@item.LOAISP</td>
+                                    <td>@item.VITRI</td>
+                                </tr>
+                            }
+                        }
                     }
                 </table>
             </div>

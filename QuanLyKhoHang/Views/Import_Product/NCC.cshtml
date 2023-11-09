@@ -10,10 +10,23 @@
 }
 @section Style{
     <link rel="Stylesheet" href="~/Content/Import.css" />
+    <link rel="Stylesheet" href="~/Content/Home.css" />
 }
 <div class="margin">
-    <div class="d-flex align-items-center m">
-        <h3>Nhà Cung Cấp</h3>
+    <div class="margin info" style="padding-top:40px">
+        <div class="m"><h3>Cập nhật nhà cung cấp</h3></div>
+        @if (TempData["ErrorMessage"] != null)
+        {
+            <div class="alert alert-danger" role="alert">
+                @TempData["ErrorMessage"]
+            </div>
+        }
+        @if (TempData["SuccessMessage"] != null)
+        {
+            <div class="alert alert-success" role="alert">
+                @TempData["SuccessMessage"]
+            </div>
+        }
     </div>
     <div class="info-products" style="height:auto">
         <table class="table">

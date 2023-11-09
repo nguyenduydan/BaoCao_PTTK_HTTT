@@ -3,8 +3,28 @@
     ViewBag.Title = "Đơn đặt hàng";
     ViewBag.showFeature = true;
 }
+
+@functions {
+    // Phương thức để lấy tên sản phẩm từ mã sản phẩm
+    public string GetTenSanPham(string maSanPham)
+    {
+        using (var dbContext = new QuanLyKhoHang.Models.QLKHEntities1()) // Thay YourDbContext bằng tên DbContext của bạn
+        {
+            var sanPham = dbContext.SANPHAM.FirstOrDefault(s => s.MASP == maSanPham);
+
+            if (sanPham != null)
+            {
+                return sanPham.TENSP;
+            }
+        }
+
+        return "Không tìm thấy sản phẩm";
+    }
+
+}
+
 @section Style{
-    <link rel="Stylesheet" href="~/Content/Import.css" />
+    <link rel="stylesheet" href="~/Content/Import.css" />
 }
 
 <div class="margin">
@@ -12,30 +32,43 @@
         Thêm sản phẩm
     </a>
     <h3 style="text-align:center">ĐƠN ĐẶT HÀNG</h3>
-    <p class="text-center">Số: @Model.FirstOrDefault().MA_DATHANG</p>
+    <div class="text-center">
+        @{
+            var dondathang = Model.FirstOrDefault().NGAY_DATHANG;
+        }
+        @if (dondathang != null)
+        {
+            <h6>NGÀY: @dondathang.Value.ToString("dd/MM/yyyy")</h6>
+        }
+    </div>
+    <h6 class="text-center">Mã:@Model.FirstOrDefault().MA_DATHANG</h6>
     <table class="table w-50 m-auto">
         <tr class="text-center">
             <th>STT</th>
             <th>Tên sản phẩm</th>
-            <th>Tên nhà cung cấp</th>
             <th>Số lượng</th>
         </tr>
         @{
-            int a = 1;
+            int a = 0;
             foreach (var i in Model)
             {
-                <tr>
-                    <td>@a</td>
-                    <td>@Html.DisplayFor(model => i.THONGTINDDH))</td>
-                    <td>@Html.DisplayFor(model => i.NHACUNGCAP.TEN_NCCAP)</td>
-                    <td>@Html.DisplayFor(model => i.NGAY_DATHANG)</td>
-                </tr>
+                var thongTinDDH = i.THONGTINDDH.FirstOrDefault();
+                if (thongTinDDH != null)
+                {
+                    var tenSanPham = GetTenSanPham(thongTinDDH.MASP);
+                    <tr>
+                        <td>@a</td>
+                        <td>@tenSanPham</td>
+                        <td>@thongTinDDH.SOLUONG</td>
+                    </tr>
+                }
                 a++;
             }
+
         }
     </table>
-    <div class="container d-flex align-items-center justify-content-center">
-        <form class="row ">
+    <div class =" container d-flex align-items-center justify-content-center">
+        <form class="row">
             @using (Html.BeginForm("Send", "Order", FormMethod.Post))
             {
                 @Html.AntiForgeryToken()

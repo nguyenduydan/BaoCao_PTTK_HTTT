@@ -55,6 +55,11 @@ namespace QuanLyKhoHang.Controllers
                     {
                         sanpham.MA_KEHANG = kehang.MA_KEHANG; // Đặt MA_KEHANG của sản phẩm bằng MA_KEHANG của kệ hàng có cùng LOAISP
                     }
+                    else
+                    {
+                        TempData["ErrorMessage"] = "Không có kệ hàng";
+                        return RedirectToAction("Kehang");
+                    }
                 }
 
                 // Lấy danh sách sản phẩm từ TempData
@@ -73,7 +78,7 @@ namespace QuanLyKhoHang.Controllers
                 }
                 sanPhamList.Add(sanpham); // Thêm sản phẩm mới vào danh sách
                 TempData["SanPhamList"] = sanPhamList; // Cập nhật danh sách sản phẩm trong TempData
-
+                TempData["SuccessMessage"] = "Thêm dữ liệu thành công.";
                 ViewBag.listncc = new SelectList(db.NHACUNGCAP, "MA_NCCAP", "TEN_NCCAP");
                 ViewBag.sanPhamList = sanPhamList;
             }
@@ -84,6 +89,7 @@ namespace QuanLyKhoHang.Controllers
             }
             db.SANPHAM.Add(sanpham);
             db.SaveChanges();
+            TempData["SuccessMessage"] = "Thêm dữ liệu thành công.";
             return View(sanpham);
         }
 
@@ -108,6 +114,7 @@ namespace QuanLyKhoHang.Controllers
             }
             db.NHACUNGCAP.Add(ncc);
             db.SaveChanges();
+            TempData["SuccessMessage"] = "Thêm dữ liệu thành công.";
             return View(ncc);
         }
 
@@ -118,7 +125,8 @@ namespace QuanLyKhoHang.Controllers
 
             if (ncc == null)
             {
-                return HttpNotFound(); // Hoặc thực hiện xử lý khi không tìm thấy nhà cung cấp
+                TempData["ErrorMessage"] = "Không tìm thấy dữ liệu!!";
+                return View(ncc); ; // Hoặc thực hiện xử lý khi không tìm thấy nhà cung cấp
             }
 
             return View(ncc);
@@ -133,12 +141,15 @@ namespace QuanLyKhoHang.Controllers
                 // Cập nhật thông tin nhà cung cấp trong cơ sở dữ liệu
                 db.Entry(ncc).State = EntityState.Modified;
                 ncc.NGAYCAPNHAT = DateTime.Now; // Cập nhật ngày cập nhật
-
-                db.SaveChanges();
-                return RedirectToAction("NCC");
             }
-
-            return View(ncc);
+            else
+            {
+                TempData["ErrorMessage"] = "Cập nhật thất bại!";
+                return View(ncc);
+            }
+            db.SaveChanges();
+            TempData["SuccessMessage"] = "Cập nhật dữ liệu thành công.";
+            return RedirectToAction("NCC");
         }
 
         //Xóa nhà cung cấp
@@ -177,13 +188,18 @@ namespace QuanLyKhoHang.Controllers
         {
             if (ModelState.IsValid)
             {
-                db.KEHANG.Add(kh);
-                db.SaveChanges();
-
                 var keHangList = db.KEHANG.ToList();        // Lấy lại danh sách kệ hàng từ cơ sở dữ liệu sau khi thêm mới
                 ViewBag.KeHangList = keHangList;            // Đưa danh sách vào ViewBag để truyền sang View
-                return RedirectToAction("Kehang");
+
             }
+            else
+            {
+                TempData["ErrorMessage"] = "Quên nhập dữ liệu rồi kìa!!";
+                return View(kh);
+            }
+            db.KEHANG.Add(kh);
+            db.SaveChanges();
+            TempData["SuccessMessage"] = "Thêm dữ liệu thành công.";
             return View(kh);
         }
         

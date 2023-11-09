@@ -221,7 +221,7 @@ namespace QuanLyKhoHang.Controllers
             string baocao = $"{DateTime.Now.Day}{DateTime.Now.Month}{DateTime.Now.Year}";
             return baocao;
         }
-        
+
         public ActionResult Report(string a = "")
         {
             string ma = MABC();
