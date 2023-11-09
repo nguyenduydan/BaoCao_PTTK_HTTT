@@ -1,0 +1,99 @@
+﻿@{
+    ViewBag.Title = "Đăng nhập";
+    ViewBag.showFeature = false;
+    ViewBag.IsAuthenticated = true;
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js" integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script type="text/javascript">
+        //Show password
+        $(document).ready(function () {
+            var show = $("#show").hide();
+            var pass = $('.form input[type = password]');
+            var inputType = pass.attr('type');
+            pass.on('input change', function () {
+                var value = $(this).val();
+                console.log(inputType)
+                if (value === '') {
+                    show.hide();
+                    inputType = pass.attr('type', 'password');
+                    inputType = pass.attr('type');
+                } else {
+                    show.show();
+                    if (inputType === 'password') {
+                        show.children('svg:nth-child(2)').hide();
+                        show.children('svg:nth-child(1)').show();
+                    } else {
+                        show.children('svg:nth-child(1)').hide();
+                        show.children('svg:nth-child(2)').show();
+                    }
+                }
+            });
+            show.click(function () {
+                if (inputType === 'password') {
+                    inputType = pass.attr('type', 'text');
+                    show.children('svg:nth-child(1)').hide();
+                    show.children('svg:nth-child(2)').show();
+                } else {
+                    inputType = pass.attr('type', 'password');
+                    show.children('svg:nth-child(2)').hide();
+                    show.children('svg:nth-child(1)').show();
+                }
+                inputType = pass.attr('type');
+            });
+        });
+
+
+        $(function () {
+            var container = $('#login-container')
+            var login = $('#features-container > a button').hide()
+            $('#login > svg').click(function () {
+                container.hide()
+                login.show()
+            })
+        })
+    </script>
+}
+
+@section Style{
+    <link rel="Stylesheet" href="~/Content/Login.css" />
+}
+
+<div id="login-container">
+    <div id="login">
+        <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 32 32" fill="none">
+            <path d="M16 31C24.25 31 31 24.25 31 16C31 7.75 24.25 1 16 1C7.75 1 1 7.75 1 16C1 24.25 7.75 31 16 31Z" stroke="#292D32" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+            <path d="M11.7549 20.2449L20.2449 11.755" stroke="#292D32" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+            <path d="M20.2449 20.2449L11.7549 11.755" stroke="#292D32" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+        </svg>
+        <h2>Đăng nhập</h2>
+        <form method="post">
+            <div>
+                <span>Tên đăng nhập</span>
+                <input class="form" type="text" placeholder="Nhập tên đăng nhập..." />
+            </div>
+            <div>
+                <span>Mật khẩu</span>
+                <div class="form">
+                    <input type="password" placeholder="Nhập mật khẩu..." />
+                    <div id="show">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="26" height="24" viewBox="0 0 26 24" fill="none">
+                            <path d="M9.35154 14.652C8.87361 13.8943 8.604 12.977 8.604 11.9934C8.604 9.36133 10.5647 7.2345 12.9912 7.2345C15.4176 7.2345 17.3784 9.36133 17.3784 11.9934C17.3784 14.6254 15.4176 16.7523 12.9912 16.7523" stroke="#6D7681" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+                            <path d="M19.8048 3.45921C17.7338 1.86405 15.4054 1 12.9912 1C8.66533 1 4.63353 3.76495 1.82719 8.55044C0.724269 10.4248 0.724269 13.5752 1.82719 15.4496C4.63353 20.235 8.66533 23 12.9912 23C17.3171 23 21.3489 20.235 24.1553 15.4496C25.2582 13.5752 25.2582 10.4248 24.1553 8.55044" stroke="#6D7681" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+                        </svg>
+                        <svg xmlns="http://www.w3.org/2000/svg" width="28" height="30" viewBox="0 0 28 30" fill="none">
+                            <path d="M17.0326 11.7111L10.9619 18.289C10.182 17.444 9.70215 16.287 9.70215 15C9.70215 12.426 11.6217 10.3461 13.9972 10.3461C15.185 10.3461 16.2528 10.8661 17.0326 11.7111Z" stroke="#6D7681" stroke-width="2.11493" stroke-linecap="round" stroke-linejoin="round" />
+                            <path d="M6.31897 22.4878C5.11922 21.3698 4.02745 19.9918 3.06765 18.3668C1.98787 16.5338 1.98787 13.4528 3.06765 11.6198C4.48335 9.21485 6.211 7.32985 8.1426 6.06885" stroke="#6D7681" stroke-width="2.11493" stroke-linecap="round" stroke-linejoin="round" />
+                            <path d="M20.9796 6.9009C18.8801 5.1849 16.4806 4.2489 13.9971 4.2489" stroke="#6D7681" stroke-width="2.11493" stroke-linecap="round" stroke-linejoin="round" />
+                            <path d="M9.70215 24.7892C11.0699 25.4132 12.5215 25.7512 13.9972 25.7512C18.2324 25.7512 22.1795 23.0472 24.927 18.3672C26.0068 16.5342 26.0068 13.4532 24.927 11.6201C24.5311 10.9441 24.0992 10.3071 23.6552 9.70911" stroke="#6D7681" stroke-width="2.11493" stroke-linecap="round" stroke-linejoin="round" />
+                            <path d="M18.2075 15.9099C17.8956 17.7429 16.5159 19.2379 14.8242 19.5759" stroke="#6D7681" stroke-width="2.11493" stroke-linecap="round" stroke-linejoin="round" />
+                            <path d="M10.9622 18.2889L2 27.9999" stroke="#6D7681" stroke-width="2.11493" stroke-linecap="round" stroke-linejoin="round" />
+                            <path d="M25.9941 2L17.032 11.711" stroke="#6D7681" stroke-width="2.11493" stroke-linecap="round" stroke-linejoin="round" />
+                        </svg>
+                    </div>
+                </div>
+
+            </div>
+            <input type="submit" value="Đăng nhập" />
+        </form>
+
+    </div>
+</div>

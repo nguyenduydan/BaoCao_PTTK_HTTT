@@ -1,0 +1,121 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title</title>
+    @Styles.Render("~/Content/css")
+    @RenderSection("Style", false)
+    @Scripts.Render("~/bundles/modernizr")
+</head>
+<body>
+    <div class="bin">
+        <div class="logo"><a class="text-danger fw-bolder p-2" href="~/Home/Index">TẠP HÓA TRINH</a></div>
+        <div class="header">
+            <form class="form">
+                <button>
+                    <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 18 18" fill="none">
+                        <path d="M8.58223 17.1645C3.85154 17.1645 0 13.3129 0 8.58223C0 3.85154 3.85154 0 8.58223 0C13.3129 0 17.1645 3.85154 17.1645 8.58223C17.1645 13.3129 13.3129 17.1645 8.58223 17.1645ZM8.58223 1.25594C4.53812 1.25594 1.25594 4.54649 1.25594 8.58223C1.25594 12.618 4.53812 15.9085 8.58223 15.9085C12.6264 15.9085 15.9085 12.618 15.9085 8.58223C15.9085 4.54649 12.6264 1.25594 8.58223 1.25594Z" fill="#292D32" fill-opacity="0.7" />
+                        <path d="M17.3741 18.0017C17.215 18.0017 17.056 17.9431 16.9304 17.8175L15.2558 16.1429C15.013 15.9001 15.013 15.4982 15.2558 15.2554C15.4986 15.0125 15.9005 15.0125 16.1433 15.2554L17.8179 16.9299C18.0607 17.1727 18.0607 17.5746 17.8179 17.8175C17.6923 17.9431 17.5332 18.0017 17.3741 18.0017Z" fill="#292D32" fill-opacity="0.7" />
+                    </svg>
+                </button>
+                <input type="text" placeholder="Tìm kiếm..." class="" />
+            </form>
+        </div>
+        <div class="side-bar">
+            <ul>
+                <li>
+                    <a href="~/Home/Index">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="35" height="35" viewBox="0 0 35 35" fill="none">
+                            <path d="M5.91032 14.0942H9.18386C12.4574 14.0942 14.0942 12.4574 14.0942 9.18386V5.91032C14.0942 2.63677 12.4574 1 9.18386 1H5.91032C2.63677 1 1 2.63677 1 5.91032V9.18386C1 12.4574 2.63677 14.0942 5.91032 14.0942Z" stroke="#787486" stroke-width="2" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round" />
+                            <path d="M25.5514 14.0942H28.825C32.0985 14.0942 33.7353 12.4574 33.7353 9.18386V5.91032C33.7353 2.63677 32.0985 1 28.825 1H25.5514C22.2779 1 20.6411 2.63677 20.6411 5.91032V9.18386C20.6411 12.4574 22.2779 14.0942 25.5514 14.0942Z" stroke="#787486" stroke-width="2" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round" />
+                            <path d="M25.5514 33.7354H28.825C32.0985 33.7354 33.7353 32.0987 33.7353 28.8251V25.5516C33.7353 22.278 32.0985 20.6413 28.825 20.6413H25.5514C22.2779 20.6413 20.6411 22.278 20.6411 25.5516V28.8251C20.6411 32.0987 22.2779 33.7354 25.5514 33.7354Z" stroke="#787486" stroke-width="2" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round" />
+                            <path d="M5.91032 33.7354H9.18386C12.4574 33.7354 14.0942 32.0987 14.0942 28.8251V25.5516C14.0942 22.278 12.4574 20.6413 9.18386 20.6413H5.91032C2.63677 20.6413 1 22.278 1 25.5516V28.8251C1 32.0987 2.63677 33.7354 5.91032 33.7354Z" stroke="#787486" stroke-width="2" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round" />
+                        </svg>
+                        <span>Trang chủ</span>
+                    </a>
+                </li>
+                @if (ViewBag.Children != null)
+                {
+                    foreach(Manage.ChildrenFeature children in ViewBag.Children)
+                    {
+                    <li>
+                        <a href="@children.Link">
+                            @Html.Raw(children.Icon)
+                            <span>@children.Text</span>
+                        </a>
+                    </li>
+                    }
+                }
+            </ul>
+            <div id="features-container">
+                <hr />
+                <span>CHỨC NĂNG</span>
+                <ul id="feature">
+                    @if (ViewBag.showFeature)
+                    {
+                        <li>
+                            <a href="~/Import_Product/Add">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="8" height="8" viewBox="0 0 8 8" fill="none">
+                                    <circle cx="4" cy="4" r="4" fill="#7AC555" />
+                                </svg>
+                                <span>Nhập hàng</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="~/Export_Product/Index">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="8" height="8" viewBox="0 0 8 8" fill="none">
+                                    <circle cx="4" cy="4" r="4" fill="#FFA500" />
+                                </svg>
+                                <span>Xuất hàng</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="~/Manage_Product/Index">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="8" height="8" viewBox="0 0 8 8" fill="none">
+                                    <circle cx="4" cy="4" r="4" fill="#76A5EA" />
+                                </svg>
+                                <span>Quản lý kho hàng</span>
+                            </a>
+                        </li>
+                    }
+                </ul>
+                @{
+                    var buttonText = ViewBag.IsAuthenticated != null ? "Đăng nhập" : "Đăng xuất";
+                }
+                <a href="~/Login/Index">@buttonText</a>
+
+            </div>
+
+        </div>
+        <div class="content">
+            @RenderBody()
+        </div>
+    </div>
+    <script>
+        var feature = document.getElementById("feature");
+        function addCheck(index = null) {
+            if (feature != null) {
+                for (var i = 0; i < feature.children.length; i++) {
+                    feature.children[i].classList.remove("checked");
+                }
+            }
+            if (index != null) { feature.children[index].classList.add("checked") }
+           
+        }
+        var localhost = window.location.pathname.split("/").filter(part => part.trim() !== '')[0];
+        switch (localhost) {
+            case "Manage_Product": addCheck(2); break;
+            case "Import_Product": addCheck(0); break;
+            case "Export_Product": addCheck(1); break;
+            default: addCheck(null);
+        }
+
+        
+
+    </script>
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    @RenderSection("scripts", required: false)
+</body>
+</html>

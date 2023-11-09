@@ -1,0 +1,69 @@
+﻿@model IEnumerable<QuanLyKhoHang.Models.SANPHAM>
+@using QuanLyKhoHang.Views.Manage_Product
+
+@{
+    var uniqueTypes = ViewBag.UniqueTypes as List<string>;
+}
+@{
+    ViewBag.Title = "Phân loại hàng hóa";
+    ManageProduct childrenFeatures = new ManageProduct();
+    ViewBag.Children = childrenFeatures.Show();
+    ViewBag.showFeature = true;
+}
+@section Style{
+    <link rel="Stylesheet" href="~/Content/Manage.css" />
+    <link rel="Stylesheet" href="~/Content/Import.css" />
+}
+<div class="classify">
+    <form class="form" method="post" action="@Url.Action("Classify", "Manage_Product")">
+        <select name="sortingOption" id="sortingOption" style="width: 400px;">
+            <option value="default">Theo loại sản phẩm</option>
+            @foreach (var type in uniqueTypes)
+            {
+                <option style="text-transform:capitalize" value="@type">@type</option>
+            }
+        </select>
+        <div class="sep"></div>
+        <input type="submit" value="Phân loại" />
+    </form>
+</div>
+
+@if (Model != null)
+{
+    <div class="margin">
+        <div class="info-products" style="height:auto">
+            <table class="table">
+                <tr>
+                    <th>Mã hàng</th>
+                    <th>Tên hàng hóa</th>
+                    <th>Loại hàng hóa</th>
+                    <th>Giá cả</th>
+                    <th>Số lượng</th>
+                </tr>
+                @foreach (var product in Model)
+                {
+                    <tr>
+                        <td>@product.MASP</td>
+                        <td>@product.TENSP</td>
+                        <td>@product.NHACUNGCAP.LOAISP</td>
+                        <td>@product.GIATIEN</td>
+                        <td>@product.SOLUONG</td>
+                    </tr>
+                }
+            </table>
+        </div>
+        <!-- Hiển thị phân trang -->
+        <div class="d-flex mt-2  justify-content-center">
+            <div class="pagination">
+                @if (ViewBag.TotalPages > 1)
+                {
+
+                    for (int i = 1; i <= ViewBag.TotalPages; i++)
+                    {
+                        <a class="@(i == ViewBag.Page ? "active" : "") btn btn-sm btn-outline-success fs-5 px-2 py-1" href="@Url.Action("Index", new { page = i, pageSize = ViewBag.PageSize })">@i</a>
+                    }
+                }
+            </div>
+        </div>
+    </div>
+}

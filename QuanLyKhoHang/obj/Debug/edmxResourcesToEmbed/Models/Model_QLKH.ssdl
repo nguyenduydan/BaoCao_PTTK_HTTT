@@ -1,0 +1,196 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="QLKHModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2012" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityContainer Name="QLKHModelStoreContainer">
+    <EntitySet Name="BANBAOCAO" EntityType="QLKHModel.Store.BANBAOCAO" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="DONDATHANG" EntityType="QLKHModel.Store.DONDATHANG" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="KEHANG" EntityType="QLKHModel.Store.KEHANG" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="NHACUNGCAP" EntityType="QLKHModel.Store.NHACUNGCAP" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="SANPHAM" EntityType="QLKHModel.Store.SANPHAM" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="THONGTINBAOCAO" EntityType="QLKHModel.Store.THONGTINBAOCAO" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="THONGTINDDH" EntityType="QLKHModel.Store.THONGTINDDH" store:Type="Tables" Schema="dbo" />
+    <AssociationSet Name="FK_THONGTIN_THONGTINB_BANBAOCA" Association="QLKHModel.Store.FK_THONGTIN_THONGTINB_BANBAOCA">
+      <End Role="BANBAOCAO" EntitySet="BANBAOCAO" />
+      <End Role="THONGTINBAOCAO" EntitySet="THONGTINBAOCAO" />
+    </AssociationSet>
+    <AssociationSet Name="FK_DONDATHA_LAY_NHACUNGC" Association="QLKHModel.Store.FK_DONDATHA_LAY_NHACUNGC">
+      <End Role="NHACUNGCAP" EntitySet="NHACUNGCAP" />
+      <End Role="DONDATHANG" EntitySet="DONDATHANG" />
+    </AssociationSet>
+    <AssociationSet Name="FK_THONGTIN_THONGTIND_DONDATHA" Association="QLKHModel.Store.FK_THONGTIN_THONGTIND_DONDATHA">
+      <End Role="DONDATHANG" EntitySet="DONDATHANG" />
+      <End Role="THONGTINDDH" EntitySet="THONGTINDDH" />
+    </AssociationSet>
+    <AssociationSet Name="FK_SANPHAM_LUUTRU_KEHANG" Association="QLKHModel.Store.FK_SANPHAM_LUUTRU_KEHANG">
+      <End Role="KEHANG" EntitySet="KEHANG" />
+      <End Role="SANPHAM" EntitySet="SANPHAM" />
+    </AssociationSet>
+    <AssociationSet Name="FK_SANPHAM_CUNGCAP_NHACUNGC" Association="QLKHModel.Store.FK_SANPHAM_CUNGCAP_NHACUNGC">
+      <End Role="NHACUNGCAP" EntitySet="NHACUNGCAP" />
+      <End Role="SANPHAM" EntitySet="SANPHAM" />
+    </AssociationSet>
+    <AssociationSet Name="FK_THONGTIN_THONGTINB_SANPHAM" Association="QLKHModel.Store.FK_THONGTIN_THONGTINB_SANPHAM">
+      <End Role="SANPHAM" EntitySet="SANPHAM" />
+      <End Role="THONGTINBAOCAO" EntitySet="THONGTINBAOCAO" />
+    </AssociationSet>
+    <AssociationSet Name="FK_THONGTIN_THONGTIND_SANPHAM" Association="QLKHModel.Store.FK_THONGTIN_THONGTIND_SANPHAM">
+      <End Role="SANPHAM" EntitySet="SANPHAM" />
+      <End Role="THONGTINDDH" EntitySet="THONGTINDDH" />
+    </AssociationSet>
+  </EntityContainer>
+  <EntityType Name="BANBAOCAO">
+    <Key>
+      <PropertyRef Name="MA_BAOCAO" />
+    </Key>
+    <Property Name="MA_BAOCAO" Type="varchar" Nullable="false" MaxLength="10" />
+    <Property Name="NGAYBAOCAO" Type="datetime" Nullable="true" />
+  </EntityType>
+  <EntityType Name="DONDATHANG">
+    <Key>
+      <PropertyRef Name="MA_DATHANG" />
+    </Key>
+    <Property Name="MA_DATHANG" Type="varchar" Nullable="false" MaxLength="10" />
+    <Property Name="MA_NCCAP" Type="varchar" Nullable="false" MaxLength="10" />
+    <Property Name="NGAY_DATHANG" Type="datetime" Nullable="true" />
+  </EntityType>
+  <EntityType Name="KEHANG">
+    <Key>
+      <PropertyRef Name="MA_KEHANG" />
+    </Key>
+    <Property Name="MA_KEHANG" Type="varchar" Nullable="false" MaxLength="10" />
+    <Property Name="LOAISP" Type="nvarchar" Nullable="true" MaxLength="100" />
+    <Property Name="VITRI" Type="nvarchar" Nullable="true" MaxLength="20" />
+  </EntityType>
+  <EntityType Name="NHACUNGCAP">
+    <Key>
+      <PropertyRef Name="MA_NCCAP" />
+    </Key>
+    <Property Name="MA_NCCAP" Type="varchar" Nullable="false" MaxLength="10" />
+    <Property Name="TEN_NCCAP" Type="nvarchar" Nullable="true" MaxLength="100" />
+    <Property Name="LOAISP" Type="nvarchar" Nullable="true" MaxLength="100" />
+    <Property Name="SDT" Type="decimal" Nullable="true" Precision="10" Scale="0" />
+    <Property Name="DIACHI" Type="nchar" Nullable="true" MaxLength="200" />
+    <Property Name="EMAIL" Type="nchar" Nullable="true" MaxLength="100" />
+    <Property Name="NGAYTAO" Type="datetime" Nullable="true" />
+    <Property Name="NGAYCAPNHAT" Type="datetime" Nullable="true" />
+  </EntityType>
+  <EntityType Name="SANPHAM">
+    <Key>
+      <PropertyRef Name="MASP" />
+    </Key>
+    <Property Name="MASP" Type="varchar" Nullable="false" MaxLength="10" />
+    <Property Name="MA_KEHANG" Type="varchar" Nullable="false" MaxLength="10" />
+    <Property Name="MA_NCCAP" Type="varchar" Nullable="false" MaxLength="10" />
+    <Property Name="TENSP" Type="nvarchar" Nullable="true" MaxLength="100" />
+    <Property Name="LOAISP" Type="nvarchar" Nullable="true" MaxLength="100" />
+    <Property Name="TENTOMTAT" Type="varchar" Nullable="true" MaxLength="100" />
+    <Property Name="SOLUONG" Type="int" Nullable="true" />
+    <Property Name="NGAYTAO" Type="datetime" Nullable="true" />
+    <Property Name="NGAYCAPNHAT" Type="datetime" Nullable="true" />
+    <Property Name="NGAYHETHAN" Type="datetime" Nullable="true" />
+    <Property Name="GIATIEN" Type="decimal" Nullable="true" Precision="18" Scale="0" />
+    <Property Name="TRANGTHAI" Type="tinyint" Nullable="true" />
+  </EntityType>
+  <EntityType Name="THONGTINBAOCAO">
+    <Key>
+      <PropertyRef Name="MASP" />
+      <PropertyRef Name="MA_BAOCAO" />
+    </Key>
+    <Property Name="MASP" Type="varchar" Nullable="false" MaxLength="10" />
+    <Property Name="MA_BAOCAO" Type="varchar" Nullable="false" MaxLength="10" />
+    <Property Name="TENSP" Type="nvarchar" Nullable="true" MaxLength="100" />
+    <Property Name="SOLUONG" Type="int" Nullable="true" />
+  </EntityType>
+  <EntityType Name="THONGTINDDH">
+    <Key>
+      <PropertyRef Name="MA_DATHANG" />
+      <PropertyRef Name="MASP" />
+    </Key>
+    <Property Name="MA_DATHANG" Type="varchar" Nullable="false" MaxLength="10" />
+    <Property Name="MASP" Type="varchar" Nullable="false" MaxLength="10" />
+    <Property Name="SOLUONG" Type="int" Nullable="true" />
+  </EntityType>
+  <Association Name="FK_THONGTIN_THONGTINB_BANBAOCA">
+    <End Role="BANBAOCAO" Type="QLKHModel.Store.BANBAOCAO" Multiplicity="1" />
+    <End Role="THONGTINBAOCAO" Type="QLKHModel.Store.THONGTINBAOCAO" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="BANBAOCAO">
+        <PropertyRef Name="MA_BAOCAO" />
+      </Principal>
+      <Dependent Role="THONGTINBAOCAO">
+        <PropertyRef Name="MA_BAOCAO" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_DONDATHA_LAY_NHACUNGC">
+    <End Role="NHACUNGCAP" Type="QLKHModel.Store.NHACUNGCAP" Multiplicity="1" />
+    <End Role="DONDATHANG" Type="QLKHModel.Store.DONDATHANG" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="NHACUNGCAP">
+        <PropertyRef Name="MA_NCCAP" />
+      </Principal>
+      <Dependent Role="DONDATHANG">
+        <PropertyRef Name="MA_NCCAP" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_THONGTIN_THONGTIND_DONDATHA">
+    <End Role="DONDATHANG" Type="QLKHModel.Store.DONDATHANG" Multiplicity="1" />
+    <End Role="THONGTINDDH" Type="QLKHModel.Store.THONGTINDDH" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="DONDATHANG">
+        <PropertyRef Name="MA_DATHANG" />
+      </Principal>
+      <Dependent Role="THONGTINDDH">
+        <PropertyRef Name="MA_DATHANG" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_SANPHAM_LUUTRU_KEHANG">
+    <End Role="KEHANG" Type="QLKHModel.Store.KEHANG" Multiplicity="1" />
+    <End Role="SANPHAM" Type="QLKHModel.Store.SANPHAM" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="KEHANG">
+        <PropertyRef Name="MA_KEHANG" />
+      </Principal>
+      <Dependent Role="SANPHAM">
+        <PropertyRef Name="MA_KEHANG" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_SANPHAM_CUNGCAP_NHACUNGC">
+    <End Role="NHACUNGCAP" Type="QLKHModel.Store.NHACUNGCAP" Multiplicity="1" />
+    <End Role="SANPHAM" Type="QLKHModel.Store.SANPHAM" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="NHACUNGCAP">
+        <PropertyRef Name="MA_NCCAP" />
+      </Principal>
+      <Dependent Role="SANPHAM">
+        <PropertyRef Name="MA_NCCAP" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_THONGTIN_THONGTINB_SANPHAM">
+    <End Role="SANPHAM" Type="QLKHModel.Store.SANPHAM" Multiplicity="1" />
+    <End Role="THONGTINBAOCAO" Type="QLKHModel.Store.THONGTINBAOCAO" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="SANPHAM">
+        <PropertyRef Name="MASP" />
+      </Principal>
+      <Dependent Role="THONGTINBAOCAO">
+        <PropertyRef Name="MASP" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_THONGTIN_THONGTIND_SANPHAM">
+    <End Role="SANPHAM" Type="QLKHModel.Store.SANPHAM" Multiplicity="1" />
+    <End Role="THONGTINDDH" Type="QLKHModel.Store.THONGTINDDH" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="SANPHAM">
+        <PropertyRef Name="MASP" />
+      </Principal>
+      <Dependent Role="THONGTINDDH">
+        <PropertyRef Name="MASP" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+</Schema>

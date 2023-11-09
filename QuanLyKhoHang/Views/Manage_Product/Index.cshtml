@@ -1,0 +1,81 @@
+﻿@using QuanLyKhoHang.Views.Manage_Product
+@model IEnumerable<QuanLyKhoHang.Models.SANPHAM>
+@using Manage
+@{
+    ViewBag.Title = "Quản lý hàng hóa";
+    ManageProduct childrenFeatures = new ManageProduct();
+    ViewBag.Children = childrenFeatures.Show();
+    ViewBag.showFeature = true;
+}
+@section Style{
+    <link rel="Stylesheet" href="~/Content/Manage.css" />
+    <link rel="Stylesheet" href="~/Content/Import.css" />
+    <link rel="Stylesheet" href="~/Content/Export.css" />
+}
+@{
+    var firstItem = Model.FirstOrDefault();
+    string masp = (firstItem != null) ? firstItem.MASP : string.Empty;
+}
+@using (Html.BeginForm("Update", "Manage_Product", FormMethod.Post, new { enctype = "multipart/form-data" }))// Thay "ControllerName" bằng tên thực tế của controller
+{
+    @Html.AntiForgeryToken()
+    <div class="margin">
+        <div class="export d-flex align-items-center justify-content-between m">
+            <h3>Danh sách hàng hóa</h3>
+            <button type="submit" name="updateButton" class="btn btn-sm btn-primary py-2" style="width: 10rem">Cập nhật</button>
+        </div>
+        <div class="info-products" style="height:auto">
+            <table class="table">
+                <tr>
+                    <th>Mã hàng</th>
+                    <th>Tên sản phẩm</th>
+                    <th>Nhà cung cấp</th>
+                    <th>Loại hàng hóa</th>
+                    <th>Giá cả</th>
+                    <th>Số lượng</th>
+                    <th>Ngày nhập hàng</th>
+                    <th>Ngày hết hạn</th>
+                    <th>Trạng thái</th>
+                </tr>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>@Html.DisplayFor(model => item.MASP)</td>
+                        <td>@Html.DisplayFor(model => item.TENSP)</td>
+                        <td>@Html.DisplayFor(model => item.NHACUNGCAP.TEN_NCCAP)</td>
+                        <td>@Html.DisplayFor(model => item.LOAISP)</td>
+                        <td>@Html.DisplayFor(model => item.GIATIEN)  <span>đ</span></td>
+                        <td>@Html.DisplayFor(model => item.SOLUONG)</td>
+                        <td>@Html.DisplayFor(model => item.NGAYTAO)</td>
+                        <td>@Html.DisplayFor(model => item.NGAYHETHAN)</td>
+                        <td class="fw-bold ">
+                            @if (item.TRANGTHAI == 1)
+                            {
+                                <p class="text-success m-0">Hàng mới</p>
+                            }
+                            else if (item.TRANGTHAI == 2 || item.TRANGTHAI == 0)
+                            {
+                                <p class="text-danger m-0">Hàng tồn*</p>
+                            }
+                        </td>
+                    </tr>
+                }
+            </table>
+        </div>
+
+        <!-- Hiển thị phân trang -->
+        <div class="d-flex mt-2  justify-content-center">
+            <div class="pagination">
+                @if (ViewBag.TotalPages > 1)
+                {
+
+                    for (int i = 1; i <= ViewBag.TotalPages; i++)
+                    {
+                        <a class="@(i == ViewBag.Page ? "active" : "") btn btn-sm btn-outline-success fs-5 px-2 py-1" href="@Url.Action("Index", new { page = i, pageSize = ViewBag.PageSize })">@i</a>
+                    }
+                }
+            </div>
+        </div>
+    </div>
+}
+

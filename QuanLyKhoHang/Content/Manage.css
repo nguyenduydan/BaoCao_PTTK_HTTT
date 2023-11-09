@@ -1,0 +1,145 @@
+﻿
+
+.sep {
+    width: 2px;
+    height:27px;
+    margin:0 21px;
+    background-color: #E9E9E9;
+}
+
+.classify form{
+    margin: 28px 0 0 42px;
+    width:100%;
+    background: transparent;
+    position:relative;
+    display:flex;
+    align-items:center
+}
+
+.classify form:focus-within, .classify form:hover{
+    box-shadow:none;
+    border: 2px solid transparent;
+    background: transparent
+}
+
+.classify input {
+    position:relative;
+    width: 150px;
+    height: 56px;
+    font-size: 20px;
+    font-weight: 600;
+    border-radius: 10px;
+    border: 2px solid #5030E5;
+}
+
+
+.classify input:hover{
+    background: #5030E5;
+    color: #fff;
+}
+
+
+.classify select{
+    width: 243px;
+    height: 56px;
+    border-radius: 10px;
+    border: 2px solid #B7B7B7;
+    background: #FFF;
+    color: rgba(41, 45, 50, 0.70);
+    font-size: 20px;
+    font-weight: 600;
+    padding: 0 24px 0 27px;
+}
+
+
+
+.classify option{
+    padding: 16px 0;
+    font-size: 20px;
+    height: 56px;
+    font-weight: 600;
+}
+
+/*Search*/
+
+#search{
+    display:flex;
+    margin: 28px 0 0 42px;
+    align-items:center;
+}
+
+
+#search form{
+    margin:0;
+}
+
+#search form:first-child{
+    display:flex;
+    width: 422px;
+    height: 56px;
+}
+
+#search form:first-child button{
+    width:56px;
+    position:relative;
+    background:transparent;
+}
+
+#search form:first-child input{
+    display:block;
+    position: relative;
+    top: 0;
+    background:transparent;
+    height: 56px;
+    min-width: calc(422px - 56px);
+    transform:none;
+    color: rgba(41, 45, 50, 0.70);
+    font-size: 20px;
+    font-weight: 400;
+    padding-left:27px;
+}
+
+#search form:first-child input:not(:placeholder-shown){
+    color:#000;
+} 
+
+#search form:first-child button:hover path{
+    fill:#000;
+    fill-opacity:1;
+}
+
+#search select {
+    border-radius: 10px;
+    border: 2px solid #B7B7B7;
+    background: #FFF;
+    padding-left: 16px;
+    width: 12rem;
+    height: 56px;
+    color: rgba(41, 45, 50, 0.70);
+    font-size: 20px;
+    font-weight: 600;
+}
+#search #reset{
+    width:fit-content;
+    height:56px;
+    display:flex;
+    background: transparent;
+}
+
+#search #reset:focus-within, #reset:hover{
+    box-shadow:none;
+    border: 2px solid transparent;
+    background: transparent
+}
+#search #reset button {
+    border-radius: 10px;
+    border: 2px solid #5030E5;
+    background: #5030E5;
+    width: 56px;
+    height: 56px;
+    margin-left:6px;
+}
+
+#search #reset button:hover{
+    box-shadow: 0px 0px 6px 0px rgba(80, 48, 229, 0.71);
+}

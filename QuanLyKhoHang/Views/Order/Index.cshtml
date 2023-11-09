@@ -1,0 +1,81 @@
+﻿@model IEnumerable<QuanLyKhoHang.Models.DONDATHANG>
+@{
+    ViewBag.Title = "Đơn đặt hàng";
+    ViewBag.showFeature = true;
+}
+
+@functions {
+    // Phương thức để lấy tên sản phẩm từ mã sản phẩm
+    public string GetTenSanPham(string maSanPham)
+    {
+        using (var dbContext = new QuanLyKhoHang.Models.QLKHEntities1()) // Thay YourDbContext bằng tên DbContext của bạn
+        {
+            var sanPham = dbContext.SANPHAM.FirstOrDefault(s => s.MASP == maSanPham);
+
+            if (sanPham != null)
+            {
+                return sanPham.TENSP;
+            }
+        }
+
+        return "Không tìm thấy sản phẩm";
+    }
+
+}
+
+@section Style{
+    <link rel="stylesheet" href="~/Content/Import.css" />
+}
+
+<div class="margin">
+    <a href="@Url.Action("Add","Order")" class="btn btn-primary px-3 py-2" style="width: 200px">
+        Thêm sản phẩm
+    </a>
+    <h3 style="text-align:center">ĐƠN ĐẶT HÀNG</h3>
+    <div class="text-center">
+        @{
+            var dondathang = Model.FirstOrDefault().NGAY_DATHANG;
+        }
+        @if (dondathang != null)
+        {
+            <h6>NGÀY: @dondathang.Value.ToString("dd/MM/yyyy")</h6>
+        }
+    </div>
+    <h6 class="text-center">Mã:@Model.FirstOrDefault().MA_DATHANG</h6>
+    <table class="table w-50 m-auto">
+        <tr class="text-center">
+            <th>STT</th>
+            <th>Tên sản phẩm</th>
+            <th>Số lượng</th>
+        </tr>
+        @{
+            int a = 0;
+            foreach (var i in Model)
+            {
+                var thongTinDDH = i.THONGTINDDH.FirstOrDefault();
+                if (thongTinDDH != null)
+                {
+                    var tenSanPham = GetTenSanPham(thongTinDDH.MASP);
+                    <tr>
+                        <td>@a</td>
+                        <td>@tenSanPham</td>
+                        <td>@thongTinDDH.SOLUONG</td>
+                    </tr>
+                }
+                a++;
+            }
+
+        }
+    </table>
+    <div class =" container d-flex align-items-center justify-content-center">
+        <form class="row">
+            @using (Html.BeginForm("Send", "Order", FormMethod.Post))
+            {
+                @Html.AntiForgeryToken()
+                <div class="col-10">
+                    <input type="submit" value="GỬi" class="btn btn-success text-light float-end w-25" />
+                </div>
+            }
+        </form>
+    </div>
+</div>

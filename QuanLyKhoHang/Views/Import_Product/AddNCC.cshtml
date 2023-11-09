@@ -1,0 +1,102 @@
+﻿@model QuanLyKhoHang.Models.NHACUNGCAP
+
+@using QuanLyKhoHang.Views.Import_Product
+@{
+    ViewBag.Title = "Thêm nhà cung cấp";
+    ImportProduct childrenFeatures = new ImportProduct();
+    ViewBag.Children = childrenFeatures.Show();
+    ViewBag.showFeature = true;
+}
+@section Style{
+    <link rel="Stylesheet" href="~/Content/Import.css" />
+    <link rel="Stylesheet" href="~/Content/Home.css" />
+}
+<style>
+    .margin form {
+        width:auto;
+    }
+    .add div span{
+        width:20%;
+    }
+</style>
+<div class=" position-relative" style="
+    height: 100%;
+    top: -40px;">
+    <div class="margin info" style="padding-top:40px;">
+        <div class="m text-center"><h3>Nhập nhà cung cấp</h3></div>
+        @if (TempData["ErrorMessage"] != null)
+        {
+            <div class="alert alert-danger" role="alert">
+                @TempData["ErrorMessage"]
+            </div>
+        } 
+        @if (TempData["SuccessMessage"] != null)
+        {
+            <div class="alert alert-success" role="alert">
+                @TempData["SuccessMessage"]
+            </div>
+        }
+        <div class="container">
+            @using (Html.BeginForm())
+            {
+                @Html.AntiForgeryToken()
+                <div class="add px-5">
+                    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                    <div class="d-flex align-items-center">
+                        <span>Mã nhà cung cấp</span>
+                        <div class="col mx-1 c2">
+                            @Html.EditorFor(model => model.MA_NCCAP, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.MA_NCCAP, "", new { @class = "text-danger" })
+                        </div>
+                        <span>Loại sản phẩm</span>
+                        <div class="col c2">
+                            @Html.EditorFor(model => model.LOAISP, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.LOAISP, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                    <div class="d-flex align-items-center">
+                        <span>Tên nhà cung cấp</span>
+                        <div class="col c3">
+                            @Html.EditorFor(model => model.TEN_NCCAP, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.TEN_NCCAP, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div class="d-flex align-items-center">
+                        <span>Số điện thoại</span>
+                        <div class="col c3">
+                            @Html.EditorFor(model => model.SDT, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.SDT, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div class="d-flex align-items-center">
+                        <span>Email</span>
+                        <div class="col c3">
+                            @Html.EditorFor(model => model.EMAIL, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.EMAIL, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div class="d-flex align-items-center">
+                        <span>Địa chỉ</span>
+                        <div class="col c3">
+                            @Html.EditorFor(model => model.DIACHI, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.DIACHI, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div class="d-flex btn align-items-center justify-content-center">
+                        <a href="@Url.Action("Add","Import_Product")">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="50" height="50"
+                                 fill="currentColor" class="bi bi-arrow-left-circle-fill" viewBox="0 0 16 16">
+                                <path d="M8 0a8 8 0 1 0 0 16A8 8 0 0 0 8 0zm3.5 7.5a.5.5 0 0 1 0 1H5.707l2.147 2.146a.5.5 0 0 1-.708.708l-3-3a.5.5 0 0 1 0-.708l3-3a.5.5 0 1 1 .708.708L5.707 7.5H11.5z" />
+                            </svg>
+                        </a>
+                        <input type="submit" value="THÊM NHÀ CUNG CẤP" class="btn btn-default mx-5" />
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+</div>

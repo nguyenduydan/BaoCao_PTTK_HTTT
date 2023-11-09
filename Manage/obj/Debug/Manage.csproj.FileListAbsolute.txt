@@ -1,0 +1,56 @@
+D:\ASP.NET MVC\BaoCao_PTTK_HTTT\Manage\bin\Debug\Manage.dll
+D:\ASP.NET MVC\BaoCao_PTTK_HTTT\Manage\bin\Debug\Manage.pdb
+D:\ASP.NET MVC\BaoCao_PTTK_HTTT\Manage\obj\Debug\Manage.csproj.AssemblyReference.cache
+D:\ASP.NET MVC\BaoCao_PTTK_HTTT\Manage\obj\Debug\Manage.csproj.CoreCompileInputs.cache
+D:\ASP.NET MVC\BaoCao_PTTK_HTTT\Manage\obj\Debug\Manage.dll
+D:\ASP.NET MVC\BaoCao_PTTK_HTTT\Manage\obj\Debug\Manage.pdb
+E:\HK1_Nam3\PTTK HTTH\Web_Admin\BaoCao_PTTK_HTTT\Manage\bin\Debug\Manage.dll
+E:\HK1_Nam3\PTTK HTTH\Web_Admin\BaoCao_PTTK_HTTT\Manage\bin\Debug\Manage.pdb
+E:\HK1_Nam3\PTTK HTTH\Web_Admin\BaoCao_PTTK_HTTT\Manage\obj\Debug\Manage.csproj.AssemblyReference.cache
+E:\HK1_Nam3\PTTK HTTH\Web_Admin\BaoCao_PTTK_HTTT\Manage\obj\Debug\Manage.csproj.CoreCompileInputs.cache
+E:\HK1_Nam3\PTTK HTTH\Web_Admin\BaoCao_PTTK_HTTT\Manage\obj\Debug\Manage.dll
+E:\HK1_Nam3\PTTK HTTH\Web_Admin\BaoCao_PTTK_HTTT\Manage\obj\Debug\Manage.pdb
+E:\HK1_Nam3\PTTK HTTH\Web_Admin\BaoCao_PTTK_HTTT\Manage\bin\Debug\Manage.dll.config
+E:\HK1_2024\PTTKHTTT\tt\Manage\bin\Debug\Manage.dll.config
+E:\HK1_2024\PTTKHTTT\tt\Manage\bin\Debug\Manage.dll
+E:\HK1_2024\PTTKHTTT\tt\Manage\bin\Debug\Manage.pdb
+E:\HK1_2024\PTTKHTTT\tt\Manage\obj\Debug\Manage.csproj.AssemblyReference.cache
+E:\HK1_2024\PTTKHTTT\tt\Manage\obj\Debug\Manage.csproj.CoreCompileInputs.cache
+E:\HK1_2024\PTTKHTTT\tt\Manage\obj\Debug\Manage.dll
+E:\HK1_2024\PTTKHTTT\tt\Manage\obj\Debug\Manage.pdb
+E:\HK1_Nam3\PTTK HTTH\Web_Admin\BaoCao_PTTK_HTTT\BaoCao_PTTK_HTTT\Manage\bin\Debug\Manage.dll.config
+E:\HK1_Nam3\PTTK HTTH\Web_Admin\BaoCao_PTTK_HTTT\BaoCao_PTTK_HTTT\Manage\bin\Debug\Manage.dll
+E:\HK1_Nam3\PTTK HTTH\Web_Admin\BaoCao_PTTK_HTTT\BaoCao_PTTK_HTTT\Manage\bin\Debug\Manage.pdb
+E:\HK1_Nam3\PTTK HTTH\Web_Admin\BaoCao_PTTK_HTTT\BaoCao_PTTK_HTTT\Manage\obj\Debug\Manage.csproj.AssemblyReference.cache
+E:\HK1_Nam3\PTTK HTTH\Web_Admin\BaoCao_PTTK_HTTT\BaoCao_PTTK_HTTT\Manage\obj\Debug\Manage.csproj.CoreCompileInputs.cache
+E:\HK1_Nam3\PTTK HTTH\Web_Admin\BaoCao_PTTK_HTTT\BaoCao_PTTK_HTTT\Manage\obj\Debug\Manage.dll
+E:\HK1_Nam3\PTTK HTTH\Web_Admin\BaoCao_PTTK_HTTT\BaoCao_PTTK_HTTT\Manage\obj\Debug\Manage.pdb
+C:\Users\angna\Documents\GitHub\BaoCao_PTTK_HTTT\Manage\bin\Debug\Manage.dll.config
+C:\Users\angna\Documents\GitHub\BaoCao_PTTK_HTTT\Manage\bin\Debug\Manage.dll
+C:\Users\angna\Documents\GitHub\BaoCao_PTTK_HTTT\Manage\bin\Debug\Manage.pdb
+C:\Users\angna\Documents\GitHub\BaoCao_PTTK_HTTT\Manage\obj\Debug\Manage.csproj.AssemblyReference.cache
+C:\Users\angna\Documents\GitHub\BaoCao_PTTK_HTTT\Manage\obj\Debug\Manage.csproj.CoreCompileInputs.cache
+C:\Users\angna\Documents\GitHub\BaoCao_PTTK_HTTT\Manage\obj\Debug\Manage.dll
+C:\Users\angna\Documents\GitHub\BaoCao_PTTK_HTTT\Manage\obj\Debug\Manage.pdb
+D:\ASP.NET MVC\BaoCao_PTTK_HTTT\Manage\bin\Debug\Manage.dll.config
+C:\Users\truongvodich11\Desktop\BaoCao_PTTK_HTTT\BaoCao_PTTK_HTTT\Manage\bin\Debug\Manage.dll.config
+C:\Users\truongvodich11\Desktop\BaoCao_PTTK_HTTT\BaoCao_PTTK_HTTT\Manage\bin\Debug\Manage.dll
+C:\Users\truongvodich11\Desktop\BaoCao_PTTK_HTTT\BaoCao_PTTK_HTTT\Manage\bin\Debug\Manage.pdb
+C:\Users\truongvodich11\Desktop\BaoCao_PTTK_HTTT\BaoCao_PTTK_HTTT\Manage\obj\Debug\Manage.csproj.AssemblyReference.cache
+C:\Users\truongvodich11\Desktop\BaoCao_PTTK_HTTT\BaoCao_PTTK_HTTT\Manage\obj\Debug\Manage.csproj.CoreCompileInputs.cache
+C:\Users\truongvodich11\Desktop\BaoCao_PTTK_HTTT\BaoCao_PTTK_HTTT\Manage\obj\Debug\Manage.dll
+C:\Users\truongvodich11\Desktop\BaoCao_PTTK_HTTT\BaoCao_PTTK_HTTT\Manage\obj\Debug\Manage.pdb
+E:\HK1_Nam3\PTTK HTTH\Web\BaoCao_PTTK_HTTT\Manage\bin\Debug\Manage.dll.config
+E:\HK1_Nam3\PTTK HTTH\Web\BaoCao_PTTK_HTTT\Manage\bin\Debug\Manage.dll
+E:\HK1_Nam3\PTTK HTTH\Web\BaoCao_PTTK_HTTT\Manage\bin\Debug\Manage.pdb
+E:\HK1_Nam3\PTTK HTTH\Web\BaoCao_PTTK_HTTT\Manage\obj\Debug\Manage.csproj.AssemblyReference.cache
+E:\HK1_Nam3\PTTK HTTH\Web\BaoCao_PTTK_HTTT\Manage\obj\Debug\Manage.csproj.CoreCompileInputs.cache
+E:\HK1_Nam3\PTTK HTTH\Web\BaoCao_PTTK_HTTT\Manage\obj\Debug\Manage.dll
+E:\HK1_Nam3\PTTK HTTH\Web\BaoCao_PTTK_HTTT\Manage\obj\Debug\Manage.pdb
+D:\Workspace\project-pttkht\Manage\bin\Debug\Manage.dll.config
+D:\Workspace\project-pttkht\Manage\bin\Debug\Manage.dll
+D:\Workspace\project-pttkht\Manage\bin\Debug\Manage.pdb
+D:\Workspace\project-pttkht\Manage\obj\Debug\Manage.csproj.AssemblyReference.cache
+D:\Workspace\project-pttkht\Manage\obj\Debug\Manage.csproj.CoreCompileInputs.cache
+D:\Workspace\project-pttkht\Manage\obj\Debug\Manage.dll
+D:\Workspace\project-pttkht\Manage\obj\Debug\Manage.pdb

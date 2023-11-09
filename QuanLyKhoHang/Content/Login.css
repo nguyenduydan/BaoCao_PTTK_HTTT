@@ -1,0 +1,124 @@
+﻿
+
+#login-container {
+    position: absolute;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    top: 0;
+    left: 0;
+    height: 100vh;
+    width: 100vw;
+    z-index: 0;
+    background: rgba(217, 217, 217, 0.67);
+}
+
+#login {
+    border-radius: 22px;
+    border: 1px solid rgba(102, 102, 102, 0.66);
+    background: #FFF;
+    box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+    width: 617px;
+    height: 668px;
+    position: relative;
+}
+
+#login > svg{
+    position:absolute;
+    right:24px;
+    top:24px;
+    opacity:.6;
+}
+
+#login > svg:hover {
+    cursor:pointer;
+    opacity:1;
+}
+
+#login h2{
+    margin: 72px 0 42px 134px;
+    font-size:50px;
+    font-weight: 600
+}
+
+#login form{
+    height:calc(100% - 114px - 60px);
+}
+
+#login form > div{
+    margin: 0 38px 70px 38px; 
+}
+
+#login span{
+    display:block;
+    color: #787486;
+    font-size: 24px;
+    font-weight: 500;
+    cursor:default;
+}
+
+#login input{
+     position:relative;
+     transform: none;
+}
+#login input[type= text], #login input[type= password]{
+    
+    display:block;
+    padding-left: 34px;
+    font-size: 24px;
+    font-weight: 500;
+}
+
+#login .form{
+    margin: 0;
+    border-radius: 10px;
+    margin-top:17px;
+    display:flex;    
+    align-items: center;
+    justify-content: space-between;
+}
+
+#login .form input{
+   display: block;
+   height:100%;
+   top:0;
+   min-width:calc(100% - 50px);
+}
+
+#show{
+    position:relative;
+    height: 100%;
+    width:58px;
+}
+
+#show svg{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform:translate(-50%,-50%);
+}
+
+#show:hover path, #show:active path{
+    stroke: #000;
+}
+
+#login input[type=submit] {
+    position:absolute;
+    top: 85%;
+    left:50%;
+    transform: translateX(-50%);
+    border-radius: 13px;
+    border: 2px solid rgba(80, 48, 229, 0.86);
+    background: #FFF;
+    width: 264px;
+    height: 57px;
+    color: #54515E;
+    font-size: 20px;
+    font-weight: 600;
+    text-transform: uppercase;
+}
+
+#login input[type=submit]:hover, #login input[type=submit]:active{
+    color: #fff;
+    background: rgba(80, 48, 229, 1);
+}

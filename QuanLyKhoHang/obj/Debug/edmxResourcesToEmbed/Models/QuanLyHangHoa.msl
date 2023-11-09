@@ -1,0 +1,100 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="QLNVModelStoreContainer" CdmEntityContainer="QLNVEntities">
+    <EntitySetMapping Name="BANBAOCAOs">
+      <EntityTypeMapping TypeName="QLNVModel.BANBAOCAO">
+        <MappingFragment StoreEntitySet="BANBAOCAO">
+          <ScalarProperty Name="MA_BAOCAO" ColumnName="MA_BAOCAO" />
+          <ScalarProperty Name="MASP" ColumnName="MASP" />
+          <ScalarProperty Name="SOLUONG" ColumnName="SOLUONG" />
+          <ScalarProperty Name="NGAYBAOCAO" ColumnName="NGAYBAOCAO" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="DONDATHANGs">
+      <EntityTypeMapping TypeName="QLNVModel.DONDATHANG">
+        <MappingFragment StoreEntitySet="DONDATHANG">
+          <ScalarProperty Name="MA_DATHANG" ColumnName="MA_DATHANG" />
+          <ScalarProperty Name="MASP" ColumnName="MASP" />
+          <ScalarProperty Name="TEN_SP" ColumnName="TEN_SP" />
+          <ScalarProperty Name="MA_NCCAP" ColumnName="MA_NCCAP" />
+          <ScalarProperty Name="SOLUONG" ColumnName="SOLUONG" />
+          <ScalarProperty Name="NGAY_DATHANG" ColumnName="NGAY_DATHANG" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="DONTHANHTOANs">
+      <EntityTypeMapping TypeName="QLNVModel.DONTHANHTOAN">
+        <MappingFragment StoreEntitySet="DONTHANHTOAN">
+          <ScalarProperty Name="MATT" ColumnName="MATT" />
+          <ScalarProperty Name="TENSP" ColumnName="TENSP" />
+          <ScalarProperty Name="NGAYTHANHTOAN" ColumnName="NGAYTHANHTOAN" />
+          <ScalarProperty Name="SOLUONG" ColumnName="SOLUONG" />
+          <ScalarProperty Name="GIACA" ColumnName="GIACA" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="HANGTONs">
+      <EntityTypeMapping TypeName="QLNVModel.HANGTON">
+        <MappingFragment StoreEntitySet="HANGTON">
+          <ScalarProperty Name="MASP" ColumnName="MASP" />
+          <ScalarProperty Name="SOLUONG" ColumnName="SOLUONG" />
+          <ScalarProperty Name="MOTA_HANGTON" ColumnName="MOTA_HANGTON" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="KEHANGs">
+      <EntityTypeMapping TypeName="QLNVModel.KEHANG">
+        <MappingFragment StoreEntitySet="KEHANG">
+          <ScalarProperty Name="MA_KEHANG" ColumnName="MA_KEHANG" />
+          <ScalarProperty Name="TEN_KEHANG" ColumnName="TEN_KEHANG" />
+          <ScalarProperty Name="MOTA_KEHANG" ColumnName="MOTA_KEHANG" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="NHACUNGCAPs">
+      <EntityTypeMapping TypeName="QLNVModel.NHACUNGCAP">
+        <MappingFragment StoreEntitySet="NHACUNGCAP">
+          <ScalarProperty Name="MA_NCCAP" ColumnName="MA_NCCAP" />
+          <ScalarProperty Name="TEN_NCCAP" ColumnName="TEN_NCCAP" />
+          <ScalarProperty Name="LOASP" ColumnName="LOASP" />
+          <ScalarProperty Name="SDT" ColumnName="SDT" />
+          <ScalarProperty Name="DIACHI" ColumnName="DIACHI" />
+          <ScalarProperty Name="EMAIL" ColumnName="EMAIL" />
+          <ScalarProperty Name="GIACA" ColumnName="GIACA" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="SANPHAMs">
+      <EntityTypeMapping TypeName="QLNVModel.SANPHAM">
+        <MappingFragment StoreEntitySet="SANPHAM">
+          <ScalarProperty Name="MASP" ColumnName="MASP" />
+          <ScalarProperty Name="TENSP" ColumnName="TENSP" />
+          <ScalarProperty Name="LOAISP" ColumnName="LOAISP" />
+          <ScalarProperty Name="TENTOMTAT" ColumnName="TENTOMTAT" />
+          <ScalarProperty Name="SOLUONG" ColumnName="SOLUONG" />
+          <ScalarProperty Name="NGAYTAO" ColumnName="NGAYTAO" />
+          <ScalarProperty Name="NGAYCAPNHAT" ColumnName="NGAYCAPNHAT" />
+          <ScalarProperty Name="NGAYHETHAN" ColumnName="NGAYHETHAN" />
+          <ScalarProperty Name="GIACA" ColumnName="GIACA" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <AssociationSetMapping Name="DATVAO" TypeName="QLNVModel.DATVAO" StoreEntitySet="DATVAO">
+      <EndProperty Name="SANPHAM">
+        <ScalarProperty Name="MASP" ColumnName="MASP" />
+      </EndProperty>
+      <EndProperty Name="KEHANG">
+        <ScalarProperty Name="MA_KEHANG" ColumnName="MA_KEHANG" />
+      </EndProperty>
+    </AssociationSetMapping>
+    <AssociationSetMapping Name="KIEMTRA" TypeName="QLNVModel.KIEMTRA" StoreEntitySet="KIEMTRA">
+      <EndProperty Name="DONTHANHTOAN">
+        <ScalarProperty Name="MATT" ColumnName="MATT" />
+      </EndProperty>
+      <EndProperty Name="DONDATHANG">
+        <ScalarProperty Name="MA_DATHANG" ColumnName="MA_DATHANG" />
+      </EndProperty>
+    </AssociationSetMapping>
+  </EntityContainerMapping>
+</Mapping>

@@ -1,0 +1,137 @@
+﻿@model QuanLyKhoHang.Models.SANPHAM
+
+@using QuanLyKhoHang.Views.Import_Product
+@{
+    ViewBag.Title = "Thêm hàng";
+    ImportProduct childrenFeatures = new ImportProduct();
+    ViewBag.Children = childrenFeatures.Show();
+    ViewBag.showFeature = true;
+}
+@section Style{
+    <link rel="Stylesheet" href="~/Content/Import.css" />
+    <link rel="Stylesheet" href="~/Content/Home.css" />
+}
+
+<div class=" position-relative" style="
+    height: 100%;
+    top: -40px;">
+    <div class="margin info" style="padding-top:40px">
+        <div class="m"><h3>Nhập hàng</h3></div>
+        @if (TempData["ErrorMessage"] != null)
+        {
+            <div class="alert alert-danger" role="alert">
+                @TempData["ErrorMessage"]
+            </div>
+        }
+        @if (TempData["SuccessMessage"] != null)
+        {
+            <div class="alert alert-success" role="alert">
+                @TempData["SuccessMessage"]
+            </div>
+        }
+        <div class="d-flex align-items-start">
+            @using (Html.BeginForm())
+            {
+                @Html.AntiForgeryToken()
+                <div class="add">
+                    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                    <div class="d-flex flex-fill">
+                        <div class="d-flex align-items-center">
+                            <span>Mã hàng</span>
+                            <div class="col mx-1 c1">
+                                @Html.EditorFor(model => model.MASP, new { htmlAttributes = new { @class = "form-control" } })
+                                @Html.ValidationMessageFor(model => model.MASP, "", new { @class = "text-danger fs-6" })
+                            </div>
+                        </div>
+
+                        <div class="d-flex align-items-center" style="margin-left:3rem">
+                            <span style="width:120px">Số lượng</span>
+                            <div class="col c2">
+                                @Html.EditorFor(model => model.SOLUONG, new { htmlAttributes = new { @class = "form-control" } })
+                                @Html.ValidationMessageFor(model => model.SOLUONG, "", new { @class = "text-danger fs-6" })
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="d-flex align-items-center">
+                        <span>Tên hàng</span>
+                        <div class="col c3">
+                            @Html.EditorFor(model => model.TENSP, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.TENSP, "", new { @class = "text-danger fs-6" })
+                        </div>
+                    </div>
+                    <div class="d-flex align-items-center">
+                        <span>Giá bán</span>
+                        <div class="col c3">
+                            @Html.EditorFor(model => model.GIATIEN, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.GIATIEN, "", new { @class = "text-danger fs-6" })
+                        </div>
+                    </div>
+                    <div class="d-flex align-items-center">
+                        <div class="d-flex align-items-center">
+                            <span>Ngày hết hạn</span>
+                            <div class="col mx-1 c1">
+                                @Html.EditorFor(model => model.NGAYHETHAN, new { htmlAttributes = new { @class = "form-control", @type = "date" } })
+                                @Html.ValidationMessageFor(model => model.NGAYHETHAN, "", new { @class = "text-danger fs-6" })
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="d-flex align-items-center">
+                        <span>Nhà cung cấp</span>
+                        <div class="c5">
+                            <select name="MA_NCCAP">
+                                <option hidden>Chọn nhà cung cấp...</option>
+                                @foreach (var i in new QuanLyKhoHang.Models.QLKHEntities1().NHACUNGCAP.ToList())
+                                {
+                                    <option value="@i.MA_NCCAP">@i.TEN_NCCAP - "@i.LOAISP"</option>
+                                }
+                            </select>
+                            @Html.ValidationMessageFor(model => model.MA_NCCAP, "", new { @class = "text-danger fs-6" })
+                        </div>
+                        <a href="~/Import_Product/AddNCC">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="43" height="43" viewBox="0 0 43 45" fill="none">
+                                <path d="M13.2999 21.5H29.6999" stroke="#5030E5" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+                                <path d="M21.5 29.7V13.3" stroke="#5030E5" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+                                <path d="M15.35 42H27.65C37.9 42 42 37.9 42 27.65V15.35C42 5.1 37.9 1 27.65 1H15.35C5.1 1 1 5.1 1 15.35V27.65C1 37.9 5.1 42 15.35 42Z" stroke="#5030E5" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+                            </svg>
+                        </a>
+                    </div>
+
+                    <div class="d-flex btn align-items-center">
+                        <a href="@Url.Action("Index","Manage_Product")">
+                            <svg class=" text-gray-800 dark:text-white" aria-hidden="true" width="43" height="43" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 20">
+                                <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8v10a1 1 0 0 0 1 1h4v-5a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1v5h4a1 1 0 0 0 1-1V8M1 10l9-9 9 9" />
+                            </svg>
+                        </a>
+                        <input type="submit" value="THÊM HÀNG" class="btn btn-default mx-5" />
+                    </div>
+                </div>
+            }
+            <div class="margin info my-4 mx-4 px-5" style="padding-top:40px; border:5px solid; border-radius:1rem">
+                <h4 class="fw-bold text-info">Danh sách sản phẩm</h4>
+                <table class="text-center table">
+                    <tr>
+                        <th>Tên sản phẩm</th>
+                        <th>Số lượng</th>
+                        <th>Đơn giá</th>
+                    </tr>
+                    @{
+                        if (ViewBag.sanPhamList != null)
+                        {
+                            foreach (var sanPham in ViewBag.sanPhamList)
+                            {
+                                <tr>
+                                    <td>@sanPham.TENSP</td>
+                                    <td>@sanPham.SOLUONG</td>
+                                    <td>@sanPham.GIATIEN</td>
+                                </tr>
+                            }
+                        }
+
+                    }
+                </table>
+            </div>
+        </div>
+    </div>
+</div>

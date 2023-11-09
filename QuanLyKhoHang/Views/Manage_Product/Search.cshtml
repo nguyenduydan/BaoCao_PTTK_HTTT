@@ -1,0 +1,142 @@
+﻿@using QuanLyKhoHang.Views.Manage_Product
+@model IEnumerable<QuanLyKhoHang.Models.SANPHAM>
+@{
+    ViewBag.Title = "Tra cứu hàng hóa";
+    ManageProduct childrenFeatures = new ManageProduct();
+    ViewBag.Children = childrenFeatures.Show();
+    ViewBag.showFeature = true;
+}
+@section Style{
+    <link rel="Stylesheet" href="~/Content/Manage.css" />
+    <link rel="Stylesheet" href="~/Content/Import.css" />
+}
+@section scripts{
+    <script src="~/Scripts/jquery.dataTables.min.js"></script>
+    <script>let table = new DataTable('#myTable');</script>
+    <script>
+        $(document).ready(function () {
+            $('#myTable').DataTable();
+        });
+    </script>
+    <script>
+        $(".dataTables_length").hide();
+        $("label").hide();
+        $(".dataTables_info").hide();
+        $(".paginate_button .previous disabled").hide();
+        $(".dataTables_paginate").hide();
+    </script>
+    <script>
+        function change() {
+            var az = document.querySelector('#az');
+            var za = document.querySelector('#za');
+            if (az.style.display == "inline-block") {
+                az.style.display = "none";
+                za.style.display = "inline-block"
+            } else {
+                za.style.display = "none";
+                az.style.display = "inline-block"
+            }
+        }
+        function change2() {
+            var az = document.querySelector('#price');
+            var za = document.querySelector('#price-desc');
+            if (az.style.display == "inline-block") {
+                az.style.display = "none";
+                za.style.display = "inline-block"
+            } else {
+                za.style.display = "none";
+                az.style.display = "inline-block"
+            }
+        }
+        function change3() {
+            var az = document.querySelector('#amountds');
+            var za = document.querySelector('#amountds-desc');
+            if (az.style.display == "inline-block") {
+                az.style.display = "none";
+                za.style.display = "inline-block"
+            } else {
+                za.style.display = "none";
+                az.style.display = "inline-block"
+            }
+        }
+    </script>
+}
+<div id="search">
+    <form class="form" action="@Url.Action("Search")" method="post">
+        <input type="text" placeholder="Tra cứu..." id="searchString" name="searchString" />
+        <button type="submit">
+            <svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" viewBox="0 0 26 26" fill="none">
+                <path d="M12.3966 24.7931C5.56333 24.7931 0 19.2298 0 12.3966C0 5.56333 5.56333 0 12.3966 0C19.2298 0 24.7931 5.56333 24.7931 12.3966C24.7931 19.2298 19.2298 24.7931 12.3966 24.7931ZM12.3966 1.81413C6.55506 1.81413 1.81413 6.56715 1.81413 12.3966C1.81413 18.226 6.55506 22.979 12.3966 22.979C18.2381 22.979 22.979 18.226 22.979 12.3966C22.979 6.56715 18.2381 1.81413 12.3966 1.81413Z" fill="#292D32" fill-opacity="0.7" />
+                <path d="M25.096 26.0025C24.8662 26.0025 24.6364 25.9178 24.455 25.7364L22.0361 23.3176C21.6854 22.9668 21.6854 22.3863 22.0361 22.0356C22.3869 21.6848 22.9674 21.6848 23.3181 22.0356L25.7369 24.4544C26.0877 24.8051 26.0877 25.3857 25.7369 25.7364C25.5555 25.9178 25.3257 26.0025 25.096 26.0025Z" fill="#292D32" fill-opacity="0.7" />
+            </svg>
+        </button>
+        <div class="mx-5">
+            @Html.DropDownList("SearchType", new List<SelectListItem>
+    {
+    new SelectListItem{ Text="Tên sản phẩm", Value = "tensp" },
+    new SelectListItem{ Text="Nhà cung cấp", Value = "tennhacc" },
+    new SelectListItem{ Text="Loại hàng", Value = "loaihang" }
+    }, "Mặc định")
+        </div>
+    </form>
+</div>
+<div class="margin">
+    <div class="info-products" style="height:auto !important">
+        <table class="table"  id="myTable">
+            <thead>
+                <tr>
+                    <th>Mã hàng</th>
+                    <th>
+                        Tên hàng hóa <svg xmlns="http://www.w3.org/2000/svg" onclick="change()" style="cursor:pointer;display:inline-block" id="az" width="20" height="20" fill="currentColor" class="bi bi-sort-alpha-down" viewBox="0 0 16 16">
+                            <path fill-rule="evenodd" d="M10.082 5.629 9.664 7H8.598l1.789-5.332h1.234L13.402 7h-1.12l-.419-1.371h-1.781zm1.57-.785L11 2.687h-.047l-.652 2.157h1.351z" />
+                            <path d="M12.96 14H9.028v-.691l2.579-3.72v-.054H9.098v-.867h3.785v.691l-2.567 3.72v.054h2.645V14zM4.5 2.5a.5.5 0 0 0-1 0v9.793l-1.146-1.147a.5.5 0 0 0-.708.708l2 1.999.007.007a.497.497 0 0 0 .7-.006l2-2a.5.5 0 0 0-.707-.708L4.5 12.293V2.5z" />
+                        </svg>
+                        <svg xmlns="http://www.w3.org/2000/svg" onclick="change()" id="za" width="20" height="20" fill="currentColor" style="cursor:pointer;display:none" class="bi bi-sort-alpha-down-alt" viewBox="0 0 16 16">
+                            <path d="M12.96 7H9.028v-.691l2.579-3.72v-.054H9.098v-.867h3.785v.691l-2.567 3.72v.054h2.645V7z" />
+                            <path fill-rule="evenodd" d="M10.082 12.629 9.664 14H8.598l1.789-5.332h1.234L13.402 14h-1.12l-.419-1.371h-1.781zm1.57-.785L11 9.688h-.047l-.652 2.156h1.351z" />
+                            <path d="M4.5 2.5a.5.5 0 0 0-1 0v9.793l-1.146-1.147a.5.5 0 0 0-.708.708l2 1.999.007.007a.497.497 0 0 0 .7-.006l2-2a.5.5 0 0 0-.707-.708L4.5 12.293V2.5z" />
+                        </svg>
+                    </th>
+                    <th>Nhà cung cấp</th>
+                    <th>Loại hàng hóa</th>
+                    <th>
+                        Giá cả <svg xmlns="http://www.w3.org/2000/svg" onclick="change2()" style="cursor:pointer;display:inline-block" width="20" height="20" id="price" fill="currentColor" class="bi bi-sort-numeric-down" viewBox="0 0 16 16">
+                            <path d="M12.438 1.668V7H11.39V2.684h-.051l-1.211.859v-.969l1.262-.906h1.046z" />
+                            <path fill-rule="evenodd" d="M11.36 14.098c-1.137 0-1.708-.657-1.762-1.278h1.004c.058.223.343.45.773.45.824 0 1.164-.829 1.133-1.856h-.059c-.148.39-.57.742-1.261.742-.91 0-1.72-.613-1.72-1.758 0-1.148.848-1.835 1.973-1.835 1.09 0 2.063.636 2.063 2.687 0 1.867-.723 2.848-2.145 2.848zm.062-2.735c.504 0 .933-.336.933-.972 0-.633-.398-1.008-.94-1.008-.52 0-.927.375-.927 1 0 .64.418.98.934.98z" />
+                            <path d="M4.5 2.5a.5.5 0 0 0-1 0v9.793l-1.146-1.147a.5.5 0 0 0-.708.708l2 1.999.007.007a.497.497 0 0 0 .7-.006l2-2a.5.5 0 0 0-.707-.708L4.5 12.293V2.5z" />
+                        </svg><svg xmlns="http://www.w3.org/2000/svg" onclick="change2()" width="20" height="20" style="cursor:pointer;display:none" id="price-desc" fill="currentColor" class="bi bi-sort-numeric-down-alt" viewBox="0 0 16 16">
+                            <path fill-rule="evenodd" d="M11.36 7.098c-1.137 0-1.708-.657-1.762-1.278h1.004c.058.223.343.45.773.45.824 0 1.164-.829 1.133-1.856h-.059c-.148.39-.57.742-1.261.742-.91 0-1.72-.613-1.72-1.758 0-1.148.848-1.836 1.973-1.836 1.09 0 2.063.637 2.063 2.688 0 1.867-.723 2.848-2.145 2.848zm.062-2.735c.504 0 .933-.336.933-.972 0-.633-.398-1.008-.94-1.008-.52 0-.927.375-.927 1 0 .64.418.98.934.98z" />
+                            <path d="M12.438 8.668V14H11.39V9.684h-.051l-1.211.859v-.969l1.262-.906h1.046zM4.5 2.5a.5.5 0 0 0-1 0v9.793l-1.146-1.147a.5.5 0 0 0-.708.708l2 1.999.007.007a.497.497 0 0 0 .7-.006l2-2a.5.5 0 0 0-.707-.708L4.5 12.293V2.5z" />
+                        </svg>
+                    </th>
+                    <th>
+                        Số lượng <svg xmlns="http://www.w3.org/2000/svg" id="amountds" onclick="change3()" style="cursor:pointer;display:inline-block" width="20" height="20" fill="currentColor" class="bi bi-sort-down-alt" viewBox="0 0 16 16">
+                            <path d="M3.5 3.5a.5.5 0 0 0-1 0v8.793l-1.146-1.147a.5.5 0 0 0-.708.708l2 1.999.007.007a.497.497 0 0 0 .7-.006l2-2a.5.5 0 0 0-.707-.708L3.5 12.293V3.5zm4 .5a.5.5 0 0 1 0-1h1a.5.5 0 0 1 0 1h-1zm0 3a.5.5 0 0 1 0-1h3a.5.5 0 0 1 0 1h-3zm0 3a.5.5 0 0 1 0-1h5a.5.5 0 0 1 0 1h-5zM7 12.5a.5.5 0 0 0 .5.5h7a.5.5 0 0 0 0-1h-7a.5.5 0 0 0-.5.5z" />
+                        </svg><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" id="amountds-desc" onclick="change3()" style="cursor:pointer;display:none" fill="currentColor" class="bi bi-sort-down" viewBox="0 0 16 16">
+                            <path d="M3.5 2.5a.5.5 0 0 0-1 0v8.793l-1.146-1.147a.5.5 0 0 0-.708.708l2 1.999.007.007a.497.497 0 0 0 .7-.006l2-2a.5.5 0 0 0-.707-.708L3.5 11.293V2.5zm3.5 1a.5.5 0 0 1 .5-.5h7a.5.5 0 0 1 0 1h-7a.5.5 0 0 1-.5-.5zM7.5 6a.5.5 0 0 0 0 1h5a.5.5 0 0 0 0-1h-5zm0 3a.5.5 0 0 0 0 1h3a.5.5 0 0 0 0-1h-3zm0 3a.5.5 0 0 0 0 1h1a.5.5 0 0 0 0-1h-1z" />
+                        </svg>
+                    </th>
+                    <th>Chức năng</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>@Html.DisplayFor(model => item.MASP)</td>
+                        <td>@Html.DisplayFor(model => item.TENSP)</td>
+                        <td>@Html.DisplayFor(model => item.NHACUNGCAP.TEN_NCCAP)</td>
+                        <td>@Html.DisplayFor(model => item.NHACUNGCAP.LOAISP)</td>
+                        <td>@Html.DisplayFor(model => item.GIATIEN)</td>
+                        <td>@Html.DisplayFor(model => item.SOLUONG)</td>
+                        <td class="d-flex align-items-center">
+                            <a href=" @Url.Action("Edit","Manage_Product", new { id = item.MASP})" class="btn btn-sm btn-primary w-100">Cập nhật</a>
+                            <a href=" @Url.Action("Export_Product","Manage_Product", new { ProductId = item.MASP})" name="ProductId" class="btn btn-sm btn-success w-100">Xuất hàng</a>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+
+        </table>
+    </div>
+</div>

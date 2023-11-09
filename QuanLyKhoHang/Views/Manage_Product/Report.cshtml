@@ -1,0 +1,91 @@
+﻿@using QuanLyKhoHang.Views.Manage_Product
+@model IEnumerable<QuanLyKhoHang.Models.THONGTINBAOCAO>
+@{
+    ViewBag.Title = "Báo cáo hàng tồn";
+    ManageProduct childrenFeatures = new ManageProduct();
+    ViewBag.Children = childrenFeatures.Show();
+    ViewBag.showFeature = true;
+    DateTime date = DateTime.Today;
+    int i = 0;
+    int total = 0;
+}
+
+@section scripts{
+    <!-- Thêm thẻ script sau vào phần <head> của trang HTML của bạn -->
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    <script>
+        google.charts.load('current', { 'packages': ['corechart'] });
+        google.charts.setOnLoadCallback(drawChart);
+
+        function drawChart() {
+            $.get('/Manage_Product/Thongke', function (data) {
+                // Sắp xếp dữ liệu theo số lượng giảm dần
+                data.sort(function (a, b) {
+                    return b[1] - a[1];
+                });
+
+                var maxQuantity = data[0][1]; // Lấy số lượng lớn nhất từ dữ liệu đã sắp xếp
+
+                var chartData = new google.visualization.DataTable();
+                chartData.addColumn('string', 'Tên sản phẩm');
+                chartData.addColumn('number', 'Số lượng');
+
+                data.forEach(function (item) {
+                    chartData.addRow([item[0], item[1]]);
+                });
+
+                var options = {
+                    title: 'Biểu đồ thống kê hàng tồn',
+                    hAxis: { title: 'Tên sản phẩm', titleTextStyle: { color: 'red' } },
+                    vAxis: { viewWindow: { min: 0, max: maxQuantity } } // Đặt giá trị min và max cho trục y
+                };
+
+                var chart = new google.visualization.ColumnChart(document.getElementById('chart_div'));
+                chart.draw(chartData, options);
+            });
+        }
+    </script>
+}
+
+<style>
+    .table td, .table th {
+        border: 1px solid;
+    }
+</style>
+
+<div class="margin d-flex flex-column align-items-center">
+    <h2>BÁO CÁO TỒN KHO</h2>
+    <h6>NGÀY: @date.ToString("dd/MM/yyyy")</h6>
+    <h6>Mã:@Model.FirstOrDefault().MA_BAOCAO</h6>
+    <table class="table w-75" border="1">
+        <tr class="bg-info">
+            <th>STT</th>
+            <th>Mã hàng tồn</th>
+            <th>Tên sản phẩm</th>
+            <th>Số lượng</th>
+        </tr>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @{i++;}
+                    @i
+
+                </td>
+                <td>@Html.DisplayFor(model => item.MASP)</td>
+                <td>@Html.DisplayFor(model => item.TENSP)</td>
+                <td>@Html.DisplayFor(model => item.SOLUONG)</td>
+            </tr>
+            total += item.SOLUONG.GetValueOrDefault();
+        }
+        <tr>
+            <th></th>
+            <th></th>
+            <th>Tổng cộng: </th>
+            <th>@total</th>
+        </tr>
+    </table>
+    <div>
+        <div id="chart_div" style="width: 900px; height: 500px;"></div>
+    </div>
+</div>

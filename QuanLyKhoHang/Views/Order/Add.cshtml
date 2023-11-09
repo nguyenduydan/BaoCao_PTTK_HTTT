@@ -1,0 +1,123 @@
+﻿@model QuanLyKhoHang.Models.THONGTINDDH
+
+@using QuanLyKhoHang.Views.Import_Product
+@{
+    ViewBag.Title = "Đơn đặt hàng";
+    ImportProduct childrenFeatures = new ImportProduct();
+    ViewBag.Children = childrenFeatures.Show();
+    ViewBag.showFeature = true;
+}
+@section Style{
+    <link rel="Stylesheet" href="~/Content/Import.css" />
+}
+@section scripts{
+    <script>
+        $(document).ready(function () {
+            $('#DONDATHANG_MA_NCCAP').change(function () {
+                var nccapId = $(this).val();
+                if (nccapId) {
+                    $.ajax({
+                        type: "GET",
+                        url: '@Url.Action("GetSanPhamByNhaCungCap", "Order")',
+                        data: { nccapId: nccapId },
+                        dataType: "json",
+                        success: function (data) {
+                            var products = $("#SANPHAM_MASP");
+                            products.empty();
+                            $.each(data, function (index, item) {
+                                products.append($('<option></option>').val(item.Value).text(item.Text));
+                            });
+                        }
+                    });
+                }
+            });
+            $('form').submit(function (e) {
+                e.preventDefault();
+                $.ajax({
+                    type: "POST",
+                    url: '@Url.Action("Add", "Order")',
+                    data: $('form').serialize(),
+                    success: function (data) {
+                        // Cập nhật bảng thông tin đơn đặt hàng
+                        $('#tableBody').append('<tr><td>' + data.SANPHAM.TENSP + '</td><td>' + data.SOLUONG + '</td></tr>');
+                    }
+                });
+            });
+        });
+    </script>
+}
+@using (Html.BeginForm())
+{
+    <div class=" position-relative" style="
+        height: 100%;
+        top: -40px;">
+        <div class="margin info" style="padding-top:40px">
+            <div class="m"><h3>Nhập đơn đặt hàng</h3></div>
+            <div class="d-flex align-items-start fs-5">
+                @using (Html.BeginForm("Add", "Order", FormMethod.Post, new { enctype = "multipart/form-data" }))
+                {
+                    @Html.AntiForgeryToken()
+
+                    <div class="add">
+                        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                        <div class="d-flex flex-fill">
+                            <div class="d-flex align-items-center">
+                                <span>Nhà cung cấp</span>
+                                <div class="col" style="width:20rem">
+                                    @Html.DropDownListFor(model => model.DONDATHANG.MA_NCCAP, ViewBag.NhaCungCapList as SelectList, "Chọn nhà cung cấp...", new { @class = "form-control" })
+                                    @Html.ValidationMessageFor(model => model.DONDATHANG.MA_NCCAP, "", new { @class = "text-danger fs-6" })
+                                </div>
+                            </div>
+                        </div>
+                        <div class="add">
+                            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                            <div class="d-flex flex-fill">
+                                <div class="d-flex align-items-center">
+                                    <span>Tên sản phẩm</span>
+                                    <div class="col" style="width:20rem">
+                                        @Html.DropDownListFor(model => model.MASP, Enumerable.Empty<SelectListItem>(), "Chọn sản phẩm...", new { @class = "form-control", id = "SANPHAM_MASP" })
+                                        @Html.ValidationMessageFor(model => model.MASP, "", new { @class = "text-danger fs-6" })
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="d-flex align-items-center">
+                                <span>Số lượng</span>
+                                <div class="col">
+                                    @Html.EditorFor(model => model.SOLUONG, new { htmlAttributes = new { @class = "form-control" } })
+                                    @Html.ValidationMessageFor(model => model.SOLUONG, "", new { @class = "text-danger fs-6" })
+                                </div>
+                            </div>
+                            <div class="d-flex btn align-items-center">
+
+                                <input type="submit" value="THÊM HÀNG" class="btn btn-default mx-5" />
+                            </div>
+                        </div>
+                    </div>
+                }
+                <div class="margin info mx-4 px-5" style="padding-top:40px;
+                                                      border:5px solid; border-radius:1rem">
+                    <h4 class="fw-bold text-info">Thông tin đơn đặt hàng</h4>
+                    <table id="tableBody" class="text-center table">
+                        <tr>
+                            <th>Tên sản phẩm</th>
+                            <th>Số lượng</th>
+                        </tr>
+                        @foreach (var item in ViewBag.dathangList)
+                        {
+                            foreach (var thongtinDDH in item.THONGTINDDH)
+                            {
+                                <tr>
+                                    <td>@thongtinDDH.SANPHAM.TENSP</td>
+
+                                    <td>@thongtinDDH.SOLUONG</td>
+                                </tr>
+                            }
+                        }
+                    </table>
+                    <a href="@Url.Action("Index", "Order")" class="btn btn-sm btn-success my-2 position-relative float-end">Xem đơn đặt hàng</a>
+                </div>
+            </div>
+        </div>
+    </div>
+}
